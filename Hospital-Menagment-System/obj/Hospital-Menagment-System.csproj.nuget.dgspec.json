@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GJKK\\OneDrive - ubt-uni.net\\Desktop\\ProjektiLab\\Hospital-Menagment-System\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj": {}
+    "C:\\Users\\User\\Desktop\\ProjketiLab\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GJKK\\OneDrive - ubt-uni.net\\Desktop\\ProjektiLab\\Hospital-Menagment-System\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj": {
+    "C:\\Users\\User\\Desktop\\ProjketiLab\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GJKK\\OneDrive - ubt-uni.net\\Desktop\\ProjektiLab\\Hospital-Menagment-System\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\ProjketiLab\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj",
         "projectName": "Hospital-Menagment-System",
-        "projectPath": "C:\\Users\\GJKK\\OneDrive - ubt-uni.net\\Desktop\\ProjektiLab\\Hospital-Menagment-System\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj",
-        "packagesPath": "C:\\Users\\GJKK\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GJKK\\OneDrive - ubt-uni.net\\Desktop\\ProjektiLab\\Hospital-Menagment-System\\Hospital-Menagment-System\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\ProjketiLab\\Hospital-Menagment-System\\Hospital-Menagment-System.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\ProjketiLab\\Hospital-Menagment-System\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\GJKK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,57 +69,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "MySQL.Data.Entities": {
-              "target": "Package",
-              "version": "[6.8.3, )"
-            },
-            "MySql.Data": {
-              "target": "Package",
-              "version": "[8.3.0, )"
-            },
-            "MySql.Data.EntityFramework": {
-              "target": "Package",
-              "version": "[8.3.0, )"
-            },
-            "MySql.Data.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.22, )"
-            },
-            "MySql.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "MySqlConnector": {
-              "target": "Package",
-              "version": "[2.3.6, )"
-            },
-            "MySqlConnector.Logging.Microsoft.Extensions.Logging": {
-              "target": "Package",
-              "version": "[2.1.0, )"
-            },
-            "MySqlConnector.Logging.NLog": {
-              "target": "Package",
-              "version": "[2.0.0, )"
-            },
-            "MySqlConnector.Logging.Serilog": {
-              "target": "Package",
-              "version": "[2.0.0, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[8.0.2, )"
-            },
-            "Shaolinq.MySql": {
-              "target": "Package",
-              "version": "[1.9.5, )"
-            },
-            "SqlConnection": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[1.0.4, )"
+              "version": "[8.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -150,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
