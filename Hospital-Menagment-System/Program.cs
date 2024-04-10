@@ -1,4 +1,5 @@
 using Hospital_Menagment_System.Data;
+using Hospital_Menagment_System.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +40,8 @@ namespace Hospital_Menagment_System
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hospital-Menagment-System", Version = "v1" });
             });
 
+            //Configure Services
+            services.AddTransient<PersonsServices>();
             // Inicializimi i DbContext
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
@@ -62,6 +65,8 @@ namespace Hospital_Menagment_System
             {
                 endpoints.MapControllers();
             });
+
+            AppDbInitializer.Seed(app);
         }
     }
 }
