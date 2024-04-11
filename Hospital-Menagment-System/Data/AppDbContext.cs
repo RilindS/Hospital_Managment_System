@@ -28,12 +28,15 @@ namespace Hospital_Menagment_System.Data
 
         public DbSet<Patient> Patients { get; set; }
 
+        //public DbSet<Room>Rooms { get; set; }
 
-
+       
 
         public DbSet<Doctor_Patient> Doctors_Patients { get; set; }
 
-       // public DbSet<Patient> Patients { get; set; }
+        public DbSet<Departament> Departaments { get; set; }
+
+        // public DbSet<Patient> Patients { get; set; }
 
 
 

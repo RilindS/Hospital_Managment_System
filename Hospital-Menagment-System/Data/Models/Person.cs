@@ -1,4 +1,5 @@
 ﻿using Hospital_Management_System.Data.Models;
+using Hospital_Menagment_System.Data.Models;
 using System.ComponentModel.DataAnnotations;
 
 public class Person
@@ -19,4 +20,7 @@ public class Person
 
     // Navigation property to relate to Patient class
     public List<Patient> Patients { get; set; }
+
+    //Lidhja me Staff
+    public List<Staff> Staff { get; set; }
 }

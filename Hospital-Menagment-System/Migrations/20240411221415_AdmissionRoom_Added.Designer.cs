@@ -4,6 +4,7 @@ using Hospital_Menagment_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240411221415_AdmissionRoom_Added")]
+    partial class AdmissionRoom_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,42 +219,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("Room");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Staff", b =>
-                {
-                    b.Property<int>("StaffId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StaffId"));
-
-                    b.Property<string>("AvilableDays")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EndShift")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PersonUserId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Salary")
-                        .HasColumnType("float");
-
-                    b.Property<string>("StartShift")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StaffId");
-
-                    b.HasIndex("PersonUserId");
-
-                    b.ToTable("Staff");
-                });
-
             modelBuilder.Entity("Person", b =>
                 {
                     b.Property<int>("UserId")
@@ -374,17 +341,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Departament");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Staff", b =>
-                {
-                    b.HasOne("Person", "Person")
-                        .WithMany("Staff")
-                        .HasForeignKey("PersonUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
             modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
                 {
                     b.Navigation("Doctor_Patient");
@@ -412,8 +368,6 @@ namespace Hospital_Menagment_System.Migrations
             modelBuilder.Entity("Person", b =>
                 {
                     b.Navigation("Patients");
-
-                    b.Navigation("Staff");
                 });
 #pragma warning restore 612, 618
         }
