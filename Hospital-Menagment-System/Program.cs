@@ -42,6 +42,8 @@ namespace Hospital_Menagment_System
 
             //Configure Services
             services.AddTransient<PersonsServices>();
+
+            services.AddTransient<PatientService>();
             // Inicializimi i DbContext
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
@@ -66,7 +68,7 @@ namespace Hospital_Menagment_System
                 endpoints.MapControllers();
             });
 
-            AppDbInitializer.Seed(app);
+          //  AppDbInitializer.Seed(app);
         }
     }
 }

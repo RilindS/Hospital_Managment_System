@@ -4,6 +4,7 @@ using Hospital_Menagment_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240410222809_AddedAtributesForPatient")]
+    partial class AddedAtributesForPatient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,55 +24,6 @@ namespace Hospital_Menagment_System.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
-                {
-                    b.Property<int>("PatientId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DateOfBirth")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateRegistered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PatientId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Patients");
-                });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Doctor", b =>
                 {
@@ -115,7 +69,59 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("Doctors_Patients");
                 });
 
-            modelBuilder.Entity("Person", b =>
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Patient", b =>
+                {
+                    b.Property<int>("PatientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DateOfBirth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateRegistred")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PersonUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PatientId");
+
+                    b.HasIndex("PersonUserId");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Person", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -131,7 +137,7 @@ namespace Hospital_Menagment_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DateRegistered")
+                    b.Property<DateTime?>("DateRegistred")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -163,17 +169,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("Persons");
                 });
 
-            modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
-                {
-                    b.HasOne("Person", "Person")
-                        .WithMany("Patients")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Doctor_Patient", b =>
                 {
                     b.HasOne("Hospital_Menagment_System.Data.Models.Doctor", "Doctor")
@@ -182,7 +177,7 @@ namespace Hospital_Menagment_System.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hospital_Management_System.Data.Models.Patient", "Patient")
+                    b.HasOne("Hospital_Menagment_System.Data.Models.Patient", "Patient")
                         .WithMany("Doctor_Patient")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -193,9 +188,15 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Patient", b =>
                 {
-                    b.Navigation("Doctor_Patient");
+                    b.HasOne("Hospital_Menagment_System.Data.Models.Person", "Person")
+                        .WithMany("Patients")
+                        .HasForeignKey("PersonUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Doctor", b =>
@@ -203,7 +204,12 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Doctor_Patient");
                 });
 
-            modelBuilder.Entity("Person", b =>
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Patient", b =>
+                {
+                    b.Navigation("Doctor_Patient");
+                });
+
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Person", b =>
                 {
                     b.Navigation("Patients");
                 });

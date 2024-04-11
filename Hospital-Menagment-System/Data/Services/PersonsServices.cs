@@ -26,7 +26,7 @@ namespace Hospital_Menagment_System.Data.Services
                 DateOfBirth = peron.DateOfBirth,
                 City = peron.City,
                 Street = peron.Street,
-                DateRegistred = DateTime.Now
+                DateRegistered = DateTime.Now
 
 
             };
@@ -60,7 +60,7 @@ namespace Hospital_Menagment_System.Data.Services
                     _person.DateOfBirth = person.DateOfBirth;
                     _person.City = person.City;
                     _person.Street = person.Street;
-                    _person.DateRegistred = DateTime.Now;
+                    _person.DateRegistered = DateTime.Now;
 
                 _context.SaveChanges();
                 }

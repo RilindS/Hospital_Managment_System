@@ -24,7 +24,7 @@ namespace Hospital_Menagment_System.Data
                         DateOfBirth="09/07/2004",
                         City="Prishtina",
                         Street="arberia",
-                        DateRegistred=DateTime.Now,
+                        DateRegistered=DateTime.Now,
 
 
                     }, new Person()
@@ -37,7 +37,7 @@ namespace Hospital_Menagment_System.Data
                         DateOfBirth = "09/07/2008",
                         City = "Prishtina",
                         Street = "arberia",
-                        DateRegistred = DateTime.Now
+                        DateRegistered = DateTime.Now
                     });
                     context.SaveChanges();
                 }
