@@ -4,6 +4,7 @@ using Hospital_Menagment_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240412211443_OperatingRoom_Doctor_Added")]
+    partial class OperatingRoom_Doctor_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,24 +95,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("AdmissionRoom");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Dean", b =>
-                {
-                    b.Property<int>("DeanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeanId"));
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DeanId");
-
-                    b.HasIndex("StaffId");
-
-                    b.ToTable("Dean");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Departament", b =>
                 {
                     b.Property<int>("DepartamentId")
@@ -182,36 +167,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("Doctors_Patients");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Nurse", b =>
-                {
-                    b.Property<int>("NurseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NurseId"));
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("int");
-
-                    b.HasKey("NurseId");
-
-                    b.HasIndex("StaffId");
-
-                    b.ToTable("Nurse");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.OperatingRoom", b =>
                 {
                     b.Property<int>("OperatingRoomId")
@@ -271,37 +226,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.HasIndex("OperatingRoomId");
 
                     b.ToTable("OperatingRoom_Doctor");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.OperatingRoom_Patient", b =>
-                {
-                    b.Property<int>("OperatingRoom_PatientId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OperatingRoom_PatientId"));
-
-                    b.Property<string>("AdmissionDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OperatingRoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReleaseDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OperatingRoom_PatientId");
-
-                    b.HasIndex("OperatingRoomId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("OperatingRoom_Patient");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Room", b =>
@@ -436,17 +360,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Dean", b =>
-                {
-                    b.HasOne("Hospital_Menagment_System.Data.Models.Staff", "Staff")
-                        .WithMany("Dean")
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Staff");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Doctor", b =>
                 {
                     b.HasOne("Hospital_Menagment_System.Data.Models.Departament", "Departament")
@@ -475,17 +388,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Doctor");
 
                     b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Nurse", b =>
-                {
-                    b.HasOne("Hospital_Menagment_System.Data.Models.Staff", "Staff")
-                        .WithMany("Nurse")
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Staff");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.OperatingRoom", b =>
@@ -518,25 +420,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("OperatingRoom");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.OperatingRoom_Patient", b =>
-                {
-                    b.HasOne("Hospital_Menagment_System.Data.Models.OperatingRoom", "OperatingRoom")
-                        .WithMany("OperatingRoom_Patient")
-                        .HasForeignKey("OperatingRoomId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Hospital_Management_System.Data.Models.Patient", "Patient")
-                        .WithMany("OperatingRoom_Patient")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("OperatingRoom");
-
-                    b.Navigation("Patient");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Room", b =>
                 {
                     b.HasOne("Hospital_Menagment_System.Data.Models.Departament", "Departament")
@@ -562,8 +445,6 @@ namespace Hospital_Menagment_System.Migrations
             modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
                 {
                     b.Navigation("Doctor_Patient");
-
-                    b.Navigation("OperatingRoom_Patient");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Departament", b =>
@@ -583,8 +464,6 @@ namespace Hospital_Menagment_System.Migrations
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.OperatingRoom", b =>
                 {
                     b.Navigation("OperatingRoom_Doctor");
-
-                    b.Navigation("OperatingRoom_Patient");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Room", b =>
@@ -592,13 +471,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("AdmissionRoom");
 
                     b.Navigation("OperatingRoom");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Staff", b =>
-                {
-                    b.Navigation("Dean");
-
-                    b.Navigation("Nurse");
                 });
 
             modelBuilder.Entity("Person", b =>

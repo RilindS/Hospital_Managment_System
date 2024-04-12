@@ -21,6 +21,35 @@ namespace Hospital_Menagment_System.Data
              .HasOne(x => x.Doctor)
              .WithMany(xa => xa.Doctor_Patient)
              .HasForeignKey(xb => xb.DoctorId);
+
+            //Lidhja shum me shum mes OPeration Romm dhe Doktorit
+
+            modelBuilder.Entity<OperatingRoom_Doctor>()
+                .HasOne(a => a.Doctor)
+                .WithMany(ab => ab.OperatingRoom_Doctor)
+                .HasForeignKey(ab => ab.DoctorId)
+                .OnDelete(DeleteBehavior.Restrict); 
+
+            modelBuilder.Entity<OperatingRoom_Doctor>()
+               .HasOne(a => a.OperatingRoom)
+               .WithMany(ab => ab.OperatingRoom_Doctor)
+               .HasForeignKey(ab => ab.OperatingRoomId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            //lidhja shum me shum mes OperationRoom dhe Pacientit
+
+            modelBuilder.Entity<OperatingRoom_Patient>()
+                .HasOne(a => a.Patient)
+                .WithMany(ab => ab.OperatingRoom_Patient)
+                .HasForeignKey(ab => ab.PatientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<OperatingRoom_Patient>()
+               .HasOne(a => a.OperatingRoom)
+               .WithMany(ab => ab.OperatingRoom_Patient)
+               .HasForeignKey(ab => ab.OperatingRoomId)
+               .OnDelete(DeleteBehavior.Restrict);
+
         }
         public DbSet<Person> Persons { get; set; }
 

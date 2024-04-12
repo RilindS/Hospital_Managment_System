@@ -16,7 +16,15 @@
         public Person Person { get; set; }
 
         //Lidhja me Doctor...
-       
+
+        //Lidhja me Dean
+        public List<Dean> Dean { get; set; }
+
+        //Lidhja me Nurse
+        public List<Nurse> Nurse { get; set; }
+
+
+
 
 
     }

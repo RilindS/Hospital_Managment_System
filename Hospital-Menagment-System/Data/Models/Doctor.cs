@@ -23,6 +23,11 @@ namespace Hospital_Menagment_System.Data.Models
         public Departament Departament { get; set; }
 
         //Lidhja me staff ....
-        
+
+
+        //Lidhja shum me shum me OperatingRoom_Doctor
+
+        public List<OperatingRoom_Doctor> OperatingRoom_Doctor { get; set; }
+
     }
 }
