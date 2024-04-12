@@ -22,6 +22,9 @@ namespace Hospital_Menagment_System.Data.Models
 
         public Departament Departament { get; set; }
 
+        //lidhja shum me shum mes Doktorit dhe Pacientit
+        public List<Doctor_Treats_Patient> Doctor_Treats_Patient { get; set; }
+
         //Lidhja me staff ....
 
 

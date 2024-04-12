@@ -12,6 +12,12 @@
 
         public Staff Staff { get; set; }
 
+        //Lidhja me AdmissionRoom
+
+        public int AdmissionRoomId { get; set; }
+
+        public AdmissionRoom AdmissionRoom { get; set; }
+
 
 
 

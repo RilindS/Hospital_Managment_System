@@ -10,5 +10,9 @@
         public int RoomId { get; set; }
 
         public Room Room { get; set; }
+
+
+        //Lidhja me Nurse
+        public List<Nurse> Nurse { get; set; }
     }
 }

@@ -24,7 +24,13 @@ namespace Hospital_Management_System.Data.Models
 
         public List<OperatingRoom_Patient> OperatingRoom_Patient { get; set; }
 
+        //lidhja shum me shum mes Doktorit dhe Pacientit
+        public List<Doctor_Treats_Patient> Doctor_Treats_Patient { get; set; }
 
+
+        //Lidhja mes services trats shum me shum
+
+        public List<Treats_Services> Treats_Services { get; set; }
 
         // Other patient details
         public string Name { get; set; }

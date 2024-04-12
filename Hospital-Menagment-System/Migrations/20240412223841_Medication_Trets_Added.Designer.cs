@@ -4,6 +4,7 @@ using Hospital_Menagment_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240412223841_Medication_Trets_Added")]
+    partial class Medication_Trets_Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -387,26 +390,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("Room");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Services", b =>
-                {
-                    b.Property<int>("ServiceID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceID"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.HasKey("ServiceID");
-
-                    b.ToTable("Services");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Staff", b =>
                 {
                     b.Property<int>("StaffId")
@@ -464,34 +447,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.HasIndex("TreatsId");
 
                     b.ToTable("Treats_Medication");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Treats_Services", b =>
-                {
-                    b.Property<int>("Treats_ServicesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Treats_ServicesId"));
-
-                    b.Property<int>("PatientID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TreatsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Treats_ServicesId");
-
-                    b.HasIndex("PatientID");
-
-                    b.HasIndex("ServiceID");
-
-                    b.HasIndex("TreatsId");
-
-                    b.ToTable("Treats_Services");
                 });
 
             modelBuilder.Entity("Person", b =>
@@ -733,33 +688,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Medication");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Treats_Services", b =>
-                {
-                    b.HasOne("Hospital_Management_System.Data.Models.Patient", "Patient")
-                        .WithMany("Treats_Services")
-                        .HasForeignKey("PatientID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Hospital_Menagment_System.Data.Models.Services", "Services")
-                        .WithMany("Treats_Services")
-                        .HasForeignKey("ServiceID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Hospital_Menagment_System.Data.Models.Doctor_Treats_Patient", "Doctor_Treats_Patient")
-                        .WithMany("Treats_Services")
-                        .HasForeignKey("TreatsId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Doctor_Treats_Patient");
-
-                    b.Navigation("Patient");
-
-                    b.Navigation("Services");
-                });
-
             modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
                 {
                     b.Navigation("Doctor_Patient");
@@ -767,8 +695,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Doctor_Treats_Patient");
 
                     b.Navigation("OperatingRoom_Patient");
-
-                    b.Navigation("Treats_Services");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.AdmissionRoom", b =>
@@ -795,8 +721,6 @@ namespace Hospital_Menagment_System.Migrations
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Doctor_Treats_Patient", b =>
                 {
                     b.Navigation("Treats_Medication");
-
-                    b.Navigation("Treats_Services");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Medication", b =>
@@ -816,11 +740,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("AdmissionRoom");
 
                     b.Navigation("OperatingRoom");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Services", b =>
-                {
-                    b.Navigation("Treats_Services");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Staff", b =>
