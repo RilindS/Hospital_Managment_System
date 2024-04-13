@@ -17,10 +17,41 @@ namespace Hospital_Menagment_System.Controllers
         }
 
         [HttpPost("add-Patient")]
-        public IActionResult AddPerosn([FromBody] PatientVM patient)
+        public IActionResult AddPatient([FromBody] PatientVM patient)
         {
             _patientService.AddPatient(patient);
             return Ok();
+        }
+        [HttpGet("get-all-patient")]
+        public IActionResult GetAllPatient()
+        {
+            var allPatient = _patientService.GetAllPatient();
+            return Ok(allPatient);
+        }
+
+
+        [HttpGet("get-patient-by-id/{id}")]
+        public IActionResult GetPatientById(int id)
+        {
+            var patient = _patientService.GetPatientById(id);
+            return Ok(patient);
+        }
+        
+
+        [HttpPut("update-patient-by-id/{id}")]
+        public IActionResult UpdatePatientById(int id, [FromBody] PatientVM patient)
+        {
+            var updatePatient = _patientService.UpdatePatientById(id, patient);
+            return Ok(updatePatient);
+        }
+
+        [HttpDelete("delete-patient-by-id/{id}")]
+        public IActionResult DeletePatientById(int id)
+        {
+            _patientService.DeletePatientById(id);
+            return Ok();
+
+
         }
     }
 }
