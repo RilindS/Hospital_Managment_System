@@ -23,7 +23,7 @@ namespace Hospital_Menagment_System
         {
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration; // Merrni konfigurimin e aplikacionit
-            ConfigureServices(builder.Services, configuration); // Përdorni konfigurimin në ConfigureServices
+            ConfigureServices(builder.Services, configuration); // Pï¿½rdorni konfigurimin nï¿½ ConfigureServices
 
             var app = builder.Build();
             Configure(app, builder.Environment);
@@ -41,7 +41,7 @@ namespace Hospital_Menagment_System
             });
 
             //Configure Services
-            services.AddTransient<PersonsServices>();
+            //services.AddTransient<PersonsServices>();
 
             services.AddTransient<PatientService>();
             // Inicializimi i DbContext

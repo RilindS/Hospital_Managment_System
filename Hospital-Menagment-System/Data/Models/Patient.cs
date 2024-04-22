@@ -12,10 +12,10 @@ namespace Hospital_Management_System.Data.Models
         public int PatientId { get; set; }
 
         // Foreign key for Person table
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public Person Person { get; set; }
+        //[ForeignKey("UserId")]
+       // public Person Person { get; set; }
 
         // Relationship between Doctor and Patient
         public List<Doctor_Patient> Doctor_Patient { get; set; }

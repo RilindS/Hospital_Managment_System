@@ -100,7 +100,6 @@ namespace Hospital_Menagment_System.Data
 
 
         }
-        public DbSet<Person> Persons { get; set; }
 
         public DbSet<Doctor> Doctors { get; set; }
 

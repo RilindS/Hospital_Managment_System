@@ -25,7 +25,6 @@ namespace Hospital_Menagment_System.Data.Services
                 City = patient.City,
                 Street = patient.Street,
                 DateRegistered = DateTime.Now,
-                UserId = patient.UserId // Add the UserId from the view model
 
             };
 

@@ -1,7 +1,7 @@
 ﻿using Hospital_Menagment_System.Data.Models;
 using Microsoft.AspNetCore.Builder;
 
-
+/*
 namespace Hospital_Menagment_System.Data
 {
     public class AppDbInitializer
@@ -44,4 +44,4 @@ namespace Hospital_Menagment_System.Data
             }
         }
     }
-}
+}*/
