@@ -41,7 +41,7 @@ namespace Hospital_Menagment_System
             });
 
             //Configure Services
-            //services.AddTransient<PersonsServices>();
+            services.AddTransient<DepartmentServices>();
 
             services.AddTransient<PatientService>();
             // Inicializimi i DbContext
