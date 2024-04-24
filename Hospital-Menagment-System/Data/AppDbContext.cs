@@ -106,6 +106,7 @@ namespace Hospital_Menagment_System.Data
         public DbSet<Patient> Patients { get; set; }
 
         //public DbSet<Room>Rooms { get; set; }
+        public DbSet<Qyteti> Qytetet { get; set; }
 
        
 

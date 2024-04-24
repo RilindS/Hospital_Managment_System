@@ -44,6 +44,9 @@ namespace Hospital_Menagment_System
             services.AddTransient<DepartmentServices>();
 
             services.AddTransient<PatientService>();
+            
+            services.AddTransient<CityServices>();
+
             // Inicializimi i DbContext
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));

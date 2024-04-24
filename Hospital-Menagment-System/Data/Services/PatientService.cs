@@ -25,6 +25,7 @@ namespace Hospital_Menagment_System.Data.Services
                 City = patient.City,
                 Street = patient.Street,
                 DateRegistered = DateTime.Now,
+                QytetiId = patient.QytetiId,
 
             };
 
@@ -57,6 +58,7 @@ namespace Hospital_Menagment_System.Data.Services
                 _patient.City = patient.City;
                 _patient.Street = patient.Street;
                 _patient.DateRegistered = DateTime.Now;
+                _patient.QytetiId = patient.QytetiId;
 
                 _context.SaveChanges();
             }

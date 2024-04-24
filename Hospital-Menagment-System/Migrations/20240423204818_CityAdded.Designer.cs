@@ -4,6 +4,7 @@ using Hospital_Menagment_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240423204818_CityAdded")]
+    partial class CityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,10 +32,6 @@ namespace Hospital_Menagment_System.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DateOfBirth")
                         .IsRequired()
@@ -53,8 +52,9 @@ namespace Hospital_Menagment_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QytetiId")
-                        .HasColumnType("int");
+                    b.Property<string>("Qyteti")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -65,8 +65,6 @@ namespace Hospital_Menagment_System.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PatientId");
-
-                    b.HasIndex("QytetiId");
 
                     b.ToTable("Patients");
                 });
@@ -90,6 +88,23 @@ namespace Hospital_Menagment_System.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("AdmissionRoom");
+                });
+
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"));
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CityId");
+
+                    b.ToTable("Citys");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Dean", b =>
@@ -361,23 +376,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("OperatingRoom_Patient");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Qyteti", b =>
-                {
-                    b.Property<int>("QytetiId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QytetiId"));
-
-                    b.Property<string>("CityName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QytetiId");
-
-                    b.ToTable("Qytetet");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")
@@ -501,17 +499,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.HasIndex("TreatsId");
 
                     b.ToTable("Treats_Services");
-                });
-
-            modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
-                {
-                    b.HasOne("Hospital_Menagment_System.Data.Models.Qyteti", "Qyteti")
-                        .WithMany("Patients")
-                        .HasForeignKey("QytetiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Qyteti");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.AdmissionRoom", b =>
@@ -759,11 +746,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("OperatingRoom_Doctor");
 
                     b.Navigation("OperatingRoom_Patient");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Qyteti", b =>
-                {
-                    b.Navigation("Patients");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Room", b =>

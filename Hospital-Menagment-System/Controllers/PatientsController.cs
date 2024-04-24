@@ -10,10 +10,20 @@ namespace Hospital_Menagment_System.Controllers
     public class PatientsController : ControllerBase
     {
         private PatientService _patientService;
+        private  CityServices _cityService;
 
-        public PatientsController (PatientService patientService)
+
+        public PatientsController (PatientService patientService,CityServices cityService)
         {
             _patientService = patientService;
+            _cityService = cityService;
+
+        }
+        [HttpGet("all-cities")]
+        public IActionResult GetCities()
+        {
+            var cities = _cityService.GetCities();
+            return Ok(cities);
         }
 
         [HttpPost("add-Patient")]

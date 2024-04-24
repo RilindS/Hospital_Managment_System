@@ -1,8 +1,8 @@
-﻿using Hospital_Menagment_System.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Hospital_Management_System.Data.Models;
+using Hospital_Menagment_System.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hospital_Management_System.Data.Models
 {
@@ -10,26 +10,22 @@ namespace Hospital_Management_System.Data.Models
     {
         [Key]
         public int PatientId { get; set; }
+        
+        
+        public int QytetiId { get; set; } // Kolona që do të lidhet me CityId në tabelën e qytetit
 
-        // Foreign key for Person table
-        //public int UserId { get; set; }
-
-        //[ForeignKey("UserId")]
-       // public Person Person { get; set; }
+        public Qyteti Qyteti { get; set; }
 
         // Relationship between Doctor and Patient
         public List<Doctor_Patient> Doctor_Patient { get; set; }
 
         //lidhja shum me shum mes OperatingRoom dhe Patient  OperatingRoom_Patient
-
         public List<OperatingRoom_Patient> OperatingRoom_Patient { get; set; }
 
         //lidhja shum me shum mes Doktorit dhe Pacientit
         public List<Doctor_Treats_Patient> Doctor_Treats_Patient { get; set; }
 
-
         //Lidhja mes services trats shum me shum
-
         public List<Treats_Services> Treats_Services { get; set; }
 
         // Other patient details
