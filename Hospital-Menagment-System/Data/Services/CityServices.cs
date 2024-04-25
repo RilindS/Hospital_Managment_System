@@ -1,28 +1,47 @@
 using Hospital_Menagment_System.Data.Models;
+using System.Collections.Generic;
+using System.Linq;
 using Hospital_Menagment_System.Data.ViewModels;
 
-namespace Hospital_Menagment_System.Data.Services;
-
-public class CityServices
+namespace Hospital_Menagment_System.Data.Services
 {
-    private AppDbContext _context;
+    public class CityServices
+    {
+        private AppDbContext _context;
       
-    public CityServices(AppDbContext context)
-    {
-        _context = context;
-    }
-    public IEnumerable<string> GetCities()
-    {
-        return _context.Qytetet.Select(c => c.CityName).ToList();
-    }
-    public void AddCity(CityVM city)
-    {
-        var _city = new Qyteti()
+        public CityServices(AppDbContext context)
         {
-            CityName = city.CityName
-        };
-        _context.Qytetet.Add(_city);
-        _context.SaveChanges();
+            _context = context;
+        }
+
+        public IEnumerable<string> GetCities()
+        {
+            return _context.Cities.Select(c => c.CityName).ToList();
+        }
+
+        public void AddCity(CityVM city)
+        {
+            var _city = new City()
+            {
+                CityName = city.CityName
+            };
+            _context.Cities.Add(_city);
+            _context.SaveChanges();
+        }
+
+       
+
+        public int GetCityIdByName(string cityName)
+        {
+            var city = _context.Cities.FirstOrDefault(c => c.CityName == cityName);
+            if (city != null)
+            {
+                return city.CityId;
+            }
+            else
+            {
+                throw new ArgumentException("City not found", nameof(cityName));
+            }
+        }
     }
-        
 }

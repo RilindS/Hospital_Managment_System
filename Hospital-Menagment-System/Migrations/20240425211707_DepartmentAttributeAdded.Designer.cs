@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240423204818_CityAdded")]
-    partial class CityAdded
+    [Migration("20240425211707_DepartmentAttributeAdded")]
+    partial class DepartmentAttributeAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace Hospital_Menagment_System.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DateOfBirth")
                         .IsRequired()
@@ -65,6 +68,8 @@ namespace Hospital_Menagment_System.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PatientId");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Patients");
                 });
@@ -104,7 +109,7 @@ namespace Hospital_Menagment_System.Migrations
 
                     b.HasKey("CityId");
 
-                    b.ToTable("Citys");
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Dean", b =>
@@ -160,10 +165,40 @@ namespace Hospital_Menagment_System.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"));
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("DepartamentId")
                         .HasColumnType("int");
 
+                    b.Property<string>("DepartamentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Qualification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Qytet")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specialization")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -501,6 +536,16 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("Treats_Services");
                 });
 
+            modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
+                {
+                    b.HasOne("Hospital_Menagment_System.Data.Models.City", "City")
+                        .WithMany("Patients")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.AdmissionRoom", b =>
                 {
                     b.HasOne("Hospital_Menagment_System.Data.Models.Room", "Room")
@@ -711,6 +756,11 @@ namespace Hospital_Menagment_System.Migrations
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.AdmissionRoom", b =>
                 {
                     b.Navigation("Nurse");
+                });
+
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.City", b =>
+                {
+                    b.Navigation("Patients");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Departament", b =>

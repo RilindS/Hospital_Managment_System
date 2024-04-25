@@ -12,10 +12,17 @@ namespace Hospital_Menagment_System.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Doctor_Patient>()
-                .HasOne(x => x.Patient)
-                .WithMany(xa => xa.Doctor_Patient)
-                .HasForeignKey(xb => xb.PatientId);
+            
+              // Configure the foreign key property
+              
+            
+            modelBuilder.Entity<Patient>()
+                .HasOne(p => p.City) // Patient has one City
+                .WithMany(c => c.Patients) // City can have multiple Patients
+                .HasForeignKey(p => p.CityId) // Foreign key property in Patient
+                .IsRequired(false) // Make the relationship optional if City is nullable
+                .OnDelete(DeleteBehavior.Restrict); // Optional: Configure delete behavior
+
 
             modelBuilder.Entity<Doctor_Patient>()
              .HasOne(x => x.Doctor)
@@ -100,13 +107,15 @@ namespace Hospital_Menagment_System.Data
 
 
         }
+        
+       
 
         public DbSet<Doctor> Doctors { get; set; }
 
         public DbSet<Patient> Patients { get; set; }
 
         //public DbSet<Room>Rooms { get; set; }
-        public DbSet<Qyteti> Qytetet { get; set; }
+        public DbSet<City> Cities { get; set; }
 
        
 

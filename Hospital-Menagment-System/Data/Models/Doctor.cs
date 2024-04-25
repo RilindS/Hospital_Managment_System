@@ -8,28 +8,45 @@ namespace Hospital_Menagment_System.Data.Models
     {
         [Key]
         public int DoctorId { get; set; }
-
-        public string Qualification { get; set; }
         
 
-        //lidhja me entitetin Pacienti
+        public string DoctorName { get; set; }
 
-        public List <Doctor_Patient> Doctor_Patient { get; set; }
+        public string DepartamentName { get; set; }
 
-        //lidhja me Departamentin   nje(Doktori)--shum(Departamenti)
+        public string Surname { get; set; }
+        
+        public string PhoneNumber { get; set; }
+
+        public string Specialization  { get; set; }
+
+        public string Qytet { get; set; }
+
+        public Boolean IsActive { get; set; }
+        
+        public string Qualification { get; set; }
+
+        
+
+        public int CityId { get; set; }
+
+        public City City;
+        
+        
 
         public int DepartamentId { get; set; }
 
         public Departament Departament { get; set; }
 
-        //lidhja shum me shum mes Doktorit dhe Pacientit
+        
+        
+        
+        
+        
+        
+        
+        public List <Doctor_Patient> Doctor_Patient { get; set; }
         public List<Doctor_Treats_Patient> Doctor_Treats_Patient { get; set; }
-
-        //Lidhja me staff ....
-
-
-        //Lidhja shum me shum me OperatingRoom_Doctor
-
         public List<OperatingRoom_Doctor> OperatingRoom_Doctor { get; set; }
 
     }

@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hospital_Menagment_System.Data.Models;
 
-public class Qyteti
+public class City
 {
    [Key]
-    public int QytetiId { get; set; }
+    public int CityId { get; set; }
     
     public string CityName { get; set; }
     

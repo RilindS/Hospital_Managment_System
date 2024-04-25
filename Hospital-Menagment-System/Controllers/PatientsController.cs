@@ -10,28 +10,35 @@ namespace Hospital_Menagment_System.Controllers
     public class PatientsController : ControllerBase
     {
         private PatientService _patientService;
-        private  CityServices _cityService;
+        private CityServices _cityService;
 
-
-        public PatientsController (PatientService patientService,CityServices cityService)
+        public PatientsController(PatientService patientService, CityServices cityService)
         {
             _patientService = patientService;
             _cityService = cityService;
+        }
 
-        }
-        [HttpGet("all-cities")]
-        public IActionResult GetCities()
-        {
-            var cities = _cityService.GetCities();
-            return Ok(cities);
-        }
+
 
         [HttpPost("add-Patient")]
         public IActionResult AddPatient([FromBody] PatientVM patient)
         {
-            _patientService.AddPatient(patient);
-            return Ok();
+            try
+            {
+                _patientService.AddPatient(patient);
+                return Ok("Patient added successfully.");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            /*catch (Exception)
+            {
+                return StatusCode(500, "An error occurred while processing your request.");
+            }*/
         }
+
+        
         [HttpGet("get-all-patient")]
         public IActionResult GetAllPatient()
         {
@@ -39,14 +46,12 @@ namespace Hospital_Menagment_System.Controllers
             return Ok(allPatient);
         }
 
-
         [HttpGet("get-patient-by-id/{id}")]
         public IActionResult GetPatientById(int id)
         {
             var patient = _patientService.GetPatientById(id);
             return Ok(patient);
         }
-        
 
         [HttpPut("update-patient-by-id/{id}")]
         public IActionResult UpdatePatientById(int id, [FromBody] PatientVM patient)
@@ -60,8 +65,6 @@ namespace Hospital_Menagment_System.Controllers
         {
             _patientService.DeletePatientById(id);
             return Ok();
-
-
         }
     }
 }

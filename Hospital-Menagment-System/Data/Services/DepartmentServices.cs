@@ -13,6 +13,19 @@ public class DepartmentServices
             _context = context;
 
         }
+        public int GetDepartmentIdByName(string deptName)
+        {
+            var department = _context.Departaments.FirstOrDefault(c => c.Name == deptName);
+            if (department != null)
+            {
+                return department.DepartamentId;
+            }
+            else
+            {
+                throw new ArgumentException("City not found", nameof(deptName));
+            }
+        }
+    
         public void AddPatient(DepartmentVM department)
         {
             var _departament = new Departament()

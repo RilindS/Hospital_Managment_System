@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240424082610_Qyteti_Added")]
-    partial class Qyteti_Added
+    [Migration("20240425132622_CityAdded")]
+    partial class CityAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,8 @@ namespace Hospital_Menagment_System.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("DateOfBirth")
                         .IsRequired()
@@ -56,8 +55,9 @@ namespace Hospital_Menagment_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("QytetiId")
-                        .HasColumnType("int");
+                    b.Property<string>("Qyteti")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -69,7 +69,7 @@ namespace Hospital_Menagment_System.Migrations
 
                     b.HasKey("PatientId");
 
-                    b.HasIndex("QytetiId");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Patients");
                 });
@@ -93,6 +93,23 @@ namespace Hospital_Menagment_System.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("AdmissionRoom");
+                });
+
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"));
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CityId");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Dean", b =>
@@ -364,23 +381,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.ToTable("OperatingRoom_Patient");
                 });
 
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Qyteti", b =>
-                {
-                    b.Property<int>("QytetiId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QytetiId"));
-
-                    b.Property<string>("CityName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QytetiId");
-
-                    b.ToTable("Qytetet");
-                });
-
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Room", b =>
                 {
                     b.Property<int>("RoomId")
@@ -508,13 +508,12 @@ namespace Hospital_Menagment_System.Migrations
 
             modelBuilder.Entity("Hospital_Management_System.Data.Models.Patient", b =>
                 {
-                    b.HasOne("Hospital_Menagment_System.Data.Models.Qyteti", "Qyteti")
+                    b.HasOne("Hospital_Menagment_System.Data.Models.City", "City")
                         .WithMany("Patients")
-                        .HasForeignKey("QytetiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("Qyteti");
+                    b.Navigation("City");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.AdmissionRoom", b =>
@@ -729,6 +728,11 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("Nurse");
                 });
 
+            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.City", b =>
+                {
+                    b.Navigation("Patients");
+                });
+
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Departament", b =>
                 {
                     b.Navigation("Doctor");
@@ -762,11 +766,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.Navigation("OperatingRoom_Doctor");
 
                     b.Navigation("OperatingRoom_Patient");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Qyteti", b =>
-                {
-                    b.Navigation("Patients");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Room", b =>
