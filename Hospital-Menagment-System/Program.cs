@@ -39,6 +39,16 @@ namespace Hospital_Menagment_System
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hospital-Menagment-System", Version = "v1" });
             });
+            // Add CORS services
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
 
             //Configure Services
             services.AddTransient<DepartmentServices>();
@@ -60,6 +70,7 @@ namespace Hospital_Menagment_System
             {
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hospital-Menagment-System v1"));
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
@@ -67,12 +78,13 @@ namespace Hospital_Menagment_System
             app.UseAuthorization();
 
             app.UseRouting();
+            app.UseCors("AllowAllOrigins");
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
+ 
           //  AppDbInitializer.Seed(app);
         }
     }

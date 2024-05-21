@@ -478,3 +478,7 @@ C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System
 C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\System.Web.Cors.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\System.Web.Http.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\System.Web.Http.Cors.dll
