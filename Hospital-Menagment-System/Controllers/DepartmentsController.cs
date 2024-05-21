@@ -19,9 +19,16 @@ namespace Hospital_Menagment_System.Controllers
         [HttpPost("add-department")]
         public IActionResult AddDepartment([FromBody] DepartmentVM department)
         {
-            _departmentService.AddPatient(department);
+            _departmentService.AddDepartment(department);
             return Ok();
         }
+        [HttpGet("get-department")]
+        public IEnumerable<string> GetDepartment()
+        {
+            return _departmentService.GetDepartment();
+        }
+        
+        
         [HttpGet("get-all-department")]
         public IActionResult GetAllDepartment()
         {

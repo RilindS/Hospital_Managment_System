@@ -13,6 +13,10 @@ public class DepartmentServices
             _context = context;
 
         }
+        public IEnumerable<string> GetDepartment()
+        {
+            return _context.Departaments.Select(c => c.Name).ToList();
+        }
         public int GetDepartmentIdByName(string deptName)
         {
             var department = _context.Departaments.FirstOrDefault(c => c.Name == deptName);
@@ -26,7 +30,7 @@ public class DepartmentServices
             }
         }
     
-        public void AddPatient(DepartmentVM department)
+        public void AddDepartment(DepartmentVM department)
         {
             var _departament = new Departament()
             {

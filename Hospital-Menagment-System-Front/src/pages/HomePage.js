@@ -6,6 +6,8 @@ const HomePage = () => {
     <div>
       <h1>Welcome to the Hospital Management System</h1>
       <Link to="/patient">Go to Patient Management</Link>
+      <Link to="/doctor">Go to Doctor Management</Link>
+
     </div>
   );
 };
