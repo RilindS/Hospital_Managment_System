@@ -1,0 +1,32 @@
+// components/Sidebar.jsx
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Sidebar.css';
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
+
+const Sidebar = ({ children }) => {
+  return (
+    <div className="sidebar-container">
+      <div className="sidebar">
+        <Link to="/patient" className="sidebar-link">
+          <i className="fas fa-user-injured"></i>
+          <span className="link-text">Patient</span>
+        </Link>
+        <Link to="/doctor" className="sidebar-link">
+          <i className="fas fa-user-md"></i>
+          <span className="link-text">Doctor</span>
+        </Link>
+        <Link to="/department" className="sidebar-link">
+          <i className="fas fa-building"></i>
+          <span className="link-text">Department</span>
+        </Link>
+      </div>
+      <div className="content">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default Sidebar;

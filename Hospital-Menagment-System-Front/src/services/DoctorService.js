@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_URL = 'https://localhost:44322/api/Doctor'; 
 
-//https://localhost:44322/api/Doctor/get-all-doctor
 
 export const addDoctor = async (doctor) => {
   try {

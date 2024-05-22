@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getAllPatients, deletePatientById } from '../../services/patientService';
 import { Link } from 'react-router-dom';
+import { Table, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
@@ -30,15 +32,33 @@ const PatientList = () => {
   return (
     <div>
       <h1>Patient List</h1>
-      <ul>
-        {patients.map(patient => (
-          <li key={patient.patientId}>
-            {patient.name} {patient.surname} {patient.qyteti} {patient.street} {patient.phone}
-            <Link to={`/edit-patient/${patient.patientId}`}>Edit</Link>
-            <button onClick={() => handleDelete(patient.patientId)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>City</th>
+            <th>Street</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {patients.map(patient => (
+            <tr key={patient.patientId}>
+              <td>{patient.name}</td>
+              <td>{patient.surname}</td>
+              <td>{patient.qyteti}</td>
+              <td>{patient.street}</td>
+              <td>{patient.phoneNumber}</td>
+              <td>
+                <Link to={`/edit-patient/${patient.patientId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
+                <Button variant="danger" size="sm" onClick={() => handleDelete(patient.patientId)}>Delete</Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </div>
   );
 };

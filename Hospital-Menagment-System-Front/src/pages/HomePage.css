@@ -1,0 +1,27 @@
+/* HomePage.css */
+.home-page {
+  padding: 20px;
+}
+
+.home-page h1 {
+  margin-bottom: 20px;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px 20px;
+  margin: 5px 0;
+  text-decoration: none;
+  color: #007bff;
+  border-radius: 4px;
+}
+
+.nav-link:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
