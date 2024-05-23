@@ -45,9 +45,5 @@ namespace Hospital_Menagment_System.Data.Models
         
         
         
-        public List <Doctor_Patient> Doctor_Patient { get; set; }
-        public List<Doctor_Treats_Patient> Doctor_Treats_Patient { get; set; }
-        public List<OperatingRoom_Doctor> OperatingRoom_Doctor { get; set; }
-
     }
 }

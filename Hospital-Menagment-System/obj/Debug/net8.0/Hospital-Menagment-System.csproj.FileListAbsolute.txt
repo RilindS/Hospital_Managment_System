@@ -482,3 +482,10 @@ C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System
 C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\System.Net.Http.Formatting.dll
 C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\System.Web.Http.dll
 C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\System.Web.Http.Cors.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\GJKK\OneDrive - ubt-uni.net\Desktop\LabCourse\Hospital-Menagment-System\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll

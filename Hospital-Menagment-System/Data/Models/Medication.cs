@@ -10,8 +10,6 @@ namespace Hospital_Menagment_System.Data.Models
         
         public string Category { get; set;}
 
-        //lidhja mes Medication dhe treats shum me shum
-        public List<Treats_Medication> Treats_Medication { get; set; }
 
     }
 }

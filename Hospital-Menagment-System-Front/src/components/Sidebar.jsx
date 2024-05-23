@@ -1,5 +1,3 @@
-// components/Sidebar.jsx
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
@@ -20,6 +18,14 @@ const Sidebar = ({ children }) => {
         <Link to="/department" className="sidebar-link">
           <i className="fas fa-building"></i>
           <span className="link-text">Department</span>
+        </Link>
+        <Link to="/nurse" className="sidebar-link">
+          <i className="fas fa-user-nurse"></i>
+          <span className="link-text">Nurse</span>
+        </Link>
+        <Link to="/room" className="sidebar-link">
+          <i className="fas fa-procedures"></i>
+          <span className="link-text">Room</span>
         </Link>
       </div>
       <div className="content">

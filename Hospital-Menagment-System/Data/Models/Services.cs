@@ -13,7 +13,7 @@ namespace Hospital_Menagment_System.Data.Models
 
         //Lidhja mes services trats shum me shum
 
-        public List<Treats_Services> Treats_Services { get; set; }
+       
 
 
     }

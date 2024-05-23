@@ -8,15 +8,11 @@
         public string Category { get; set; }
 
         //lidhja me staff
-        public int StaffId { get; set; }
-
-        public Staff Staff { get; set; }
+        
 
         //Lidhja me AdmissionRoom
 
-        public int AdmissionRoomId { get; set; }
-
-        public AdmissionRoom AdmissionRoom { get; set; }
+       
 
 
 
