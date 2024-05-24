@@ -27,6 +27,14 @@ const Sidebar = ({ children }) => {
           <i className="fas fa-procedures"></i>
           <span className="link-text">Room</span>
         </Link>
+        <Link to="/login" className="sidebar-link">
+          <i className="fas fa-sign-in-alt"></i>
+          <span className="link-text">LogIn</span>
+        </Link>
+        <Link to="/register" className="sidebar-link">
+          <i className="fas fa-user-plus"></i>
+          <span className="link-text">Register</span>
+        </Link>
       </div>
       <div className="content">
         {children}

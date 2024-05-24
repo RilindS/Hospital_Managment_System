@@ -11,7 +11,6 @@ namespace Hospital_Menagment_System.Data.Models
 
         public int Price { get; set;}
 
-        //Lidhja mes services trats shum me shum
 
        
 

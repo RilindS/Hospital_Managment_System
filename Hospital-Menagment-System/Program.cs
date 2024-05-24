@@ -16,102 +16,129 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hospital_Menagment_System.Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Hospital_Menagment_System
 {
-    public class Program
+   public class Program
+{
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+        var configuration = builder.Configuration;
+
+        ConfigureServices(builder.Services, configuration);
+
+        var app = builder.Build();
+        Configure(app, builder.Environment);
+
+        app.Run();
+    }
+
+    private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    {  
+        services.AddDbContext<AppDbContext>(options =>
+                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+
+        services.AddControllers();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen(c =>
         {
-            var builder = WebApplication.CreateBuilder(args);
-            var configuration = builder.Configuration;
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hospital-Menagment-System", Version = "v1" });
+        });
 
-            ConfigureServices(builder.Services, configuration);
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+        });
 
-            var app = builder.Build();
-            Configure(app, builder.Environment);
+        services.AddTransient<DepartmentServices>();
+        services.AddTransient<PatientService>();
+        services.AddTransient<CityServices>();
+        services.AddTransient<DoctorServices>();
+        services.AddTransient<NurseServices>();
+        services.AddTransient<RoomServices>();
 
-            app.Run();
+        var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]);
+        services.AddAuthentication(x =>
+        {
+            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(x =>
+        {
+            x.RequireHttpsMetadata = false;
+            x.SaveToken = true;
+            x.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+        });
+
+        services.AddControllers();
+        // services.AddScoped<IUserService, UserService>();
+
+        // Krijo rolet nëse ato nuk ekzistojnë
+        CreateRoles(services.BuildServiceProvider());
+    }
+
+    private static async void CreateRoles(IServiceProvider serviceProvider)
+    {
+        var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        
+        // Shto rolin "Admin" nëse nuk ekziston
+        if (!await roleManager.RoleExistsAsync("Admin"))
+        {
+            await roleManager.CreateAsync(new IdentityRole("Admin"));
         }
 
-        private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        // Shto rolin "Patient" nëse nuk ekziston
+        if (!await roleManager.RoleExistsAsync("Patient"))
         {
-            services.AddControllers();
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hospital-Menagment-System", Version = "v1" });
-            });
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAllOrigins",
-                    builder => builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-            });
-
-            services.AddTransient<DepartmentServices>();
-            services.AddTransient<PatientService>();
-            services.AddTransient<CityServices>();
-            services.AddTransient<DoctorServices>();
-            services.AddTransient<NurseServices>();
-            services.AddTransient<RoomServices>();
-
-
-
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = configuration["Jwt:Issuer"],
-                        ValidAudience = configuration["Jwt:Issuer"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
-                    };
-                });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-                options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
-            });
-
-            services.AddControllers();
-            services.AddScoped<IUserService, UserService>();
+            await roleManager.CreateAsync(new IdentityRole("Patient"));
         }
 
-        private static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // Shto rolin "Doctor" nëse nuk ekziston
+        if (!await roleManager.RoleExistsAsync("Doctor"))
         {
-            if (env.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hospital-Menagment-System v1"));
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseCors("AllowAllOrigins");
-            
-                
-             app.UseRouting();
-            app.UseAuthorization();
-
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            await roleManager.CreateAsync(new IdentityRole("Doctor"));
         }
     }
+
+    private static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hospital-Menagment-System v1"));
+            app.UseDeveloperExceptionPage();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseCors("AllowAllOrigins");
+            
+        app.UseRouting();
+        
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+    }
+}
 }
