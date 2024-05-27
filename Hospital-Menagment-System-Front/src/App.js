@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import LoginPage from './pages/LoginPage';
@@ -10,7 +10,6 @@ import PatientPage from './pages/PatientPage';
 import PatientHomePage from './pages/PatientHomePage';
 import DoctorHomePage from './pages/DoctorHomePage';
 import AddAppointment from './components/AddAppointment';
-
 import HomePage from './pages/HomePage';
 import AdminSidebar from './components/sidebar/AdminSidebar';
 import DoctorSidebar from './components/sidebar/DoctorSidebar';
@@ -28,9 +27,11 @@ import AddNursePage from './pages/AddNursePage';
 import EditNurse from './components/Nurse/EditNurse';
 import AddRoomPage from './pages/AddRoomPage';
 import EditRoom from './components/Room/EditRoom';
-
+import AddCityPage from './pages/AddCityPage';
+import AddPatient from './components/Patient/AddPatient';
+import AddDoctor from './components/Doctor/AddDoctor';
 import AdminAppointments from './components/AdminAppointments';
-
+import CityPage from './pages/CityPage';
 
 const App = () => {
   return (
@@ -43,6 +44,8 @@ const App = () => {
           <Route path="/admin/*" element={<PrivateRoute roles={['Admin']} component={AdminLayout} />} />
           <Route path="/doctor/*" element={<PrivateRoute roles={['Doctor']} component={DoctorLayout} />} />
           <Route path="/patient/*" element={<PrivateRoute roles={['Patient']} component={PatientLayout} />} />
+          <Route path="/add-patient" element={<AddPatient />} />
+          <Route path="/add-doctor" element={<AddDoctor />} />
         </Routes>
       </AuthProvider>
     </Router>
@@ -54,33 +57,25 @@ const AdminLayout = () => (
     <AdminSidebar />
     <div className="content">
       <Routes>
-
-      <Route path="/" element={<AdminPage />} />
-
+        <Route path="/" element={<AdminPage />} />
         <Route path="/patient" element={<PatientPage />} />
         <Route path="/patient/add" element={<AddPatientPage />} />
         <Route path="/patient/edit/:id" element={<EditPatient />} />
-
         <Route path="/doctor" element={<DoctorPage />} />
         <Route path="/doctor/add" element={<AddDoctorPage />} />
         <Route path="/doctor/edit/:id" element={<EditDoctor />} />
-
         <Route path="/department" element={<DepartmentPage />} />
         <Route path="/department/add" element={<AddDepartmentPage />} />
         <Route path="/department/edit/:id" element={<EditDepartment />} />
-
         <Route path="/nurse" element={<NursePage />} />
         <Route path="/nurse/add" element={<AddNursePage />} />
         <Route path="/nurse/edit/:id" element={<EditNurse />} />
-        
         <Route path="/room" element={<RoomPage />} />
         <Route path="/room/add" element={<AddRoomPage />} />
         <Route path="/room/edit/:id" element={<EditRoom />} />
-
         <Route path="/appointments" element={<AdminAppointments />} />
-
-       
-
+        <Route path="/city/add" element={<AddCityPage />} />
+        <Route path="/city" element={<CityPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
       </Routes>
@@ -93,11 +88,8 @@ const DoctorLayout = () => (
     <DoctorSidebar />
     <div className="content">
       <Routes>
-      <Route path="/" element={<DoctorHomePage />} />
+        <Route path="/" element={<DoctorHomePage />} />
         <Route path="/patient" element={<PatientPage />} />
-
-
-        {/* Add more doctor routes here */}
       </Routes>
     </div>
   </div>
@@ -109,9 +101,7 @@ const PatientLayout = () => (
     <div className="content">
       <Routes>
         <Route path="/" element={<PatientHomePage />} />
-        <Route path="/appointments" element={<AddAppointment/>} />
-
-        {/* Add more patient routes here */}
+        <Route path="/appointments" element={<AddAppointment />} />
       </Routes>
     </div>
   </div>

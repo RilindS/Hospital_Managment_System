@@ -31,7 +31,7 @@ const PatientList = () => {
 
   return (
     <div>
-      <h1>Patient List</h1>
+      <h1></h1>
       <Table striped bordered hover>
         <thead>
           <tr>

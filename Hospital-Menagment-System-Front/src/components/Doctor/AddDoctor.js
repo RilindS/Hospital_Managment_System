@@ -57,8 +57,8 @@ const AddDoctor = () => {
     e.preventDefault();
     try {
       const response = await addDoctor(doctor);
-      console.log('doctor added:', response);
-      navigate('/doctor');
+      console.log('Doctor added:', response);
+      navigate('/admin/doctor'); // Ridrejto tek faqja e doktorëve pas shtimit të suksesshëm
     } catch (error) {
       console.error('Error adding doctor:', error);
     }
@@ -66,7 +66,7 @@ const AddDoctor = () => {
 
   return (
     <Container>
-      <h2>Add Doctor</h2>
+      <h2>Add Doctor Details</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formDoctorName">
           <Form.Label column sm={2}>Name:</Form.Label>

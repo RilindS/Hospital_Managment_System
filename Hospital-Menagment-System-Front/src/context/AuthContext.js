@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Import jwtDecode as a named import
+import {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -52,8 +52,15 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password, role) => {
     try {
-      await axios.post('https://localhost:44322/api/Account/register', { email, password, role });
-      navigate('/login');
+      const response = await axios.post('https://localhost:44322/api/Account/register', { email, password, role });
+      const { isPatient, isDoctor } = response.data;
+      if (isPatient) {
+        navigate('/add-patient');
+      } else if (isDoctor) {
+        navigate('/add-doctor');
+      } else {
+        navigate('/login');
+      }
     } catch (error) {
       console.error('Registration failed', error);
     }

@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -13,26 +15,49 @@ const RegisterPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <select value={role} onChange={(e) => setRole(e.target.value)}>
-        <option value="Admin">Admin</option>
-        <option value="Doctor">Doctor</option>
-        <option value="Patient">Patient</option>
-      </select>
-      <button type="submit">Register</button>
-    </form>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col md={6}>
+          <h2>Register</h2>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formEmail" className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formPassword" className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formRole" className="mb-3">
+              <Form.Label>Role</Form.Label>
+              <Form.Select value={role} onChange={(e) => setRole(e.target.value)} required>
+                <option value="Admin">Admin</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Patient">Patient</option>
+              </Form.Select>
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Register
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

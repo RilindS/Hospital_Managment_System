@@ -32,7 +32,7 @@ const DoctorList = () => {
 
   return (
     <div>
-      <h1>Doctor List</h1>
+      <h1></h1>
       <Table striped bordered hover>
         <thead>
           <tr>

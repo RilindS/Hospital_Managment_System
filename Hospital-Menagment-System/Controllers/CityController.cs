@@ -20,6 +20,11 @@ namespace Hospital_Menagment_System.Controllers
         {
             return _cityService.GetCities();
         }
+        [HttpGet("get-CityName")]
+        public IEnumerable<string> GetCityName()
+        {
+            return _cityService.GetCityName();
+        }
         [HttpPost("add-City")]
         public IActionResult AddCity([FromBody] CityVM city)
         {

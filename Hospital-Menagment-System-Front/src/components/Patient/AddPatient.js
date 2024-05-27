@@ -43,9 +43,8 @@ const AddPatient = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await addPatient(patient);
-      console.log('Patient added:', response);
-      navigate('/admin/patient'); // Ridrejto tek lista e pacientëve pas shtimit të suksesshëm
+      await addPatient(patient);
+      navigate('/admin/patient'); // Ridrejto tek faqja e pacientëve pas shtimit të suksesshëm
     } catch (error) {
       console.error('Error adding patient:', error);
     }
@@ -53,7 +52,7 @@ const AddPatient = () => {
 
   return (
     <Container>
-      <h2>Add Patient</h2>
+      <h2>Add Patient Details</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formPatientName">
           <Form.Label column sm={2}>Name:</Form.Label>

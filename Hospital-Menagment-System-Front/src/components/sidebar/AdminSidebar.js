@@ -32,7 +32,11 @@ const AdminSidebar = () => {
       </Link>
       <Link to="/admin/appointments" className="sidebar-link">
         <i className="fas fa-calendar-check"></i>
-        <span className="link-text">Shiko Rezervimet Online</span>
+        <span className="link-text">Rezervimet Online</span>
+      </Link>
+      <Link to="/admin/city" className="sidebar-link">
+        <i className="fas fa-calendar-check"></i>
+        <span className="link-text">City</span>
       </Link>
     </div>
   );

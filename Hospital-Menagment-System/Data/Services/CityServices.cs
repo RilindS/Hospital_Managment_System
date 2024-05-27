@@ -14,6 +14,28 @@ namespace Hospital_Menagment_System.Data.Services
             _context = context;
         }
 
+        /*
+         *
+         *   public IEnumerable<string> GetDepartment()
+        {
+            return _context.Departaments.Select(c => c.Name).ToList();
+        }
+         */
+        public void AddDefaultCity()
+        {
+            var defaultCityName = "Peja";
+            if (!_context.Cities.Any(c => c.CityName == defaultCityName))
+            {
+                var _city = new City { CityName = defaultCityName };
+                _context.Cities.Add(_city);
+                _context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<string> GetCityName()
+        {
+            return _context.Cities.Select(c => c.CityName).ToList();
+        }
         public IEnumerable<string> GetCities()
         {
             return _context.Cities.Select(c => c.CityName).ToList();

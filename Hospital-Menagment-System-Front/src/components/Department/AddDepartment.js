@@ -34,7 +34,7 @@ const AddDepartment = () => {
 
   return (
     <Container>
-      <h2>Add Department</h2>
+      <h2></h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formDepartmentName">
           <Form.Label column sm={2}>Name:</Form.Label>

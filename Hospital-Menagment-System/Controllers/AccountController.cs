@@ -3,11 +3,13 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Hospital_Menagment_System.Data.Models;
+using Hospital_Menagment_System.Data.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Linq;
+using Hospital_Menagment_System.Data.ViewModels;
 
 namespace Hospital_Menagment_System.Controllers
 {
@@ -19,15 +21,16 @@ namespace Hospital_Menagment_System.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly PatientService _patientService;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, PatientService patientService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _patientService = patientService;
         }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
@@ -47,12 +50,37 @@ namespace Hospital_Menagment_System.Controllers
                 }
 
                 await _userManager.AddToRoleAsync(user, model.Role);
-                return Ok(new { Result = "User registered successfully" });
+
+                if (model.Role == "Patient")
+                {
+                    return Ok(new { Result = "User registered successfully. Please complete your patient details.", IsPatient = true, IsDoctor = false });
+                }
+
+                if (model.Role == "Doctor")
+                {
+                    return Ok(new { Result = "User registered successfully. Please complete your doctor details.", IsPatient = false, IsDoctor = true });
+                }
+
+                return Ok(new { Result = "User registered successfully", IsPatient = false, IsDoctor = false });
             }
 
             return BadRequest(result.Errors);
         }
 
+        [HttpPost("add-patient-details")]
+        public async Task<IActionResult> AddPatientDetails([FromBody] PatientVM model)
+        {
+            try
+            {
+                _patientService.AddPatient(model);
+                return Ok("Patient details added successfully.");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+    
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {

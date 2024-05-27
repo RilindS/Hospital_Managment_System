@@ -33,7 +33,7 @@ const AddNurse = () => {
 
   return (
     <Container>
-      <h2>Add Nurse</h2>
+      <h2></h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formNurseName">
           <Form.Label column sm={2}>Name:</Form.Label>

@@ -10,24 +10,9 @@
         {
             [Key]
             public int PatientId { get; set; }
-            
-            
-         
-            
-            
             public int CityId { get; set; } 
-            public City City { get; set; } 
-            
-            
-            
-            
-            
-            
-            
-
-       
-
-            // Other patient details
+            public City City { get; set; }
+          
             public string Name { get; set; }
             public string Surname { get; set; }
             public string Email { get; set; }
