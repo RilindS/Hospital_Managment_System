@@ -1,8 +1,15 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/appointments'; // Change this to your API URL
+//https://localhost:44322/api/Appointments
+
+
+const API_URL = 'https://localhost:44322/api/Appointments'; 
 
 export const addAppointment = async (appointment) => {
   const response = await axios.post(API_URL, appointment);
+  return response.data;
+};
+export const getAppointments = async () => {
+  const response = await axios.get(API_URL);
   return response.data;
 };

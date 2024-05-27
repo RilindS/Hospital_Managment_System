@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Named import
+import {jwtDecode} from 'jwt-decode'; // Import jwtDecode as a named import
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -17,7 +17,10 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       const decoded = jwtDecode(token);
-      setUser(decoded);
+      setUser({
+        email: decoded.email,
+        role: decoded.role
+      });
     }
   }, []);
 
@@ -27,7 +30,10 @@ export const AuthProvider = ({ children }) => {
       const token = response.data.token;
       localStorage.setItem('token', token);
       const decoded = jwtDecode(token);
-      setUser(decoded);
+      setUser({
+        email: decoded.email,
+        role: decoded.role
+      });
 
       // Redirect based on user role
       if (decoded.role === 'Admin') {

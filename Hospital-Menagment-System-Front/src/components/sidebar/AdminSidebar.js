@@ -26,10 +26,13 @@ const AdminSidebar = () => {
         <i className="fas fa-procedures"></i>
         <span className="link-text">Room</span>
       </Link>
-     
       <Link to="/admin/register" className="sidebar-link">
         <i className="fas fa-user-plus"></i>
         <span className="link-text">Regjistro Perdorues</span>
+      </Link>
+      <Link to="/admin/appointments" className="sidebar-link">
+        <i className="fas fa-calendar-check"></i>
+        <span className="link-text">Shiko Rezervimet Online</span>
       </Link>
     </div>
   );

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Linq;
 
 namespace Hospital_Menagment_System.Controllers
 {
@@ -66,6 +67,7 @@ namespace Hospital_Menagment_System.Controllers
                     Subject = new ClaimsIdentity(new Claim[]
                     {
                         new Claim(ClaimTypes.Name, user.Id.ToString()),
+                        new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Role, roles.FirstOrDefault())
                     }),
                     Expires = DateTime.UtcNow.AddDays(7),

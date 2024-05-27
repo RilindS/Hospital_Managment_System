@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
 
 const LoginPage = () => {
@@ -12,21 +13,34 @@ const LoginPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <Container>
+      <h2>Login</h2>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group as={Row} className="mb-3" controlId="formEmail">
+          <Form.Label column sm={2}>Email:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="formPassword">
+          <Form.Label column sm={2}>Password:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Col>
+        </Form.Group>
+        <Button type="submit" variant="primary">Login</Button>
+      </Form>
+    </Container>
   );
 };
 

@@ -29,6 +29,9 @@ import EditNurse from './components/Nurse/EditNurse';
 import AddRoomPage from './pages/AddRoomPage';
 import EditRoom from './components/Room/EditRoom';
 
+import AdminAppointments from './components/AdminAppointments';
+
+
 const App = () => {
   return (
     <Router>
@@ -51,6 +54,9 @@ const AdminLayout = () => (
     <AdminSidebar />
     <div className="content">
       <Routes>
+
+      <Route path="/" element={<AdminPage />} />
+
         <Route path="/patient" element={<PatientPage />} />
         <Route path="/patient/add" element={<AddPatientPage />} />
         <Route path="/patient/edit/:id" element={<EditPatient />} />
@@ -70,7 +76,10 @@ const AdminLayout = () => (
         <Route path="/room" element={<RoomPage />} />
         <Route path="/room/add" element={<AddRoomPage />} />
         <Route path="/room/edit/:id" element={<EditRoom />} />
-        <Route path="/" element={<AdminPage />} />
+
+        <Route path="/appointments" element={<AdminAppointments />} />
+
+       
 
         <Route path="/register" element={<RegisterPage />} />
 

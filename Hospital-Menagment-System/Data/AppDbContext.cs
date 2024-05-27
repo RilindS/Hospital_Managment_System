@@ -23,5 +23,8 @@ namespace Hospital_Menagment_System.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<Nurse> Nurses { get; set; }
         public DbSet<Departament> Departaments { get; set; }
+        
+        public DbSet<Appointment> Appointments { get; set; }
+
     }
 }

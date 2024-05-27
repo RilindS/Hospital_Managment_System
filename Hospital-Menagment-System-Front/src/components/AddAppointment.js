@@ -44,7 +44,7 @@ const AddAppointment = () => {
     try {
       const response = await addAppointment(appointment);
       console.log('Appointment added:', response);
-      navigate('/admin/appointments');
+      navigate('/patient');
     } catch (error) {
       console.error('Error adding appointment:', error);
     }
@@ -78,7 +78,7 @@ const AddAppointment = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formDoctor">
+        {/* <Form.Group as={Row} className="mb-3" controlId="formDoctor">
           <Form.Label column sm={2}>Doctor:</Form.Label>
           <Col sm={10}>
             <Form.Select
@@ -90,14 +90,14 @@ const AddAppointment = () => {
               <option key="" value="">
                 Select Doctor
               </option>
-              {doctors.map((doctor, index) => (
-                <option key={index} value={doctor.id}>
+              {doctors.map((doctor) => (
+                <option key={doctor.id} value={doctor.id}>
                   {doctor.name}
                 </option>
               ))}
             </Form.Select>
           </Col>
-        </Form.Group>
+        </Form.Group> */}
         <Form.Group as={Row} className="mb-3" controlId="formDate">
           <Form.Label column sm={2}>Date:</Form.Label>
           <Col sm={10}>
