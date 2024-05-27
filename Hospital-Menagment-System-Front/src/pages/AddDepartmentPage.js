@@ -4,7 +4,7 @@ import AddDepartment from '../components/Department/AddDepartment';
 const AddDepartmentPage = () => {
   return (
     <div>
-      <h1>Add New department</h1>
+      <h1>Add New Department</h1>
       <AddDepartment />
     </div>
   );

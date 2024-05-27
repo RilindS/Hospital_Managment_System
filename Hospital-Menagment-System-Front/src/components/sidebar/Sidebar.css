@@ -1,0 +1,39 @@
+.sidebar-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #f8f9fa; /* Light background color */
+  padding: 15px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Add some shadow for depth */
+  position: fixed; /* Make the sidebar fixed */
+  height: 100vh; /* Full height */
+  top: 0;
+  left: 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin: 5px 0;
+  color: #000;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #e2e6ea;
+}
+
+.link-text {
+  margin-left: 10px;
+}
+
+.content {
+  margin-left: 250px; /* Same as sidebar width */
+  padding: 20px;
+  flex-grow: 1; /* Let content take the remaining space */
+}

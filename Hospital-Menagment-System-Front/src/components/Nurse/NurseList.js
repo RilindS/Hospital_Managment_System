@@ -38,20 +38,22 @@ const NurseList = () => {
             <th>Name</th>
             <th>Description</th>
             <th>Category</th>
-            
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {nurses.map(nurse => (
+          {nurses.map((nurse) => (
             <tr key={nurse.nurseId}>
               <td>{nurse.name}</td>
               <td>{nurse.description}</td>
               <td>{nurse.category}</td>
-            
               <td>
-                <Link to={`/edit-nurse/${nurse.nurseId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
-                <Button variant="danger" size="sm" onClick={() => handleDelete(nurse.nurseId)}>Delete</Button>
+                <Link to={`/admin/nurse/edit/${nurse.nurseId}`} className="btn btn-primary btn-sm me-2">
+                  Edit
+                </Link>
+                <Button variant="danger" size="sm" onClick={() => handleDelete(nurse.nurseId)}>
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}

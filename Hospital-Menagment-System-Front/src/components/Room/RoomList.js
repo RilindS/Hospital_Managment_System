@@ -54,7 +54,7 @@ const RoomList = () => {
               <td>{room.floor}</td>
               <td>{room.nrOfBeds}</td>
               <td>
-                <Link to={`/edit-room/${room.roomId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
+                <Link to={`/admin/room/edit/${room.roomId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
                 <Button variant="danger" size="sm" onClick={() => handleDelete(room.roomId)}>Delete</Button>
               </td>
             </tr>

@@ -5,14 +5,14 @@ import DoctorList from '../components/Doctor/DoctorList';
 const DoctorPage = () => {
   const navigate = useNavigate();
 
-  const handleAddPatientClick = () => {
-    navigate('/add-doctor');
+  const handleAddDoctorClick = () => {
+    navigate('/admin/doctor/add');
   };
 
   return (
     <div>
       <h1>Doctor Management</h1>
-      <button onClick={handleAddPatientClick}>Add Doctor</button>
+      <button onClick={handleAddDoctorClick}>Add Doctor</button>
       <DoctorList />
     </div>
   );

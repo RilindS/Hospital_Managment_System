@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { getAllDoctors, deleteDoctorById } from '../../services/DoctorService';
 import { Link } from 'react-router-dom';
@@ -58,7 +59,7 @@ const DoctorList = () => {
               <td>{doctor.specialization}</td>
 
               <td>
-                <Link to={`/edit-doctor/${doctor.doctorId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
+                <Link to={`/admin/doctor/edit/${doctor.doctorId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
                 <Button variant="danger" size="sm" onClick={() => handleDelete(doctor.doctorId)}>Delete</Button>
               </td>
             </tr>

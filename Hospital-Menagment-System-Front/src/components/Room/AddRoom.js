@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addRoom } from '../../services/RoomService';
 import { getAllDepartments } from '../../services/DepartmentService';
-
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddRoom = () => {
   const navigate = useNavigate();
   const [room, setRoom] = useState({
-    departamentName: '',
     roomName: '',
     description: '',
-    floor: 0,
-    nrOfBeds: 0,
+    departmentId: '',
+    DepartamentName: '',
+
+    floor: '',
+    nrOfBeds: ''
   });
 
   const [departments, setDepartments] = useState([]);
@@ -27,6 +28,7 @@ const AddRoom = () => {
         console.error('Error fetching departments:', error);
       }
     };
+
     fetchDepartments();
   }, []);
 
@@ -43,7 +45,7 @@ const AddRoom = () => {
     try {
       const response = await addRoom(room);
       console.log('Room added:', response);
-      navigate('/room');
+      navigate('/admin/room');
     } catch (error) {
       console.error('Error adding room:', error);
     }
@@ -53,9 +55,8 @@ const AddRoom = () => {
     <Container>
       <h2>Add Room</h2>
       <Form onSubmit={handleSubmit}>
-       
         <Form.Group as={Row} className="mb-3" controlId="formRoomName">
-          <Form.Label column sm={2}>Room Name:</Form.Label>
+          <Form.Label column sm={2}>Name:</Form.Label>
           <Col sm={10}>
             <Form.Control
               type="text"
@@ -77,13 +78,13 @@ const AddRoom = () => {
               required
             />
           </Col>
-        </Form.Group> 
+        </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formDepartment">
           <Form.Label column sm={2}>Department:</Form.Label>
           <Col sm={10}>
             <Form.Select
-              name="departamentName"
-              value={room.departamentName}
+              name="DepartamentName"
+              value={room.DepartamentName}
               onChange={handleChange}
               required
             >
@@ -102,7 +103,7 @@ const AddRoom = () => {
           <Form.Label column sm={2}>Floor:</Form.Label>
           <Col sm={10}>
             <Form.Control
-              type="number"
+              type="text"
               name="floor"
               value={room.floor}
               onChange={handleChange}

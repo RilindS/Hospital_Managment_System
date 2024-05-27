@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getNurseById, updateNurseById } from '../../services/NurseServices';
-//import { getAllCities } from '../../services/CityServices';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,10 +23,7 @@ const EditNurse = () => {
       }
     };
 
-    
-
     fetchNurse();
-    
   }, [id]);
 
   const handleChange = (e) => {
@@ -42,7 +38,7 @@ const EditNurse = () => {
     e.preventDefault();
     try {
       await updateNurseById(id, nurse);
-      navigate('/nurse'); // Redirect to nurse list after updating
+      navigate('/admin/nurse'); // Redirect to nurse list after updating
     } catch (error) {
       console.error('Error updating nurse:', error);
     }
@@ -52,7 +48,7 @@ const EditNurse = () => {
     <Container>
       <h2>Edit Nurse</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group as={Row} className="mb-3" controlId="formName">
+        <Form.Group as={Row} className="mb-3" controlId="formNurseName">
           <Form.Label column sm={2}>Name:</Form.Label>
           <Col sm={10}>
             <Form.Control
@@ -88,7 +84,6 @@ const EditNurse = () => {
             />
           </Col>
         </Form.Group>
-       
         <Button type="submit" variant="primary">Update Nurse</Button>
       </Form>
     </Container>

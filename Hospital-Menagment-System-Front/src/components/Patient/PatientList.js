@@ -52,7 +52,7 @@ const PatientList = () => {
               <td>{patient.street}</td>
               <td>{patient.phoneNumber}</td>
               <td>
-                <Link to={`/edit-patient/${patient.patientId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
+                <Link to={`/admin/patient/edit/${patient.patientId}`} className="btn btn-primary btn-sm me-2">Edit</Link> {/* Përditëso rrugën për Edit */}
                 <Button variant="danger" size="sm" onClick={() => handleDelete(patient.patientId)}>Delete</Button>
               </td>
             </tr>

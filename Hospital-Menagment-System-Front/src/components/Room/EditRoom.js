@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getRoomById, updateRoomById } from '../../services/RoomService';
@@ -52,7 +53,7 @@ const EditRoom = () => {
     e.preventDefault();
     try {
       await updateRoomById(id, room);
-      navigate('/room'); // Redirect to room list after updating
+      navigate('/admin/room'); // Redirect to room list after updating
     } catch (error) {
       console.error('Error updating room:', error);
     }

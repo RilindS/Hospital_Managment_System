@@ -22,9 +22,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Hospital_Menagment_System
+{public class Program
 {
-   public class Program
-{
+  
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
@@ -41,7 +41,7 @@ namespace Hospital_Menagment_System
     private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {  
         services.AddDbContext<AppDbContext>(options =>
-                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         
         services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>()
@@ -63,13 +63,6 @@ namespace Hospital_Menagment_System
                     .AllowAnyHeader());
         });
 
-        services.AddTransient<DepartmentServices>();
-        services.AddTransient<PatientService>();
-        services.AddTransient<CityServices>();
-        services.AddTransient<DoctorServices>();
-        services.AddTransient<NurseServices>();
-        services.AddTransient<RoomServices>();
-
         var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]);
         services.AddAuthentication(x =>
         {
@@ -88,10 +81,13 @@ namespace Hospital_Menagment_System
             };
         });
 
-        services.AddControllers();
-        // services.AddScoped<IUserService, UserService>();
+        services.AddTransient<DepartmentServices>();
+        services.AddTransient<PatientService>();
+        services.AddTransient<CityServices>();
+        services.AddTransient<DoctorServices>();
+        services.AddTransient<NurseServices>();
+        services.AddTransient<RoomServices>();
 
-        // Krijo rolet nëse ato nuk ekzistojnë
         CreateRoles(services.BuildServiceProvider());
     }
 
@@ -99,19 +95,16 @@ namespace Hospital_Menagment_System
     {
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         
-        // Shto rolin "Admin" nëse nuk ekziston
         if (!await roleManager.RoleExistsAsync("Admin"))
         {
             await roleManager.CreateAsync(new IdentityRole("Admin"));
         }
 
-        // Shto rolin "Patient" nëse nuk ekziston
         if (!await roleManager.RoleExistsAsync("Patient"))
         {
             await roleManager.CreateAsync(new IdentityRole("Patient"));
         }
 
-        // Shto rolin "Doctor" nëse nuk ekziston
         if (!await roleManager.RoleExistsAsync("Doctor"))
         {
             await roleManager.CreateAsync(new IdentityRole("Doctor"));
@@ -141,4 +134,7 @@ namespace Hospital_Menagment_System
         });
     }
 }
+
+
+
 }

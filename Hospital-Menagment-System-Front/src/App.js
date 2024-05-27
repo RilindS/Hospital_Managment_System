@@ -1,70 +1,111 @@
-
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import HomePage from './pages/HomePage';
-
-import PatientPage from './pages/PatientPage';
-import EditPatient from './components/Patient/EditPatient';
-import EditDoctor from './components/Doctor/EditDoctor';
-
-import AddPatientPage from './pages/AddPatientPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import AdminPage from './pages/AdminPage';
 import DoctorPage from './pages/DoctorPage';
-import AddDoctorPage from './pages/AddDoctorPage';
+import PatientPage from './pages/PatientPage';
+import PatientHomePage from './pages/PatientHomePage';
+import DoctorHomePage from './pages/DoctorHomePage';
+import AddAppointment from './components/AddAppointment';
 
-import EditDepartment from './components/Department/EditDepartment';
-import AddDepartmentPage from './pages/AddDepartmentPage';
+import HomePage from './pages/HomePage';
+import AdminSidebar from './components/sidebar/AdminSidebar';
+import DoctorSidebar from './components/sidebar/DoctorSidebar';
+import PatientSidebar from './components/sidebar/PatientSidebar';
 import DepartmentPage from './pages/DepartmentPage';
-
-import EditNurse from './components/Nurse/EditNurse';
-import AddNursePage from './pages/AddNursePage';
 import NursePage from './pages/NursePage';
-
-
-
 import RoomPage from './pages/RoomPage';
-
-import EditRoom from './components/Room/EditRoom';
+import AddPatientPage from './pages/AddPatientPage';
+import EditPatient from './components/Patient/EditPatient';
+import AddDoctorPage from './pages/AddDoctorPage';
+import EditDoctor from './components/Doctor/EditDoctor';
+import AddDepartmentPage from './pages/AddDepartmentPage';
+import EditDepartment from './components/Department/EditDepartment';
+import AddNursePage from './pages/AddNursePage';
+import EditNurse from './components/Nurse/EditNurse';
 import AddRoomPage from './pages/AddRoomPage';
-
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
-
+import EditRoom from './components/Room/EditRoom';
 
 const App = () => {
   return (
     <Router>
-      <Sidebar>
+      <AuthProvider>
         <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/" element={<HomePage />} />
-          <Route path="/patient" element={<PatientPage />} />
-          <Route path="/edit-patient/:id" element={<EditPatient />} />
-          <Route path="/add-patient" element={<AddPatientPage />} />
-          <Route path="/doctor" element={<DoctorPage />} />
-          <Route path="/edit-doctor/:id" element={<EditDoctor />} />
-          <Route path="/add-doctor" element={<AddDoctorPage />} />
-          <Route path="/department" element={<DepartmentPage />} />
-          <Route path="/edit-department/:id" element={<EditDepartment />} />
-          <Route path="/add-department" element={<AddDepartmentPage />} />
-
-          <Route path="/nurse" element={<NursePage />} />
-          <Route path="/edit-nurse/:id" element={<EditNurse />} />
-          <Route path="/add-nurse" element={<AddNursePage />} />
-
-          <Route path="/room" element={<RoomPage />} />
-          <Route path="/edit-room/:id" element={<EditRoom />} />
-          <Route path="/add-room" element={<AddRoomPage />} />
-
-          <Route  path="/login" element={<LoginPage/>} />
-          <Route  path="/register" element={<RegisterPage/>} />
+          <Route path="/admin/*" element={<PrivateRoute roles={['Admin']} component={AdminLayout} />} />
+          <Route path="/doctor/*" element={<PrivateRoute roles={['Doctor']} component={DoctorLayout} />} />
+          <Route path="/patient/*" element={<PrivateRoute roles={['Patient']} component={PatientLayout} />} />
         </Routes>
-      </Sidebar>
+      </AuthProvider>
     </Router>
   );
 };
+
+const AdminLayout = () => (
+  <div className="sidebar-container">
+    <AdminSidebar />
+    <div className="content">
+      <Routes>
+        <Route path="/patient" element={<PatientPage />} />
+        <Route path="/patient/add" element={<AddPatientPage />} />
+        <Route path="/patient/edit/:id" element={<EditPatient />} />
+
+        <Route path="/doctor" element={<DoctorPage />} />
+        <Route path="/doctor/add" element={<AddDoctorPage />} />
+        <Route path="/doctor/edit/:id" element={<EditDoctor />} />
+
+        <Route path="/department" element={<DepartmentPage />} />
+        <Route path="/department/add" element={<AddDepartmentPage />} />
+        <Route path="/department/edit/:id" element={<EditDepartment />} />
+
+        <Route path="/nurse" element={<NursePage />} />
+        <Route path="/nurse/add" element={<AddNursePage />} />
+        <Route path="/nurse/edit/:id" element={<EditNurse />} />
+        
+        <Route path="/room" element={<RoomPage />} />
+        <Route path="/room/add" element={<AddRoomPage />} />
+        <Route path="/room/edit/:id" element={<EditRoom />} />
+        <Route path="/" element={<AdminPage />} />
+
+        <Route path="/register" element={<RegisterPage />} />
+
+      </Routes>
+    </div>
+  </div>
+);
+
+const DoctorLayout = () => (
+  <div className="sidebar-container">
+    <DoctorSidebar />
+    <div className="content">
+      <Routes>
+      <Route path="/" element={<DoctorHomePage />} />
+        <Route path="/patient" element={<PatientPage />} />
+
+
+        {/* Add more doctor routes here */}
+      </Routes>
+    </div>
+  </div>
+);
+
+const PatientLayout = () => (
+  <div className="sidebar-container">
+    <PatientSidebar />
+    <div className="content">
+      <Routes>
+        <Route path="/" element={<PatientHomePage />} />
+        <Route path="/appointments" element={<AddAppointment/>} />
+
+        {/* Add more patient routes here */}
+      </Routes>
+    </div>
+  </div>
+);
 
 export default App;

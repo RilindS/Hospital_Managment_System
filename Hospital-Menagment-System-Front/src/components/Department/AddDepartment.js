@@ -9,31 +9,24 @@ const AddDepartment = () => {
   const [department, setDepartment] = useState({
     name: '',
     description: '',
-    departamentSize: '',
-    departamentStatus: ''
+    departmentSize: '',
+    departmentStatus: false,
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const val = type === 'checkbox' ? checked : value;
     setDepartment((prevDepartment) => ({
       ...prevDepartment,
-      [name]: val,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Convert departamentSize to int and departamentStatus to boolean
-      const departmentData = {
-        ...department,
-        departamentSize: parseInt(department.departamentSize, 10),
-        departamentStatus: department.departamentStatus === 'true' || department.departamentStatus === true
-      };
-      const response = await addDepartment(departmentData);
+      const response = await addDepartment(department);
       console.log('Department added:', response);
-      navigate('/department');
+      navigate('/admin/department');
     } catch (error) {
       console.error('Error adding department:', error);
     }
@@ -67,31 +60,27 @@ const AddDepartment = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formDepartamentSize">
-          <Form.Label column sm={2}>Department Size:</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formDepartmentSize">
+          <Form.Label column sm={2}>Size:</Form.Label>
           <Col sm={10}>
             <Form.Control
               type="number"
-              name="departamentSize"
-              value={department.departamentSize}
+              name="departmentSize"
+              value={department.departmentSize}
               onChange={handleChange}
               required
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formDepartamentStatus">
-          <Form.Label column sm={2}>Departament Status:</Form.Label>
+        <Form.Group as={Row} className="mb-3" controlId="formDepartmentStatus">
+          <Form.Label column sm={2}>Status:</Form.Label>
           <Col sm={10}>
-            <Form.Control
-              as="select"
-              name="departamentStatus"
-              value={department.departamentStatus}
+            <Form.Check
+              type="checkbox"
+              name="departmentStatus"
+              checked={department.departmentStatus}
               onChange={handleChange}
-              required
-            >
-              <option value={true}>Active</option>
-              <option value={false}>Inactive</option>
-            </Form.Control>
+            />
           </Col>
         </Form.Group>
         <Button type="submit" variant="primary">Add Department</Button>

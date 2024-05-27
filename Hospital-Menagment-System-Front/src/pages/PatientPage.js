@@ -6,7 +6,7 @@ const PatientPage = () => {
   const navigate = useNavigate();
 
   const handleAddPatientClick = () => {
-    navigate('/add-patient');
+    navigate('/admin/patient/add');
   };
 
   return (

@@ -54,7 +54,7 @@ const EditPatient = () => {
     e.preventDefault();
     try {
       await updatePatientById(id, patient);
-      navigate('/patient'); // Redirect to patient list after updating
+      navigate('/admin/patient'); // Redirect to patient list after updating
     } catch (error) {
       console.error('Error updating patient:', error);
     }

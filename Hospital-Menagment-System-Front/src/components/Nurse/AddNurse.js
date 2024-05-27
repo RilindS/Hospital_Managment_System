@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addNurse } from '../../services/NurseServices';
-//import { getAllCities } from '../../services/CityServices';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,8 +11,6 @@ const AddNurse = () => {
     description: '',
     category: '',
   });
-
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +25,7 @@ const AddNurse = () => {
     try {
       const response = await addNurse(nurse);
       console.log('Nurse added:', response);
-      navigate('/nurse');
+      navigate('/admin/nurse');
     } catch (error) {
       console.error('Error adding nurse:', error);
     }
@@ -38,7 +35,7 @@ const AddNurse = () => {
     <Container>
       <h2>Add Nurse</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group as={Row} className="mb-3" controlId="formName">
+        <Form.Group as={Row} className="mb-3" controlId="formNurseName">
           <Form.Label column sm={2}>Name:</Form.Label>
           <Col sm={10}>
             <Form.Control
@@ -74,7 +71,6 @@ const AddNurse = () => {
             />
           </Col>
         </Form.Group>
-        
         <Button type="submit" variant="primary">Add Nurse</Button>
       </Form>
     </Container>

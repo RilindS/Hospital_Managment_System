@@ -45,7 +45,7 @@ const AddPatient = () => {
     try {
       const response = await addPatient(patient);
       console.log('Patient added:', response);
-      navigate('/patient');
+      navigate('/admin/patient'); // Ridrejto tek lista e pacientëve pas shtimit të suksesshëm
     } catch (error) {
       console.error('Error adding patient:', error);
     }

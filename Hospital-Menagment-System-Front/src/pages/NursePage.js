@@ -5,14 +5,14 @@ import NurseList from '../components/Nurse/NurseList';
 const NursePage = () => {
   const navigate = useNavigate();
 
-  const handleAddPatientClick = () => {
-    navigate('/add-nurse');
+  const handleAddNurseClick = () => {
+    navigate('/admin/nurse/add');
   };
 
   return (
     <div>
       <h1>Nurse Management</h1>
-      <button onClick={handleAddPatientClick}>Add Nurse</button>
+      <button onClick={handleAddNurseClick}>Add Nurse</button>
       <NurseList />
     </div>
   );

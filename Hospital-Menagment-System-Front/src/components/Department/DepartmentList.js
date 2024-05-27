@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { getAllDepartment, deleteDepartmentById } from '../../services/DepartmentService';
 import { Link } from 'react-router-dom';
@@ -50,7 +51,7 @@ const DepartmentList = () => {
               <td>{department.departamentSize}</td>
               <td>{department.departamentStatus ? 'Active' : 'Inactive'}</td>
               <td>
-                <Link to={`/edit-department/${department.departamentId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
+                <Link to={`/admin/department/edit/${department.departamentId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
                 <Button variant="danger" size="sm" onClick={() => handleDelete(department.departamentId)}>Delete</Button>
               </td>
             </tr>

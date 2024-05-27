@@ -5,14 +5,14 @@ import RoomList from '../components/Room/RoomList';
 const RoomPage = () => {
   const navigate = useNavigate();
 
-  const handleAddPatientClick = () => {
-    navigate('/add-room');
+  const handleAddRoomClick = () => {
+    navigate('/admin/room/add');
   };
 
   return (
     <div>
       <h1>Room Management</h1>
-      <button onClick={handleAddPatientClick}>Add Room</button>
+      <button onClick={handleAddRoomClick}>Add Room</button>
       <RoomList />
     </div>
   );
