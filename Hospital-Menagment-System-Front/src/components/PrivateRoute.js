@@ -1,9 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
 const PrivateRoute = ({ component: Component, roles, ...rest }) => {
-  const { user } = useContext(AuthContext);
+  const { user, checkTokenValidity } = useContext(AuthContext);
+  const [isChecking, setIsChecking] = useState(true);
+
+  useEffect(() => {
+    const checkToken = async () => {
+      await checkTokenValidity();
+      setIsChecking(false);
+    };
+    checkToken();
+  }, [checkTokenValidity]);
+
+  if (isChecking) {
+    return <div>Loading...</div>;
+  }
 
   if (!user) {
     return <Navigate to="/login" />;

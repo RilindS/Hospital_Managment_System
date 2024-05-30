@@ -77,7 +77,7 @@ const AdminLayout = () => (
         <Route path="/city/add" element={<AddCityPage />} />
         <Route path="/city" element={<CityPage />} />
         <Route path="/register" element={<RegisterPage />} />
-
+        <Route path="/add-patient" element={<AddPatient />} />
       </Routes>
     </div>
   </div>

@@ -78,7 +78,7 @@ const AddPatient = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formEmail">
+        {/* <Form.Group as={Row} className="mb-3" controlId="formEmail">
           <Form.Label column sm={2}>Email:</Form.Label>
           <Col sm={10}>
             <Form.Control
@@ -89,7 +89,7 @@ const AddPatient = () => {
               required
             />
           </Col>
-        </Form.Group>
+        </Form.Group> */}
         <Form.Group as={Row} className="mb-3" controlId="formPhoneNumber">
           <Form.Label column sm={2}>Phone Number:</Form.Label>
           <Col sm={10}>

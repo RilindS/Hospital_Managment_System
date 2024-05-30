@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import AuthContext from '../context/AuthContext';
-import './LoginPage.css'; // Import the CSS file
+import './LoginPage.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -14,8 +14,7 @@ const LoginPage = () => {
   };
 
   return (
-
-<Container className="login-container">
+    <Container className="login-container">
       <h2 className="text-center">Login</h2>
       <Form onSubmit={handleSubmit} className="login-form">
         <Form.Group as={Row} className="mb-3" controlId="formEmail">
