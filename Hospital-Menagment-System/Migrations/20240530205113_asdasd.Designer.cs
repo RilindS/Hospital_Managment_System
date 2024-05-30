@@ -4,6 +4,7 @@ using Hospital_Menagment_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240530205113_asdasd")]
+    partial class asdasd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,13 +163,6 @@ namespace Hospital_Menagment_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DoctorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PatientEmail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -187,8 +183,6 @@ namespace Hospital_Menagment_System.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AppointmentId");
-
-                    b.HasIndex("DoctorId");
 
                     b.HasIndex("PatientId");
 
@@ -504,15 +498,9 @@ namespace Hospital_Menagment_System.Migrations
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Appointment", b =>
                 {
-                    b.HasOne("Hospital_Menagment_System.Data.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId");
-
                     b.HasOne("Hospital_Management_System.Data.Models.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId");
-
-                    b.Navigation("Doctor");
 
                     b.Navigation("Patient");
                 });

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addAppointment } from '../services/AppointmentService';
-import { getAllDoctors } from '../services/DoctorService';
+import { getAllDoctorss } from '../services/DoctorService';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { useAuth } from '../context/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddAppointment = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+
   const [appointment, setAppointment] = useState({
     patientName: '',
-    patientEmail: '',
-    doctorId: '',
+    patientEmail: user ? user.email : '',
+    doctorName: '',
     date: '',
     time: '',
     reason: ''
@@ -21,7 +24,7 @@ const AddAppointment = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const data = await getAllDoctors();
+        const data = await getAllDoctorss();
         setDoctors(data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
@@ -74,30 +77,31 @@ const AddAppointment = () => {
               name="patientEmail"
               value={appointment.patientEmail}
               onChange={handleChange}
+              readOnly
               required
             />
           </Col>
         </Form.Group>
-        {/* <Form.Group as={Row} className="mb-3" controlId="formDoctor">
+        <Form.Group as={Row} className="mb-3" controlId="formDoctor">
           <Form.Label column sm={2}>Doctor:</Form.Label>
           <Col sm={10}>
             <Form.Select
-              name="doctorId"
-              value={appointment.doctorId}
+              name="doctorName"
+              value={appointment.doctorName}
               onChange={handleChange}
               required
             >
               <option key="" value="">
                 Select Doctor
               </option>
-              {doctors.map((doctor) => (
-                <option key={doctor.id} value={doctor.id}>
-                  {doctor.name}
+              {doctors.map((doctor, index) => (
+                <option key={index} value={doctor}>
+                  {doctor}
                 </option>
               ))}
             </Form.Select>
           </Col>
-        </Form.Group> */}
+        </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formDate">
           <Form.Label column sm={2}>Date:</Form.Label>
           <Col sm={10}>

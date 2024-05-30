@@ -9,7 +9,7 @@ import DoctorPage from './pages/DoctorPage';
 import PatientPage from './pages/PatientPage';
 import PatientHomePage from './pages/PatientHomePage';
 import DoctorHomePage from './pages/DoctorHomePage';
-import AddAppointment from './components/AddAppointment';
+import AddAppointment from './pages/AddAppointment';
 import HomePage from './pages/HomePage';
 import AdminSidebar from './components/sidebar/AdminSidebar';
 import DoctorSidebar from './components/sidebar/DoctorSidebar';
@@ -40,7 +40,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
           <Route path="/admin/*" element={<PrivateRoute roles={['Admin']} component={AdminLayout} />} />
           <Route path="/doctor/*" element={<PrivateRoute roles={['Doctor']} component={DoctorLayout} />} />
           <Route path="/patient/*" element={<PrivateRoute roles={['Patient']} component={PatientLayout} />} />
@@ -90,6 +90,8 @@ const DoctorLayout = () => (
       <Routes>
         <Route path="/" element={<DoctorHomePage />} />
         <Route path="/patient" element={<PatientPage />} />
+        <Route path="/patient/edit/:id" element={<EditPatient />} />
+
       </Routes>
     </div>
   </div>

@@ -21,16 +21,7 @@ namespace Hospital_Menagment_System.Data.Services
             return _context.Departaments.Select(c => c.Name).ToList();
         }
          */
-        public void AddDefaultCity()
-        {
-            var defaultCityName = "Peja";
-            if (!_context.Cities.Any(c => c.CityName == defaultCityName))
-            {
-                var _city = new City { CityName = defaultCityName };
-                _context.Cities.Add(_city);
-                _context.SaveChanges();
-            }
-        }
+       
 
         public IEnumerable<string> GetCityName()
         {

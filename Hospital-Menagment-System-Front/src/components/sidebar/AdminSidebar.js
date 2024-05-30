@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
+import AuthContext from '../../context/AuthContext';
 
 const AdminSidebar = () => {
+  const { logout } = useContext(AuthContext);
+
   return (
     <div className="sidebar">
       <Link to="/admin/patient" className="sidebar-link">
@@ -38,6 +41,7 @@ const AdminSidebar = () => {
         <i className="fas fa-calendar-check"></i>
         <span className="link-text">City</span>
       </Link>
+
     </div>
   );
 };

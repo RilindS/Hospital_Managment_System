@@ -21,5 +21,9 @@
             public string Street { get; set; }
             public string Qyteti { get; set; }
             public DateTime DateRegistered { get; set; }
+            
+            public string? UserId { get; set; }
+            [ForeignKey("UserId")]
+            public ApplicationUser User { get; set; }
         }
     }

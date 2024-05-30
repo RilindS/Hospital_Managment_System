@@ -1,7 +1,10 @@
+using Hospital_Menagment_System.Data;
+using Hospital_Menagment_System.Data.Models;
 using Hospital_Menagment_System.Data.Services;
 using Hospital_Menagment_System.Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hospital_Menagment_System.Controllers
 {
@@ -12,12 +15,14 @@ namespace Hospital_Menagment_System.Controllers
         private DoctorServices _doctorServices;
         private CityServices _cityService;
         private DepartmentServices _departmentServices;
+        private readonly AppDbContext _context;
 
-        public DoctorController(DoctorServices doctorService, CityServices cityService,DepartmentServices departmentServices)
+        public DoctorController(AppDbContext context,DoctorServices doctorService, CityServices cityService,DepartmentServices departmentServices)
         {
             _doctorServices = doctorService;
             _cityService = cityService;
             _departmentServices = departmentServices;
+            _context = context;
         }
 
 
@@ -35,6 +40,12 @@ namespace Hospital_Menagment_System.Controllers
                 return BadRequest(ex.Message);
             }
             
+        }
+        
+        [HttpGet("get-all-doctors")]
+        public IEnumerable<string> GetDoctorName()
+        {
+            return _doctorServices.GetDoctorName();
         }
 
         

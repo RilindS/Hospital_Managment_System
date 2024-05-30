@@ -18,6 +18,10 @@ public class DoctorServices
             _departmentServices = departmentServices;
 
         }
+        public IEnumerable<string> GetDoctorName()
+        {
+            return _context.Doctors.Select(c => c.DoctorName).ToList();
+        }
         
         public void AddDoctor(DoctorVM doctor)
         {
@@ -119,6 +123,18 @@ public class DoctorServices
             {
                 _context.Doctors.Remove(_doctor);
                 _context.SaveChanges();
+            }
+        }
+        public int GetDoctorIdByName(string cityName)
+        {
+            var doctor = _context.Doctors.FirstOrDefault(c => c.DoctorName == cityName);
+            if (doctor != null)
+            {
+                return doctor.DoctorId;
+            }
+            else
+            {
+                throw new ArgumentException("doctor not found", nameof(cityName));
             }
         }
 

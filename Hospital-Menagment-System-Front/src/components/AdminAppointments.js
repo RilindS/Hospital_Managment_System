@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAppointments } from '../services/AppointmentService';
+import { getAllAppointments } from '../services/AppointmentService';
 import { Table, Container } from 'react-bootstrap';
 
 const AdminAppointments = () => {
@@ -8,7 +8,7 @@ const AdminAppointments = () => {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const data = await getAppointments();
+        const data = await getAllAppointments();
         setAppointments(data);
       } catch (error) {
         console.error('Error fetching appointments:', error);
@@ -27,6 +27,7 @@ const AdminAppointments = () => {
             <th>Appointment ID</th>
             <th>Patient Name</th>
             <th>Patient Email</th>
+            <th>Doctor Name</th>
             <th>Date</th>
             <th>Time</th>
             <th>Reason</th>
@@ -38,6 +39,7 @@ const AdminAppointments = () => {
               <td>{appointment.appointmentId}</td>
               <td>{appointment.patientName}</td>
               <td>{appointment.patientEmail}</td>
+              <td>{appointment.doctorName}</td>
               <td>{appointment.date}</td>
               <td>{appointment.time}</td>
               <td>{appointment.reason}</td>

@@ -1,7 +1,11 @@
-﻿using Hospital_Menagment_System.Data.Services;
+﻿using System.Security.Claims;
+using Hospital_Management_System.Data.Models;
+using Hospital_Menagment_System.Data;
+using Hospital_Menagment_System.Data.Services;
 using Hospital_Menagment_System.Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hospital_Menagment_System.Controllers
 {
@@ -11,11 +15,26 @@ namespace Hospital_Menagment_System.Controllers
     {
         private PatientService _patientService;
         private CityServices _cityService;
+        private readonly AppDbContext _context;
 
-        public PatientsController(PatientService patientService, CityServices cityService)
+        public PatientsController(AppDbContext context,PatientService patientService, CityServices cityService)
         {
             _patientService = patientService;
             _cityService = cityService;
+            _context = context;
+        }
+        [HttpGet("current")]
+        public async Task<ActionResult<Patient>> GetCurrentPatient()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == userId);
+
+            if (patient == null)
+            {
+                return NotFound("Patient not found");
+            }
+
+            return Ok(patient);
         }
 
 

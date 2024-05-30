@@ -2,6 +2,15 @@ import axios from 'axios';
 
 const API_URL = 'https://localhost:44322/api/Doctor'; 
 
+export const getAllDoctorss = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/get-all-doctors`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching doctors:', error);
+    throw error;
+  }
+};
 
 export const addDoctor = async (doctor) => {
   try {

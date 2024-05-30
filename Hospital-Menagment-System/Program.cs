@@ -87,6 +87,8 @@ namespace Hospital_Menagment_System
             services.AddTransient<DoctorServices>();
             services.AddTransient<NurseServices>();
             services.AddTransient<RoomServices>();
+            services.AddTransient<AppoitmentServices>();
+
 
             CreateRoles(services.BuildServiceProvider());
         }

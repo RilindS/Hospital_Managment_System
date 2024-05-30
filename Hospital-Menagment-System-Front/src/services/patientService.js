@@ -2,6 +2,16 @@ import axios from 'axios';
 
 const API_URL = 'https://localhost:44322/api/Patients'; // Adjust the URL based on your API's address
 
+// export const getCurrentPatient = async () => {
+//   try {
+//     const response = await axios.get('https://localhost:44322/api/Patients/current');
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching current patient:', error);
+//     throw error;
+//   }
+// };
+
 export const addPatient = async (patient) => {
   try {
     const response = await axios.post(`${API_URL}/add-Patient`, patient);
