@@ -41,7 +41,10 @@ const AdminSidebar = () => {
         <i className="fas fa-calendar-check"></i>
         <span className="link-text">City</span>
       </Link>
-
+      <button onClick={logout} className="sidebar-link">
+        <i className="fas fa-sign-out-alt"></i>
+        <span className="link-text">Logout</span>
+      </button>
     </div>
   );
 };

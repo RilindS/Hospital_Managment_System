@@ -18,7 +18,10 @@ const DoctorSidebar = () => {
         <i className="fas fa-calendar-check"></i>
         <span className="link-text">Appointments</span>
       </Link>
-      
+      <button onClick={logout} className="sidebar-link">
+        <i className="fas fa-sign-out-alt"></i>
+        <span className="link-text">Logout</span>
+      </button>
       {/* Add more links specific to the doctor role */}
     </div>
   );

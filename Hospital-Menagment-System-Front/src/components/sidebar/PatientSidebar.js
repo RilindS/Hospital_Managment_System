@@ -18,7 +18,10 @@ const PatientSidebar = () => {
         <i className="fas fa-notes-medical"></i>
         <span className="link-text">Medical History</span>
       </Link>
-      
+      <button onClick={logout} className="sidebar-link">
+        <i className="fas fa-sign-out-alt"></i>
+        <span className="link-text">Logout</span>
+      </button>
       {/* Add more links specific to the patient role */}
     </div>
   );
