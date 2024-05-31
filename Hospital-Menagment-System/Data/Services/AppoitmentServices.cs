@@ -17,6 +17,23 @@ public class AppoitmentServices
             _departmentServices = departmentServices;
 
         }
+        public bool CheckAppointmentAvailability(AppointmentVM appointment)
+        {
+            var doctorId = _doctorServices.GetDoctorIdByName(appointment.DoctorName);
+            if (doctorId == null)
+            {
+                throw new ArgumentException("Doctor name not found.");
+            }
+
+            bool isSlotTaken = _context.Appointments.Any(a => 
+                a.DoctorId == doctorId && 
+                a.Date == appointment.Date && 
+                a.Time == appointment.Time
+            );
+
+            return !isSlotTaken;
+        }
+
         
         
         public void AddAppoitment(AppointmentVM appointment)
@@ -26,7 +43,16 @@ public class AppoitmentServices
             {
                 throw new ArgumentException("doctor name not found.");
             }
-           
+            bool isSlotTaken = _context.Appointments.Any(a => 
+                a.DoctorId == doctorId && 
+                a.Date == appointment.Date && 
+                a.Time == appointment.Time
+            );
+
+            if (isSlotTaken)
+            {
+                throw new InvalidOperationException("This time slot is already booked for the selected doctor.");
+            }
             
 
             var newAppoitment = new Appointment()

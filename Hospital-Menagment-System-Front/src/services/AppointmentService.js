@@ -27,6 +27,15 @@ export const addAppointment = async (appointment) => {
   }
 };
 
+export const checkAppointmentAvailability = async (appointment) => {
+  try {
+    const response = await axios.post(`${API_URL}/check-appointment-availability`, appointment);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
+
 export const getAllAppointments  = async () => {
   try {
     const response = await axios.get(`${API_URL}/get-all-appointment`);

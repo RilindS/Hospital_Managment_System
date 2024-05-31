@@ -23,6 +23,12 @@ namespace Hospital_Menagment_System.Controllers
             _doctorServices = doctorService;
             _appointmentServices = appointmentServices;
         }
+        [HttpPost("check-appointment-availability")]
+        public IActionResult CheckAppointmentAvailability([FromBody] AppointmentVM appointment)
+        {
+            var isAvailable = _appointmentServices.CheckAppointmentAvailability(appointment);
+            return Ok(new { isAvailable });
+        }
         
         [HttpPost("add-Appointments")]
         public IActionResult AddAppoitments([FromBody] AppointmentVM appointment)
@@ -68,69 +74,5 @@ namespace Hospital_Menagment_System.Controllers
             _appointmentServices.DeleteAppoitmentById(id);
             return Ok();
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-/*
-        [HttpPost]
-        public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == userId);
-
-            if (patient == null)
-            {
-                return NotFound("Patient not found");
-            }
-
-            var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.DoctorId == appointment.DoctorId);
-
-            if (doctor == null)
-            {
-                return NotFound("Doctor not found");
-            }
-
-            appointment.PatientId = patient.PatientId;
-            appointment.PatientName = patient.Name;
-            appointment.PatientEmail = patient.Email;
-            appointment.DoctorName = doctor.DoctorName;
-
-            _context.Appointments.Add(appointment);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetAppointment), new { id = appointment.AppointmentId }, appointment);
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments()
-        {
-            return await _context.Appointments.ToListAsync();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Appointment>> GetAppointment(int id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
-
-            if (appointment == null)
-            {
-                return NotFound();
-            }
-
-            return appointment;
-        }*/
     }
 }
