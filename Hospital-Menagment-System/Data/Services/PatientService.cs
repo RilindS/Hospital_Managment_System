@@ -14,7 +14,16 @@ namespace Hospital_Menagment_System.Data.Services
             _cityServices = cityServices;
             _context = context;
         }
+        public List<Patient> GetPatientsByCity(string cityName)
+        {
+            var cityId = _cityServices.GetCityIdByName(cityName);
+            if (cityId == null)
+            {
+                throw new ArgumentException("City name not found.");
+            }
 
+            return _context.Patients.Where(p => p.CityId == cityId).ToList();
+        }
         public void AddPatient(PatientVM patient)
         {
             var cityId = _cityServices.GetCityIdByName(patient.Qyteti);

@@ -1,43 +1,62 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import { AuthProvider } from './context/AuthContext';
 import AdminPage from './pages/AdminPage';
 import DoctorPage from './pages/DoctorPage';
+import LoginPage from './pages/LoginPage';
 import PatientPage from './pages/PatientPage';
-import PatientHomePage from './pages/PatientHomePage';
-import DoctorHomePage from './pages/DoctorHomePage';
-import AddAppointment from './pages/AddAppointment';
-import HomePage from './pages/HomePage';
+import ProfileAdmin from './pages/ProfileAdmin';
+import RegisterPage from './pages/RegisterPage';
+import SettingsAdmin from './pages/SettingsAdmin';
+
+import ProfileDoctor from './pages/ProfileDoctor';
+import SettingDoctor from './pages/SettingDoctor';
+
+import ProfilePatient from './pages/ProfilePatient';
+import SetingsPatient from './pages/SetingsPatient';
+
+import DoctorForPatient from './pages/DoctorForPatient';
+import PatinetForDoctor from './pages/PatientForDoctor';
+
+
+import CityFilter from './Filter/CityFilter';
+
+
+
+import AdminAppointments from './components/AdminAppointments';
+import EditDepartment from './components/Department/EditDepartment';
+import AddDoctor from './components/Doctor/AddDoctor';
+import EditDoctor from './components/Doctor/EditDoctor';
+import EditNurse from './components/Nurse/EditNurse';
+import AddPatient from './components/Patient/AddPatient';
+import EditPatient from './components/Patient/EditPatient';
+import EditRoom from './components/Room/EditRoom';
 import AdminSidebar from './components/sidebar/AdminSidebar';
 import DoctorSidebar from './components/sidebar/DoctorSidebar';
 import PatientSidebar from './components/sidebar/PatientSidebar';
-import DepartmentPage from './pages/DepartmentPage';
-import NursePage from './pages/NursePage';
-import RoomPage from './pages/RoomPage';
-import AddPatientPage from './pages/AddPatientPage';
-import EditPatient from './components/Patient/EditPatient';
-import AddDoctorPage from './pages/AddDoctorPage';
-import EditDoctor from './components/Doctor/EditDoctor';
-import AddDepartmentPage from './pages/AddDepartmentPage';
-import EditDepartment from './components/Department/EditDepartment';
-import AddNursePage from './pages/AddNursePage';
-import EditNurse from './components/Nurse/EditNurse';
-import AddRoomPage from './pages/AddRoomPage';
-import EditRoom from './components/Room/EditRoom';
+import AddAppointment from './pages/AddAppointment';
 import AddCityPage from './pages/AddCityPage';
-import AddPatient from './components/Patient/AddPatient';
-import AddDoctor from './components/Doctor/AddDoctor';
-import AdminAppointments from './components/AdminAppointments';
+import AddDepartmentPage from './pages/AddDepartmentPage';
+import AddDoctorPage from './pages/AddDoctorPage';
+import AddNursePage from './pages/AddNursePage';
+import AddPatientPage from './pages/AddPatientPage';
+import AddRoomPage from './pages/AddRoomPage';
 import CityPage from './pages/CityPage';
+
+import DepartmentPage from './pages/DepartmentPage';
+import DoctorHomePage from './pages/DoctorHomePage';
+import NursePage from './pages/NursePage';
+import PatientHomePage from './pages/PatientHomePage';
+import RoomPage from './pages/RoomPage';
 
 const App = () => {
   return (
     <Router>
       <AuthProvider>
         <Routes>
+        <Route path="/" element={<LoginPage />} />
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           {/* <Route path="/" element={<HomePage />} /> */}
@@ -78,6 +97,13 @@ const AdminLayout = () => (
         <Route path="/city" element={<CityPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/add-patient" element={<AddPatient />} />
+        <Route path="/profile" element={<ProfileAdmin />} />
+        <Route path="/Settings" element={<SettingsAdmin />} />
+
+        
+
+
+
       </Routes>
     </div>
   </div>
@@ -89,8 +115,16 @@ const DoctorLayout = () => (
     <div className="content">
       <Routes>
         <Route path="/" element={<DoctorHomePage />} />
-        <Route path="/patient" element={<PatientPage />} />
         <Route path="/patient/edit/:id" element={<EditPatient />} />
+        <Route path="/profile" element={<ProfileDoctor />} />
+        <Route path="/Settings" element={<SettingDoctor />} />  
+        <Route path="/patient" element={<PatinetForDoctor />} />
+        <Route path="/city-filter" element={<CityFilter />} />
+
+
+
+        {/* <Route path="/patient/doctor" element={<DoctorForPatient />} /> */}
+
 
       </Routes>
     </div>
@@ -104,6 +138,11 @@ const PatientLayout = () => (
       <Routes>
         <Route path="/" element={<PatientHomePage />} />
         <Route path="/appointments" element={<AddAppointment />} />
+
+        <Route path="/profile" element={<ProfilePatient />} />
+        <Route path="/Settings" element={<SetingsPatient />} />
+        <Route path="/doctor" element={<DoctorForPatient />} />
+
       </Routes>
     </div>
   </div>

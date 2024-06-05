@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { deletePatientById, getAllPatients } from '../../services/patientService';
+import { Table } from 'react-bootstrap';
+import { getAllPatients } from '../../services/patientService';
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
@@ -20,14 +19,7 @@ const PatientList = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await deletePatientById(id);
-      fetchPatients(); // Refresh the list after deletion
-    } catch (error) {
-      console.error('Error deleting patient:', error);
-    }
-  };
+  
 
   return (
     <div>
@@ -40,7 +32,7 @@ const PatientList = () => {
             <th>City</th>
             <th>Street</th>
             <th>Phone</th>
-            <th>Actions</th>
+            {/* <th>Actions</th> */}
           </tr>
         </thead>
         <tbody>
@@ -51,10 +43,7 @@ const PatientList = () => {
               <td>{patient.qyteti}</td>
               <td>{patient.street}</td>
               <td>{patient.phoneNumber}</td>
-              <td>
-                <Link to={`/admin/patient/edit/${patient.patientId}`} className="btn btn-primary btn-sm me-2">Edit</Link> {/* Përditëso rrugën për Edit */}
-                <Button variant="danger" size="sm" onClick={() => handleDelete(patient.patientId)}>Delete</Button>
-              </td>
+             
             </tr>
           ))}
         </tbody>

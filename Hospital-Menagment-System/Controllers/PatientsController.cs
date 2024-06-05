@@ -23,6 +23,20 @@ namespace Hospital_Menagment_System.Controllers
             _cityService = cityService;
             _context = context;
         }
+        [HttpGet("get-patients-by-city/{cityName}")]
+        public IActionResult GetPatientsByCity(string cityName)
+        {
+            try
+            {
+                var patients = _patientService.GetPatientsByCity(cityName);
+                return Ok(patients);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("current")]
         public async Task<ActionResult<Patient>> GetCurrentPatient()
         {

@@ -10,7 +10,9 @@ const PatientPage = () => {
   };
 
   return (
+    
     <div>
+      
       <h1>Patient Management</h1>
       <button onClick={handleAddPatientClick}>Add Patient</button>
       <PatientList />
