@@ -1,8 +1,8 @@
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './Sidebar.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
 import AuthContext from '../../context/AuthContext';
+import './Sidebar.css';
 
 const AdminSidebar = () => {
   const { logout } = useContext(AuthContext);
@@ -40,6 +40,10 @@ const AdminSidebar = () => {
       <Link to="/admin/city" className="sidebar-link">
         <i className="fas fa-calendar-check"></i>
         <span className="link-text">City</span>
+      </Link>
+      <Link to="/admin/appointmentsByDate" className="sidebar-link">
+        <i className="fas fa-user-md"></i>
+        <span className="link-text">Appoitments By data</span>
       </Link>
       <button onClick={logout} className="sidebar-link">
         <i className="fas fa-sign-out-alt"></i>

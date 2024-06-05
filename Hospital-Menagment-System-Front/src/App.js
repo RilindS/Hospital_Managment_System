@@ -22,6 +22,8 @@ import PatinetForDoctor from './pages/PatientForDoctor';
 
 import CityFilter from './Filter/CityFilter';
 
+import AppointmentsByDate from './pages/AppointmentsByDate';
+
 
 
 import AdminAppointments from './components/AdminAppointments';
@@ -99,6 +101,7 @@ const AdminLayout = () => (
         <Route path="/add-patient" element={<AddPatient />} />
         <Route path="/profile" element={<ProfileAdmin />} />
         <Route path="/Settings" element={<SettingsAdmin />} />
+        <Route path="/appointmentsByDate" element={<AppointmentsByDate />} />
 
         
 
@@ -120,10 +123,13 @@ const DoctorLayout = () => (
         <Route path="/Settings" element={<SettingDoctor />} />  
         <Route path="/patient" element={<PatinetForDoctor />} />
         <Route path="/city-filter" element={<CityFilter />} />
+        <Route path="/appointmentsByDate" element={<AppointmentsByDate />} />
+
+
+        
 
 
 
-        {/* <Route path="/patient/doctor" element={<DoctorForPatient />} /> */}
 
 
       </Routes>

@@ -1,4 +1,6 @@
 ﻿using System.Security.Claims;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Hospital_Management_System.Data.Models;
 using Hospital_Menagment_System.Data;
 using Hospital_Menagment_System.Data.Services;
@@ -29,7 +31,13 @@ namespace Hospital_Menagment_System.Controllers
             try
             {
                 var patients = _patientService.GetPatientsByCity(cityName);
-                return Ok(patients);
+                var options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    WriteIndented = true
+                };
+                var json = JsonSerializer.Serialize(patients, options);
+                return Ok(json);
             }
             catch (ArgumentException ex)
             {
@@ -99,5 +107,6 @@ namespace Hospital_Menagment_System.Controllers
             _patientService.DeletePatientById(id);
             return Ok();
         }
+        
     }
 }

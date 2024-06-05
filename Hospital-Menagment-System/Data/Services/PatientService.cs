@@ -14,6 +14,7 @@ namespace Hospital_Menagment_System.Data.Services
             _cityServices = cityServices;
             _context = context;
         }
+        
         public List<Patient> GetPatientsByCity(string cityName)
         {
             var cityId = _cityServices.GetCityIdByName(cityName);
@@ -99,4 +100,5 @@ namespace Hospital_Menagment_System.Data.Services
             }
         }
     }
+    
 }

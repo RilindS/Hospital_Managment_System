@@ -41,7 +41,7 @@ namespace Hospital_Menagment_System.Controllers
                 return BadRequest("Role is required.");
             }
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email,NormalizedUserName=model.Name };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)

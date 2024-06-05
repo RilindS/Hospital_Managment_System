@@ -13,6 +13,7 @@ export const getAppointments = async () => {
   const response = await axios.get(API_URL);
   return response.data;
 };*/
+//https://localhost:44322/api/Appointments/get-all-appointments
 import axios from 'axios';
 
 const API_URL = 'https://localhost:44322/api/Appointments'; 
@@ -38,7 +39,7 @@ export const checkAppointmentAvailability = async (appointment) => {
 
 export const getAllAppointments  = async () => {
   try {
-    const response = await axios.get(`${API_URL}/get-all-appointment`);
+    const response = await axios.get(`${API_URL}/get-all-appointments`);
     return response.data;
   } catch (error) {
     throw error.response.data;
