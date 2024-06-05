@@ -102,6 +102,8 @@ const AdminLayout = () => (
         <Route path="/profile" element={<ProfileAdmin />} />
         <Route path="/Settings" element={<SettingsAdmin />} />
         <Route path="/appointmentsByDate" element={<AppointmentsByDate />} />
+        <Route path="/city-filter" element={<CityFilter />} />
+
 
         
 
@@ -124,14 +126,6 @@ const DoctorLayout = () => (
         <Route path="/patient" element={<PatinetForDoctor />} />
         <Route path="/city-filter" element={<CityFilter />} />
         <Route path="/appointmentsByDate" element={<AppointmentsByDate />} />
-
-
-        
-
-
-
-
-
       </Routes>
     </div>
   </div>

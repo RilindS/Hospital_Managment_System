@@ -43,7 +43,11 @@ const AdminSidebar = () => {
       </Link>
       <Link to="/admin/appointmentsByDate" className="sidebar-link">
         <i className="fas fa-user-md"></i>
-        <span className="link-text">Appoitments By data</span>
+        <span className="link-text">Filtro termimet baz dates</span>
+      </Link>
+      <Link to="/admin/city-filter" className="sidebar-link">
+        <i className="fas fa-search"></i>
+        <span className="link-text">Filter by City</span>
       </Link>
       <button onClick={logout} className="sidebar-link">
         <i className="fas fa-sign-out-alt"></i>

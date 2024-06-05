@@ -31,13 +31,7 @@ namespace Hospital_Menagment_System.Controllers
             try
             {
                 var patients = _patientService.GetPatientsByCity(cityName);
-                var options = new JsonSerializerOptions
-                {
-                    ReferenceHandler = ReferenceHandler.Preserve,
-                    WriteIndented = true
-                };
-                var json = JsonSerializer.Serialize(patients, options);
-                return Ok(json);
+                return Ok(patients);
             }
             catch (ArgumentException ex)
             {

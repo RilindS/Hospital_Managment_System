@@ -15,7 +15,7 @@ namespace Hospital_Menagment_System.Data.Services
             _context = context;
         }
         
-        public List<Patient> GetPatientsByCity(string cityName)
+        public List<PatientDTO> GetPatientsByCity(string cityName)
         {
             var cityId = _cityServices.GetCityIdByName(cityName);
             if (cityId == null)
@@ -23,8 +23,23 @@ namespace Hospital_Menagment_System.Data.Services
                 throw new ArgumentException("City name not found.");
             }
 
-            return _context.Patients.Where(p => p.CityId == cityId).ToList();
+            return _context.Patients
+                .Where(p => p.CityId == cityId)
+                .Select(p => new PatientDTO
+                {
+                    PatientId = p.PatientId,
+                    Name = p.Name,
+                    Surname = p.Surname,
+                    Email = p.Email,
+                    PhoneNumber = p.PhoneNumber,
+                    DateOfBirth = p.DateOfBirth,
+                    Street = p.Street,
+                    Qyteti = p.Qyteti,
+                    DateRegistered = p.DateRegistered
+                })
+                .ToList();
         }
+
         public void AddPatient(PatientVM patient)
         {
             var cityId = _cityServices.GetCityIdByName(patient.Qyteti);
