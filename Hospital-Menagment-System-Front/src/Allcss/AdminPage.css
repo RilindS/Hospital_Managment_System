@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 2px solid red;
+    justify-content: space-between;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: #4285F4;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons div {
+    margin: 0 10px;
+    position: relative;
+}
+
+.icons div span {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 10px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    position: relative; /* Kjo është e nevojshme për dropdown */
+    cursor: pointer;
+
+}
+
+
+.profile i {
+    margin-right: 10px;
+    color: #333;
+}
+
+.profile .profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile .profile-details span {
+    font-size: 16px;
+    color: #333;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    z-index: 1001;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+main {
+    margin-top: 40px; /* Për të bërë hapësirë për header-in fikse */
+}
+

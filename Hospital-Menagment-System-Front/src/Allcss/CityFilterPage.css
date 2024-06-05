@@ -1,0 +1,22 @@
+.city-filter-page {
+    padding: 20px;
+  }
+  
+  .city-filter-page select {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .city-filter-page ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .city-filter-page li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 4px;
+  }
+  

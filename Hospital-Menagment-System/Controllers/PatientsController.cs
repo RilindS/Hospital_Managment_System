@@ -1,4 +1,6 @@
 ﻿using System.Security.Claims;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Hospital_Management_System.Data.Models;
 using Hospital_Menagment_System.Data;
 using Hospital_Menagment_System.Data.Services;
@@ -23,6 +25,20 @@ namespace Hospital_Menagment_System.Controllers
             _cityService = cityService;
             _context = context;
         }
+        [HttpGet("get-patients-by-city/{cityName}")]
+        public IActionResult GetPatientsByCity(string cityName)
+        {
+            try
+            {
+                var patients = _patientService.GetPatientsByCity(cityName);
+                return Ok(patients);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("current")]
         public async Task<ActionResult<Patient>> GetCurrentPatient()
         {
@@ -85,5 +101,6 @@ namespace Hospital_Menagment_System.Controllers
             _patientService.DeletePatientById(id);
             return Ok();
         }
+        
     }
 }

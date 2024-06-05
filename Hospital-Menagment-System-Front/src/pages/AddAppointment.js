@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { addAppointment } from '../services/AppointmentService';
+import { addAppointment, checkAppointmentAvailability } from '../services/AppointmentService';
 import { getAllDoctorss } from '../services/DoctorService';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
@@ -20,6 +20,7 @@ const AddAppointment = () => {
   });
 
   const [doctors, setDoctors] = useState([]);
+  const [availabilityChecked, setAvailabilityChecked] = useState(false);
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -40,16 +41,23 @@ const AddAppointment = () => {
       ...prevAppointment,
       [name]: value,
     }));
+    setAvailabilityChecked(false); // Reset availability check if any input changes
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const isAvailable = await checkAppointmentAvailability(appointment);
+      if (!isAvailable) {
+        alert('This time slot is already booked for the selected doctor.');
+        return;
+      }
       const response = await addAppointment(appointment);
       console.log('Appointment added:', response);
       navigate('/patient');
     } catch (error) {
       console.error('Error adding appointment:', error);
+      alert(error.message || 'Failed to add appointment.');
     }
   };
 

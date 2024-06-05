@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { addPatient } from '../../services/patientService';
-import { getAllCities } from '../../services/CityServices';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { getAllCities } from '../../services/CityServices';
+import { addPatient } from '../../services/patientService';
 
 const AddPatient = () => {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ const AddPatient = () => {
 
   return (
     <Container>
-      <h2>Add Patient Details</h2>
+      <h2></h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formPatientName">
           <Form.Label column sm={2}>Name:</Form.Label>
