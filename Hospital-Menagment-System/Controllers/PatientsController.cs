@@ -38,6 +38,12 @@ namespace Hospital_Menagment_System.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("get-patients-by-name/{patientName}")]
+        public IActionResult GetPatientsByName(string patientName)
+        {
+            var patients = _patientService.GetPatientsByName(patientName);
+            return Ok(patients);
+        }
 
         [HttpGet("current")]
         public async Task<ActionResult<Patient>> GetCurrentPatient()

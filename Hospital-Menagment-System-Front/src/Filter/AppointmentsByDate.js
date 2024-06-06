@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import { Table, Button, Form, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
+import { Button, Container, Form, Table } from 'react-bootstrap';
 
 const AppointmentsByDate = () => {
   const [date, setDate] = useState('');
@@ -39,6 +39,7 @@ const AppointmentsByDate = () => {
             Search
           </Button>
         </Form>
+        
 
         {appointments.length > 0 && (
           <Table striped bordered hover className="mt-4">

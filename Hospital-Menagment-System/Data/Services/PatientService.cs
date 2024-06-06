@@ -39,6 +39,24 @@ namespace Hospital_Menagment_System.Data.Services
                 })
                 .ToList();
         }
+        public List<PatientDTO> GetPatientsByName(string patientName)
+        {
+            return _context.Patients
+                .Where(p => p.Name == patientName)
+                .Select(p => new PatientDTO
+                {
+                    PatientId = p.PatientId,
+                    Name = p.Name,
+                    Surname = p.Surname,
+                    Email = p.Email,
+                    PhoneNumber = p.PhoneNumber,
+                    DateOfBirth = p.DateOfBirth,
+                    Street = p.Street,
+                    Qyteti = p.Qyteti,
+                    DateRegistered = p.DateRegistered
+                })
+                .ToList();
+        }
 
         public void AddPatient(PatientVM patient)
         {

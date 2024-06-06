@@ -19,6 +19,18 @@ public class RoomServices
 
 
         }
+        public int GetRoomIdByName(string Room)
+        {
+            var city = _context.Rooms.FirstOrDefault(c => c.RoomName == Room);
+            if (city != null)
+            {
+                return city.RoomId;
+            }
+            else
+            {
+                throw new ArgumentException("City not found", nameof(Room));
+            }
+        }
         
         public void AddRoom(RoomVM room)
         {
