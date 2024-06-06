@@ -18,7 +18,12 @@ namespace Hospital_Menagment_System.Controllers
             _roomServices = roomServices;
         }
 
-
+        [HttpGet("get-rommName")]
+        public IEnumerable<string> GetRoomName()
+        
+        {
+            return _roomServices.GetRoomName();
+        }
 
         [HttpPost("add-Room")]
         public IActionResult AddDoctor([FromBody] RoomVM room)

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { getAllCities } from '../../services/CityServices';
+import { getAllRoomsName } from '../../services/RoomService';
 import { addPatient } from '../../services/patientService';
 
 const AddPatient = () => {
@@ -14,10 +15,12 @@ const AddPatient = () => {
     phoneNumber: '',
     dateOfBirth: '',
     qyteti: '',
+    room: '',
     street: ''
   });
 
   const [cities, setCities] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -30,6 +33,19 @@ const AddPatient = () => {
     };
 
     fetchCities();
+  }, []);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const data = await getAllRoomsName();
+        setRooms(data);
+      } catch (error) {
+        console.error('Error fetching rooms:', error);
+      }
+    };
+
+    fetchRooms();
   }, []);
 
   const handleChange = (e) => {
@@ -52,7 +68,7 @@ const AddPatient = () => {
 
   return (
     <Container>
-      <h2></h2>
+      <h2>Add Patient</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formPatientName">
           <Form.Label column sm={2}>Name:</Form.Label>
@@ -78,7 +94,7 @@ const AddPatient = () => {
             />
           </Col>
         </Form.Group>
-        {/* <Form.Group as={Row} className="mb-3" controlId="formEmail">
+        <Form.Group as={Row} className="mb-3" controlId="formEmail">
           <Form.Label column sm={2}>Email:</Form.Label>
           <Col sm={10}>
             <Form.Control
@@ -89,7 +105,7 @@ const AddPatient = () => {
               required
             />
           </Col>
-        </Form.Group> */}
+        </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formPhoneNumber">
           <Form.Label column sm={2}>Phone Number:</Form.Label>
           <Col sm={10}>
@@ -129,6 +145,26 @@ const AddPatient = () => {
               {cities.map((city, index) => (
                 <option key={index} value={city}>
                   {city}
+                </option>
+              ))}
+            </Form.Select>
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="formRoom">
+          <Form.Label column sm={2}>Room:</Form.Label>
+          <Col sm={10}>
+            <Form.Select
+              name="room"
+              value={patient.room}
+              onChange={handleChange}
+              required
+            >
+              <option key="" value="">
+                Select Room
+              </option>
+              {rooms.map((room, index) => (
+                <option key={index} value={room}>
+                  {room}
                 </option>
               ))}
             </Form.Select>

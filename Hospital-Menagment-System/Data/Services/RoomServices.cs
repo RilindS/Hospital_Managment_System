@@ -19,16 +19,20 @@ public class RoomServices
 
 
         }
+        public IEnumerable<string> GetRoomName()
+        {
+            return _context.Rooms.Select(c => c.RoomName).ToList();
+        }
         public int GetRoomIdByName(string Room)
         {
-            var city = _context.Rooms.FirstOrDefault(c => c.RoomName == Room);
-            if (city != null)
+            var room = _context.Rooms.FirstOrDefault(c => c.RoomName == Room);
+            if (room != null)
             {
-                return city.RoomId;
+                return room.RoomId;
             }
             else
             {
-                throw new ArgumentException("City not found", nameof(Room));
+                throw new ArgumentException("Room not found", nameof(Room));
             }
         }
         

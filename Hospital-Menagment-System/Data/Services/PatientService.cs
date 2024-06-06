@@ -8,10 +8,13 @@ namespace Hospital_Menagment_System.Data.Services
     {
         private AppDbContext _context;
         private readonly CityServices _cityServices;
+        private readonly RoomServices _roomServices;
 
-        public PatientService(AppDbContext context, CityServices cityServices)
+
+        public PatientService(AppDbContext context, CityServices cityServices,RoomServices rommService )
         {
             _cityServices = cityServices;
+            _roomServices = rommService;
             _context = context;
         }
         
@@ -57,6 +60,24 @@ namespace Hospital_Menagment_System.Data.Services
                 })
                 .ToList();
         }
+        public List<PatientDTO> GetPatientsByRoom(string patientRoom)
+        {
+            return _context.Patients
+                .Where(p => p.Rooma == patientRoom)
+                .Select(p => new PatientDTO
+                {
+                    PatientId = p.PatientId,
+                    Name = p.Name,
+                    Surname = p.Surname,
+                    Email = p.Email,
+                    PhoneNumber = p.PhoneNumber,
+                    DateOfBirth = p.DateOfBirth,
+                    Street = p.Street,
+                    Qyteti = p.Qyteti,
+                    DateRegistered = p.DateRegistered
+                })
+                .ToList();
+        }
 
         public void AddPatient(PatientVM patient)
         {
@@ -64,6 +85,11 @@ namespace Hospital_Menagment_System.Data.Services
             if (cityId == null)
             {
                 throw new ArgumentException("City name not found.");
+            }
+           var RoomId = _roomServices.GetRoomIdByName(patient.Room);
+            if (cityId == null)
+            {
+                throw new ArgumentException("room name not found.");
             }
 
             var newPatient = new Patient
@@ -75,6 +101,9 @@ namespace Hospital_Menagment_System.Data.Services
                 DateOfBirth = patient.DateOfBirth,
                 Qyteti = patient.Qyteti,
                 CityId = cityId,
+                Rooma = patient.Room,
+                RoomId = RoomId,
+                    
                 Street = patient.Street,
                 DateRegistered = DateTime.Now
             };
@@ -107,6 +136,7 @@ namespace Hospital_Menagment_System.Data.Services
                 _patient.Street = patient.Street;
                 _patient.DateRegistered = DateTime.Now;
                 _patient.Qyteti = patient.Qyteti;
+                _patient.Rooma = patient.Room;
 
                 if (_patient.Qyteti != patient.Qyteti)
                 {
@@ -116,6 +146,15 @@ namespace Hospital_Menagment_System.Data.Services
                         throw new ArgumentException("City name not found.");
                     }
                     _patient.CityId = cityId;
+                }
+                if (_patient.Rooma != patient.Room)
+                {
+                    var cityId = _roomServices.GetRoomIdByName(patient.Room);
+                    if (cityId == null)
+                    {
+                        throw new ArgumentException("Room name not found.");
+                    }
+                    _patient.RoomId = cityId;
                 }
 
                 _context.SaveChanges();

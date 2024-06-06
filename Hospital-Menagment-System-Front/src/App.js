@@ -22,6 +22,8 @@ import PatinetForDoctor from './pages/PatientForDoctor';
 
 import CityFilter from './Filter/CityFilter';
 import NameFilter from './Filter/NameFilter';
+import RoomFilter from './Filter/RoomFilter';
+
 
 
 import AppointmentsByDate from './Filter/AppointmentsByDate';
@@ -106,6 +108,8 @@ const AdminLayout = () => (
         <Route path="/appointmentsByDate" element={<AppointmentsByDate />} />
         <Route path="/city-filter" element={<CityFilter />} />
         <Route path="/name-filter" element={<NameFilter />} />
+        <Route path="/room-filter" element={<RoomFilter />} />
+
 
 
 

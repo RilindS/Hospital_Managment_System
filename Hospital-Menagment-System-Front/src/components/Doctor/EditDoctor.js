@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { getDoctorById, updateDoctorById } from '../../services/DoctorService';
-import { getAllCities } from '../../services/CityServices';
-import { useParams, useNavigate } from 'react-router-dom';
-import { getAllDepartments } from '../../services/DepartmentService';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getAllCities } from '../../services/CityServices';
+import { getAllDepartments } from '../../services/DepartmentService';
+import { getDoctorById, updateDoctorById } from '../../services/DoctorService';
 
 const EditDoctor = () => {
   const { id } = useParams();

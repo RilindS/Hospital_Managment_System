@@ -3,6 +3,17 @@ import axios from 'axios';
 const API_URL = 'https://localhost:44322/api/Room'; 
 
 
+//https://localhost:44322/api/Room/get-rommName
+
+export const getAllRoomsName = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/get-rommName`);
+    console.log('API response:', response.data); // Log the API response
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+};
 export const addRoom = async (Room) => {
   try {
     const response = await axios.post(`${API_URL}/add-Room`, Room);

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { getPatientById, updatePatientById } from '../../services/patientService';
-import { getAllCities } from '../../services/CityServices';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getAllCities } from '../../services/CityServices';
+import { getAllRoomsName } from '../../services/RoomService';
+import { getPatientById, updatePatientById } from '../../services/patientService';
 
 const EditPatient = () => {
   const { id } = useParams();
@@ -15,9 +16,11 @@ const EditPatient = () => {
     phoneNumber: '',
     dateOfBirth: '',
     qyteti: '',
+    room: '',
     street: ''
   });
   const [cities, setCities] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     const fetchPatient = async () => {
@@ -38,8 +41,18 @@ const EditPatient = () => {
       }
     };
 
+    const fetchRooms = async () => {
+      try {
+        const data = await getAllRoomsName();
+        setRooms(data);
+      } catch (error) {
+        console.error('Error fetching rooms:', error);
+      }
+    };
+
     fetchPatient();
     fetchCities();
+    fetchRooms();
   }, [id]);
 
   const handleChange = (e) => {
@@ -139,6 +152,26 @@ const EditPatient = () => {
               {cities.map((city, index) => (
                 <option key={index} value={city}>
                   {city}
+                </option>
+              ))}
+            </Form.Select>
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="formRoom">
+          <Form.Label column sm={2}>Room:</Form.Label>
+          <Col sm={10}>
+            <Form.Select
+              name="room"
+              value={patient.room}
+              onChange={handleChange}
+              required
+            >
+              <option key="" value="">
+                Select Room
+              </option>
+              {rooms.map((room, index) => (
+                <option key={index} value={room}>
+                  {room}
                 </option>
               ))}
             </Form.Select>

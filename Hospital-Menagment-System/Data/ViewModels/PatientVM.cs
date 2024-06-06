@@ -9,6 +9,10 @@
             public string PhoneNumber { get; set; }
             public string DateOfBirth { get; set; }
             public string Qyteti { get; set; }
+            
+            public string Room { get; set; }
+
+            
             public string Street { get; set; }
             //public int QytetiId { get; set; }
     }

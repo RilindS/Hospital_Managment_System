@@ -12,6 +12,9 @@
             public int PatientId { get; set; }
             public int CityId { get; set; } 
             public City City { get; set; }
+            
+            public int RoomId { get; set; } 
+            public Room Room { get; set; }
           
             public string Name { get; set; }
             public string Surname { get; set; }
@@ -20,6 +23,8 @@
             public string DateOfBirth { get; set; }
             public string Street { get; set; }
             public string Qyteti { get; set; }
+            public string Rooma { get; set; }
+
             public DateTime DateRegistered { get; set; }
             
             public string? UserId { get; set; }

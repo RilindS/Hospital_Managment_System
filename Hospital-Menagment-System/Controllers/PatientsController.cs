@@ -44,6 +44,14 @@ namespace Hospital_Menagment_System.Controllers
             var patients = _patientService.GetPatientsByName(patientName);
             return Ok(patients);
         }
+        
+        [HttpGet("get-patients-by-Room/{patientRoom}")]
+        public IActionResult GetPatientsByRoom(string patientRoom)
+        {
+            var patients = _patientService.GetPatientsByRoom(patientRoom);
+            return Ok(patients);
+        }
+
 
         [HttpGet("current")]
         public async Task<ActionResult<Patient>> GetCurrentPatient()

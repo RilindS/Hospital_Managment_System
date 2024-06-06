@@ -31,7 +31,6 @@ const PatientList = () => {
 
   return (
     <div>
-      <h1></h1>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -39,6 +38,8 @@ const PatientList = () => {
             <th>Surname</th>
             <th>City</th>
             <th>Street</th>
+            <th>Room</th>
+
             <th>Phone</th>
             <th>Actions</th>
           </tr>
@@ -50,9 +51,11 @@ const PatientList = () => {
               <td>{patient.surname}</td>
               <td>{patient.qyteti}</td>
               <td>{patient.street}</td>
+              <td>{patient.rooma}</td>
+
               <td>{patient.phoneNumber}</td>
               <td>
-                <Link to={`/admin/patient/edit/${patient.patientId}`} className="btn btn-primary btn-sm me-2">Edit</Link> {/* Përditëso rrugën për Edit */}
+                <Link to={`/admin/patient/edit/${patient.patientId}`} className="btn btn-primary btn-sm me-2">Edit</Link> 
                 <Button variant="danger" size="sm" onClick={() => handleDelete(patient.patientId)}>Delete</Button>
               </td>
             </tr>
