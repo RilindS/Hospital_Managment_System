@@ -42,20 +42,24 @@ const AdminSidebar = () => {
         <span className="link-text">City</span>
       </Link>
       <Link to="/admin/appointmentsByDate" className="sidebar-link">
-        <i className="fas fa-user-md"></i>
-        <span className="link-text">Filtro termimet baz dates</span>
+        <i className="fas fa-search"></i>
+        <span className="link-text">Filter Patinet by Date</span>
       </Link>
       <Link to="/admin/city-filter" className="sidebar-link">
         <i className="fas fa-search"></i>
-        <span className="link-text">Filter by City</span>
+        <span className="link-text">Filter Patinet by City</span>
       </Link>
       <Link to="/admin/name-filter" className="sidebar-link">
         <i className="fas fa-search"></i>
-        <span className="link-text">Filter by Name</span>
+        <span className="link-text">Filter Patinet by Name</span>
       </Link>
       <Link to="/admin/room-filter" className="sidebar-link">
         <i className="fas fa-search"></i>
-        <span className="link-text">Filter by Room</span>
+        <span className="link-text">Filter Patinet by Room</span>
+      </Link>
+      <Link to="/admin/DashboardPage" className="sidebar-link">
+        <i className="fas fa-search"></i>
+        <span className="link-text">DashboardPage</span>
       </Link>
       <button onClick={logout} className="sidebar-link">
         <i className="fas fa-sign-out-alt"></i>

@@ -23,10 +23,8 @@
             public string DateOfBirth { get; set; }
             public string Street { get; set; }
             public string Qyteti { get; set; }
-            public string Rooma { get; set; }
-
+            public string Rooma { get; set; }//dhoma
             public DateTime DateRegistered { get; set; }
-            
             public string? UserId { get; set; }
             [ForeignKey("UserId")]
             public ApplicationUser User { get; set; }

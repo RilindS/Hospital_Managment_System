@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { addAppointment, checkAppointmentAvailability } from '../services/AppointmentService';
 import { getAllDoctorss } from '../services/DoctorService';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { useAuth } from '../context/AuthContext';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddAppointment = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
   const [appointment, setAppointment] = useState({
-    patientName: '',
+    patientName: user? user.name : '',
     patientEmail: user ? user.email : '',
     doctorName: '',
     date: '',
@@ -76,7 +76,7 @@ const AddAppointment = () => {
               required
             />
           </Col>
-        </Form.Group>
+        </Form.Group> 
         <Form.Group as={Row} className="mb-3" controlId="formPatientEmail">
           <Form.Label column sm={2}>Patient Email:</Form.Label>
           <Col sm={10}>

@@ -30,7 +30,7 @@ const PatientHomePage = () => {
         <div className="profile" onClick={toggleDropdown}>
           <i className="fa fa-user-circle fa-2x"></i>
           <div className="profile-details">
-            <span>{user ? user.name : 'Not logged in'}</span>
+            {/* <span>{user ? user.name : 'Not logged in'}</span> */}
             <span>{user ? user.email : ''}</span>
           </div>
           {dropdownOpen && (
@@ -42,6 +42,8 @@ const PatientHomePage = () => {
         </div>
       </header>
       <h1>Welcome to the Patient Home Page</h1>
+      <p>Name: {user ? user.name : 'Not logged in'}</p>
+
       <p>Email: {user ? user.email : 'Not logged in'}</p>
       <p>Role: {user ? user.role : 'Not logged in'}</p>
       {/* Add more patient-related content here */}

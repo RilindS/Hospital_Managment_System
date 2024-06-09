@@ -1,17 +1,19 @@
-import React, { useState, useContext } from 'react';
-import AuthContext from '../context/AuthContext';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useContext, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import AuthContext from '../context/AuthContext';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
   const [role, setRole] = useState('Patient');
   const { register } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await register(email, password, role);
+    await register(email, password, name,role);
   };
 
   return (
@@ -41,6 +43,17 @@ const RegisterPage = () => {
                 required
               />
             </Form.Group>
+            <Form.Group controlId="formName" className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="name"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </Form.Group>
+
 
             <Form.Group controlId="formRole" className="mb-3">
               <Form.Label>Role</Form.Label>

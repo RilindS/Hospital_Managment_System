@@ -27,12 +27,16 @@ import RoomFilter from './Filter/RoomFilter';
 
 
 import AppointmentsByDate from './Filter/AppointmentsByDate';
+import AddDoctorDetails from './pages/AddDoctorDetails';
+import DashboardPage from './pages/DashboardPage';
+import DoctorAppointments from './pages/DoctorAppointments';
+
+
 
 
 
 import AdminAppointments from './components/AdminAppointments';
 import EditDepartment from './components/Department/EditDepartment';
-import AddDoctor from './components/Doctor/AddDoctor';
 import EditDoctor from './components/Doctor/EditDoctor';
 import EditNurse from './components/Nurse/EditNurse';
 import AddPatient from './components/Patient/AddPatient';
@@ -69,8 +73,8 @@ const App = () => {
           <Route path="/admin/*" element={<PrivateRoute roles={['Admin']} component={AdminLayout} />} />
           <Route path="/doctor/*" element={<PrivateRoute roles={['Doctor']} component={DoctorLayout} />} />
           <Route path="/patient/*" element={<PrivateRoute roles={['Patient']} component={PatientLayout} />} />
-          <Route path="/add-patient" element={<AddPatient />} />
-          <Route path="/add-doctor" element={<AddDoctor />} />
+          {/* <Route path="/add-patient" element={<AddPatient />} /> */}
+          {/* <Route path="/add-doctor" element={<AddDoctorDetails />} />   */}
         </Routes>
       </AuthProvider>
     </Router>
@@ -109,6 +113,12 @@ const AdminLayout = () => (
         <Route path="/city-filter" element={<CityFilter />} />
         <Route path="/name-filter" element={<NameFilter />} />
         <Route path="/room-filter" element={<RoomFilter />} />
+        <Route path="/add-doctor" element={<AddDoctorDetails />} /> 
+        <Route path="/add-patient" element={<AddPatient />} />
+
+        <Route path="/DashboardPage" element={<DashboardPage />} />
+
+
 
 
 
@@ -134,6 +144,8 @@ const DoctorLayout = () => (
         <Route path="/patient" element={<PatinetForDoctor />} />
         <Route path="/city-filter" element={<CityFilter />} />
         <Route path="/appointmentsByDate" element={<AppointmentsByDate />} />
+        <Route path="/appointments" element={<DoctorAppointments />} />
+
       </Routes>
     </div>
   </div>

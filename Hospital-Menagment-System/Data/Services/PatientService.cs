@@ -17,6 +17,18 @@ namespace Hospital_Menagment_System.Data.Services
             _roomServices = rommService;
             _context = context;
         }
+        public int GetPatientIdByName(string cityName)
+        {
+            var doctor = _context.Patients.FirstOrDefault(c => c.Name == cityName);
+            if (doctor != null)
+            {
+                return doctor.PatientId;
+            }
+            else
+            {
+                throw new ArgumentException("patient not found", nameof(cityName));
+            }
+        }
         
         public List<PatientDTO> GetPatientsByCity(string cityName)
         {

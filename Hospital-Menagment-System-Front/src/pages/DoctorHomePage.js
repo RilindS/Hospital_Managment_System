@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import '../Allcss/AdminPage.css'; // Import CSS nga dosja Allcss
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CSS
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router
+import '../Allcss/AdminPage.css'; // Import CSS nga dosja Allcss
+import { useAuth } from '../context/AuthContext';
 
 
 const DoctorHomePage = () => {
@@ -42,6 +42,8 @@ const DoctorHomePage = () => {
         </div>
       </header>
     <h1>Welcome to the Doctor Home Page</h1>
+    <p>Name: {user ? user.name : 'Not logged in'}</p>
+
     <p>Email: {user ? user.email : 'Not logged in'}</p>
     <p>Role: {user ? user.role : 'Not logged in'}</p>
     {/* Add more patient-related content here */}

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Container, Table } from 'react-bootstrap';
 import { getAllAppointments } from '../services/AppointmentService';
-import { Table, Container } from 'react-bootstrap';
 
 const AdminAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -25,7 +25,7 @@ const AdminAppointments = () => {
         <thead>
           <tr>
             <th>Appointment ID</th>
-            <th>Patient Name</th>
+            {/* <th>Patient Name</th> */}
             <th>Patient Email</th>
             <th>Doctor Name</th>
             <th>Date</th>
@@ -37,7 +37,7 @@ const AdminAppointments = () => {
           {appointments.map(appointment => (
             <tr key={appointment.appointmentId}>
               <td>{appointment.appointmentId}</td>
-              <td>{appointment.patientName}</td>
+              {/* <td>{appointment.patientName}</td> */}
               <td>{appointment.patientEmail}</td>
               <td>{appointment.doctorName}</td>
               <td>{appointment.date}</td>

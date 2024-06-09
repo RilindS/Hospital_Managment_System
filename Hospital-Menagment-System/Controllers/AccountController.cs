@@ -23,14 +23,18 @@ namespace Hospital_Menagment_System.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly PatientService _patientService;
+        private readonly DoctorServices _doctorServices;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, PatientService patientService)
+        
+
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, PatientService patientService,DoctorServices doctorServices)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _patientService = patientService;
+            _doctorServices = doctorServices;
         }
 
         [HttpPost("register")]
@@ -41,7 +45,7 @@ namespace Hospital_Menagment_System.Controllers
                 return BadRequest("Role is required.");
             }
 
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, RefreshToken = Guid.NewGuid().ToString() };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
@@ -68,6 +72,21 @@ namespace Hospital_Menagment_System.Controllers
 
             return BadRequest(result.Errors);
         }
+
+        [HttpPost("add-doctor-details")]
+        public async Task<IActionResult> AddDoctorDetails([FromBody] DoctorVM model)
+        {
+            try
+            {
+                _doctorServices.AddDoctor(model);
+                return Ok("Doctor details added successfully.");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpPost("add-patient-details")]
         public async Task<IActionResult> AddPatientDetails([FromBody] PatientVM model)
@@ -96,9 +115,10 @@ namespace Hospital_Menagment_System.Controllers
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.UserName),
                         new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.Role, roles.FirstOrDefault())
+                        new Claim(ClaimTypes.Role, roles.FirstOrDefault()),
+                        new Claim("name", user.Name) // Ensure this line is present
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(15), // Short-lived access token
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -123,6 +143,7 @@ namespace Hospital_Menagment_System.Controllers
 
             return Unauthorized();
         }
+
 
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenModel tokenModel)

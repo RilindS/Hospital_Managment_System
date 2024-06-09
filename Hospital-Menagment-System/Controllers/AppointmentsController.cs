@@ -24,6 +24,35 @@ namespace Hospital_Menagment_System.Controllers
             _doctorServices = doctorService;
             _appointmentServices = appointmentServices;
         }
+        [HttpGet("get-appointments-by-doctor/{doctorName}")]
+        public IActionResult GetAppointmentsByDoctorName(string doctorName)
+        {
+            try
+            {
+                var appointments = _appointmentServices.GetAppointmentsByDoctorName(doctorName);
+                return Ok(appointments);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("get-appointments-by-patient/{patinetName}")]
+        public IActionResult GetAppointmentsByPatientName(string doctorName)
+        {
+            try
+            {
+                var appointments = _appointmentServices.GetAppointmentsByPatientName(doctorName);
+                return Ok(appointments);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
 
         [HttpGet("get-appointments-by-date/{date}")]
         public IActionResult GetAppointmentsByDate(string date)

@@ -1,7 +1,7 @@
-import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -30,7 +30,8 @@ export const AuthProvider = ({ children }) => {
         const decoded = jwtDecode(response.data.token);
         setUser({
           email: decoded.email,
-          role: decoded.role
+          role: decoded.role,
+          name: decoded.name // Ensure this line is included
         });
       } catch (error) {
         console.error('Token refresh failed', error);
@@ -39,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const checkTokenValidity = useCallback(() => {
+  const checkTokenValidity = useCallback(async () => {
     const token = localStorage.getItem('token');
     if (token) {
       const decoded = jwtDecode(token);
@@ -50,7 +51,8 @@ export const AuthProvider = ({ children }) => {
         // Token is valid
         setUser({
           email: decoded.email,
-          role: decoded.role
+          role: decoded.role,
+          name: decoded.name // Ensure this line is included
         });
       }
     }
@@ -76,7 +78,8 @@ export const AuthProvider = ({ children }) => {
       const decoded = jwtDecode(token);
       setUser({
         email: decoded.email,
-        role: decoded.role
+        role: decoded.role,
+        name: decoded.name // Ensure this line is included
       });
 
       // Redirect based on user role
@@ -94,14 +97,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (email, password, role) => {
-    try {
-      const response = await axios.post('https://localhost:44322/api/Account/register', { email, password, role });
+  const register = async (email, password, name,role) => {
+    try {                                //https://localhost:44322/api/Account/register
+      const response = await axios.post('https://localhost:44322/api/Account/register', { email, password, name,role  });
       const { isPatient, isDoctor } = response.data;
       if (isPatient) {
-        navigate('/add-patient');
+        navigate('admin/add-patient');
       } else if (isDoctor) {
-        navigate('/add-doctor');
+        navigate('admin/add-doctor');
       } else {
         navigate('/login');
       }

@@ -18,6 +18,7 @@ public class DoctorServices
             _departmentServices = departmentServices;
 
         }
+        
         public IEnumerable<string> GetDoctorName()
         {
             return _context.Doctors.Select(c => c.DoctorName).ToList();

@@ -11,12 +11,15 @@ namespace Hospital_Menagment_System.Data.Services
         private readonly AppDbContext _context;
         private readonly DoctorServices _doctorServices;
         private readonly DepartmentServices _departmentServices;
+        private readonly PatientService _patientService;
 
-        public AppoitmentServices(AppDbContext context, DoctorServices doctorServices, DepartmentServices departmentServices)
+
+        public AppoitmentServices(AppDbContext context, DoctorServices doctorServices, DepartmentServices departmentServices,PatientService patientService)
         {
             _doctorServices = doctorServices;
             _context = context;
             _departmentServices = departmentServices;
+            _patientService=patientService;
         }
 
         public bool CheckAppointmentAvailability(AppointmentVM appointment)
@@ -42,6 +45,57 @@ namespace Hospital_Menagment_System.Data.Services
                 .Where(a => a.Date.Date == date.Date)
                 .ToList();
         }
+        public List<AppointmentDTO> GetAppointmentsByDoctorName(string doctorName)
+        {
+            var doctorId = _doctorServices.GetDoctorIdByName(doctorName);
+            if (doctorId == null)
+            {
+                throw new ArgumentException("Doctor name not found.");
+            }
+
+            return _context.Appointments
+                .Where(a => a.DoctorId == doctorId)
+                .Select(a => new AppointmentDTO
+                {
+                    AppointmentId = a.AppointmentId,
+                    PatientName = a.PatientName,
+                    PatientEmail = a.PatientEmail,
+                    Date = a.Date,
+                    Time = a.Time,
+                    Reason = a.Reason,
+                    PatientId = a.PatientId,
+                    DoctorId = a.DoctorId,
+                    DoctorName = a.DoctorName
+                })
+                .ToList();
+        }
+        
+        public List<AppointmentDTO> GetAppointmentsByPatientName(string doctorName)
+        {
+            var doctorId = _patientService.GetPatientIdByName(doctorName);
+            if (doctorId == null)
+            {
+                throw new ArgumentException("Patient name not found.");
+            }
+
+            return _context.Appointments
+                .Where(a => a.PatientId == doctorId)
+                .Select(a => new AppointmentDTO
+                {
+                    AppointmentId = a.AppointmentId,
+                    PatientName = a.PatientName,
+                    PatientEmail = a.PatientEmail,
+                    Date = a.Date,
+                    Time = a.Time,
+                    Reason = a.Reason,
+                    PatientId = a.PatientId,
+                    DoctorId = a.DoctorId,
+                    DoctorName = a.DoctorName
+                })
+                .ToList();
+        }
+
+
 
         public void AddAppoitment(AppointmentVM appointment)
         {
