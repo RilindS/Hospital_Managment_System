@@ -13,6 +13,11 @@ public class DepartmentServices
             _context = context;
 
         }
+        public int GetTotalDepartments()
+        {
+            return _context.Departaments.Count();
+        }
+
         public IEnumerable<string> GetDepartment()
         {
             return _context.Departaments.Select(c => c.Name).ToList();

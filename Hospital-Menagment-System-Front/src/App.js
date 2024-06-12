@@ -30,6 +30,8 @@ import AppointmentsByDate from './Filter/AppointmentsByDate';
 import AddDoctorDetails from './pages/AddDoctorDetails';
 import DashboardPage from './pages/DashboardPage';
 import DoctorAppointments from './pages/DoctorAppointments';
+import PatientMyAppoitments from './pages/PatientMyAppoitments';
+
 
 
 
@@ -160,8 +162,11 @@ const PatientLayout = () => (
         <Route path="/appointments" element={<AddAppointment />} />
 
         <Route path="/profile" element={<ProfilePatient />} />
-        <Route path="/Settings" element={<SetingsPatient />} />
+          <Route path="/Settings" element={<SetingsPatient />} />
         <Route path="/doctor" element={<DoctorForPatient />} />
+
+        <Route path="/medical-history" element={<PatientMyAppoitments />} />
+
 
       </Routes>
     </div>

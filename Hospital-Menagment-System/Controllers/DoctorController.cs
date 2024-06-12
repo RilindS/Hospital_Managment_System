@@ -25,6 +25,13 @@ namespace Hospital_Menagment_System.Controllers
             _context = context;
         }
 
+        
+        [HttpGet("get-total-doctors")]
+        public IActionResult GetTotalPatients()
+        {
+            var totalPatients = _doctorServices.GetTotalDoctorss();
+            return Ok(totalPatients);
+        }
 
 
         [HttpPost("add-Doctor")]

@@ -10,17 +10,21 @@ const AddAppointment = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split('T')[0];
+
   const [appointment, setAppointment] = useState({
-    patientName: user? user.name : '',
+    patientName: user ? user.name : '',
     patientEmail: user ? user.email : '',
     doctorName: '',
-    date: '',
+    date: today,
     time: '',
     reason: ''
   });
 
   const [doctors, setDoctors] = useState([]);
   const [availabilityChecked, setAvailabilityChecked] = useState(false);
+  const [timeError, setTimeError] = useState('');
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -42,10 +46,25 @@ const AddAppointment = () => {
       [name]: value,
     }));
     setAvailabilityChecked(false); // Reset availability check if any input changes
+
+    // Check if time is within allowed range
+    if (name === 'time') {
+      const timeValue = value;
+      const minTime = '08:00';
+      const maxTime = '20:00';
+      if (timeValue < minTime || timeValue > maxTime) {
+        setTimeError('Please select a time between 08:00 and 20:00.');
+      } else {
+        setTimeError('');
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (timeError) {
+      return; // Do not submit if there's a time error
+    }
     try {
       const isAvailable = await checkAppointmentAvailability(appointment);
       if (!isAvailable) {
@@ -76,7 +95,7 @@ const AddAppointment = () => {
               required
             />
           </Col>
-        </Form.Group> 
+        </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formPatientEmail">
           <Form.Label column sm={2}>Patient Email:</Form.Label>
           <Col sm={10}>
@@ -130,8 +149,13 @@ const AddAppointment = () => {
               name="time"
               value={appointment.time}
               onChange={handleChange}
+              min="08:00"
+              max="20:00"
               required
             />
+            {timeError && (
+              <div style={{ color: 'red', marginTop: '5px' }}>{timeError}</div>
+            )}
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formReason">

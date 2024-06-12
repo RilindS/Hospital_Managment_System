@@ -17,19 +17,26 @@ namespace Hospital_Menagment_System.Data.Services
             _roomServices = rommService;
             _context = context;
         }
-        public int GetPatientIdByName(string cityName)
+        
+        public int GetTotalPatients()
         {
-            var doctor = _context.Patients.FirstOrDefault(c => c.Name == cityName);
-            if (doctor != null)
+            return _context.Patients.Count();
+        }
+        
+        public int GetPatientIdByName(string patientName)
+        {
+            var patient = _context.Patients.FirstOrDefault(c => c.Name == patientName);
+            if (patient != null)
             {
-                return doctor.PatientId;
+                Console.WriteLine($"Found patient ID: {patient.PatientId} for patient name: {patientName}");
+                return patient.PatientId;
             }
             else
             {
-                throw new ArgumentException("patient not found", nameof(cityName));
+                throw new ArgumentException("patient not found", nameof(patientName));
             }
         }
-        
+
         public List<PatientDTO> GetPatientsByCity(string cityName)
         {
             var cityId = _cityServices.GetCityIdByName(cityName);

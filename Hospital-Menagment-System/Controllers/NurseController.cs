@@ -18,6 +18,13 @@ namespace Hospital_Menagment_System.Controllers
         
             _nurseServices = nurseServices;
         }
+        
+        [HttpGet("get-total-nurses")]
+        public IActionResult GetTotalNurses()
+        {
+            var totalPatients = _nurseServices.GetTotalNurses();
+            return Ok(totalPatients);
+        }
 
 
 

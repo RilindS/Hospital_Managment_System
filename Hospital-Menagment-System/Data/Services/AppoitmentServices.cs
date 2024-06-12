@@ -70,16 +70,21 @@ namespace Hospital_Menagment_System.Data.Services
                 .ToList();
         }
         
-        public List<AppointmentDTO> GetAppointmentsByPatientName(string doctorName)
+        
+        
+        //Duhet me check se nuk po i kthen mire !!!
+        public List<AppointmentDTO> GetAppointmentsByPatientName(string patientName)
         {
-            var doctorId = _patientService.GetPatientIdByName(doctorName);
-            if (doctorId == null)
+            var patientId = _patientService.GetPatientIdByName(patientName);
+            if (patientId == 0)
             {
                 throw new ArgumentException("Patient name not found.");
             }
 
-            return _context.Appointments
-                .Where(a => a.PatientId == doctorId)
+            Console.WriteLine($"Patient ID for {patientName}: {patientId}");
+
+            var appointments = _context.Appointments
+                .Where(a => a.AppointmentId == patientId)
                 .Select(a => new AppointmentDTO
                 {
                     AppointmentId = a.AppointmentId,
@@ -93,6 +98,10 @@ namespace Hospital_Menagment_System.Data.Services
                     DoctorName = a.DoctorName
                 })
                 .ToList();
+
+            Console.WriteLine($"Found {appointments.Count} appointments for patient ID {patientId}");
+
+            return appointments;
         }
 
 

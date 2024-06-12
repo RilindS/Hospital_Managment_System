@@ -37,12 +37,12 @@ namespace Hospital_Menagment_System.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("get-appointments-by-patient/{patinetName}")]
-        public IActionResult GetAppointmentsByPatientName(string doctorName)
+        [HttpGet("get-appointments-by-patient/{patientName}")]
+        public IActionResult GetAppointmentsByPatientName(string patientName)
         {
             try
             {
-                var appointments = _appointmentServices.GetAppointmentsByPatientName(doctorName);
+                var appointments = _appointmentServices.GetAppointmentsByPatientName(patientName);
                 return Ok(appointments);
             }
             catch (ArgumentException ex)
@@ -50,6 +50,7 @@ namespace Hospital_Menagment_System.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
 
 
 

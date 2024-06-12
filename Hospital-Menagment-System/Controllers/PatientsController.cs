@@ -25,6 +25,14 @@ namespace Hospital_Menagment_System.Controllers
             _cityService = cityService;
             _context = context;
         }
+        
+        [HttpGet("get-total-patients")]
+        public IActionResult GetTotalPatients()
+        {
+            var totalPatients = _patientService.GetTotalPatients();
+            return Ok(totalPatients);
+        }
+
         [HttpGet("get-patients-by-city/{cityName}")]
         public IActionResult GetPatientsByCity(string cityName)
         {

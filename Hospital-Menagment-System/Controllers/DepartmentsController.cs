@@ -15,6 +15,14 @@ namespace Hospital_Menagment_System.Controllers
         {
             _departmentService = departmentService;
         }
+        
+        
+        [HttpGet("get-total-departments")]
+        public IActionResult GetTotalDepartments()
+        {
+            var totalPatients = _departmentService.GetTotalDepartments();
+            return Ok(totalPatients);
+        }
 
         [HttpPost("add-department")]
         public IActionResult AddDepartment([FromBody] DepartmentVM department)

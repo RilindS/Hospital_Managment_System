@@ -18,6 +18,11 @@ public class DoctorServices
             _departmentServices = departmentServices;
 
         }
+        public int GetTotalDoctorss()
+        {
+            return _context.Doctors.Count();
+        }
+
         
         public IEnumerable<string> GetDoctorName()
         {

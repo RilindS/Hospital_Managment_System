@@ -13,6 +13,12 @@ public class NurseServices
             _context = context;
 
         }
+        
+        public int GetTotalNurses()
+        {
+            return _context.Nurses.Count();
+        }
+
         public IEnumerable<string> GetNurseByName()
         {
             return _context.Nurses.Select(c => c.Name).ToList();
