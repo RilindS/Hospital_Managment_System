@@ -1,4 +1,5 @@
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
@@ -31,19 +32,48 @@ const DoctorAppointments = () => {
   console.log('Appointments state:', appointments);
 
   return (
-    <div>
-      <h2>Your Appointments</h2>
-      <ul>
-        {appointments.map(appointment => (
-          <li key={appointment.appointmentId}>
-            <p>Patient: {appointment.patientName}</p>
-            <p>Email: {appointment.patientEmail}</p>
-            <p>Date: {new Date(appointment.date).toLocaleDateString()}</p>
-            <p>Time: {appointment.time}</p>
-            <p>Reason: {appointment.reason}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="container mt-5">
+      <h2 className="mb-4">Your Appointments</h2>
+      {appointments.length === 0 ? (
+        <div>No appointments found.</div>
+      ) : (
+        appointments.map(appointment => (
+          <div key={appointment.appointmentId} className="mb-4">
+            <div className="table-responsive">
+              <table className="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Detail</th>
+                    <th>Information</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Patient</td>
+                    <td>{appointment.patientName}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{appointment.patientEmail}</td>
+                  </tr>
+                  <tr>
+                    <td>Date</td>
+                    <td>{new Date(appointment.date).toLocaleDateString()}</td>
+                  </tr>
+                  <tr>
+                    <td>Time</td>
+                    <td>{appointment.time}</td>
+                  </tr>
+                  <tr>
+                    <td>Reason</td>
+                    <td>{appointment.reason}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))
+      )}
     </div>
   );
 };

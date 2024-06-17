@@ -10,6 +10,9 @@ import ProfileAdmin from './pages/ProfileAdmin';
 import RegisterPage from './pages/RegisterPage';
 import SettingsAdmin from './pages/SettingsAdmin';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 import ProfileDoctor from './pages/ProfileDoctor';
 import SettingDoctor from './pages/SettingDoctor';
 

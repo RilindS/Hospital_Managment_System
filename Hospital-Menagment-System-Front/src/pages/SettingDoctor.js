@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
 import '../Allcss/AdminProfile.css'; // Import CSS nga dosja Allcss
+import { useAuth } from '../context/AuthContext';
 
 const AdminSettings = () => {
   const { user, updateUser } = useAuth(); // Assuming updateUser is a function in AuthContext for updating user data
@@ -47,7 +47,12 @@ const AdminSettings = () => {
           {/* <p><strong>Name:</strong> {user ? user.name : 'Not logged in'}</p> */}
           <p><strong>Email:</strong> {user ? user.email : 'Not logged in'}</p>
           <p><strong>Role:</strong> {user ? user.role : 'Not logged in'}</p>
-          <button onClick={() => setEditMode(true)}>Edit</button>
+          <p> </p>
+          <p> </p>
+
+          <p><strong>Edit:</strong>:Comming soon </p>
+
+          {/* <button onClick={() => setEditMode(true)}>Edit</button> */}
         </div>
       )}
     </div>

@@ -20,11 +20,9 @@ const LoginPage = () => {
   };
 
   return (
-    
     <Container className="login-container">
       {error && <div className="error-message">{error}</div>}
       <h2 className="text-center">Login</h2>
-      {error && <div className="error-message">{error}</div>}
       <Form onSubmit={handleSubmit} className="login-form">
         <Form.Group as={Row} className="mb-3" controlId="formEmail">
           <Form.Label column sm={2}>Email:</Form.Label>
@@ -37,7 +35,6 @@ const LoginPage = () => {
             />
           </Col>
         </Form.Group>
-        {error && <div className="error-message">{error}</div>}
         <Form.Group as={Row} className="mb-3" controlId="formPassword">
           <Form.Label column sm={2}>Password:</Form.Label>
           <Col sm={10}>
@@ -51,9 +48,7 @@ const LoginPage = () => {
         </Form.Group>
         <Button type="submit" variant="primary" className="login-button">Login</Button>
       </Form>
-      {error && <div className="error-message">{error}</div>}
     </Container>
-    
   );
 };
 

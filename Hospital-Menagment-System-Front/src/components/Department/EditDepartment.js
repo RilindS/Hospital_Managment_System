@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getDepartmentById, updateDepartmentById } from '../../services/DepartmentService';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getDepartmentById, updateDepartmentById } from '../../services/DepartmentService';
 
 const EditDepartment = () => {
   const { id } = useParams();
@@ -10,8 +10,8 @@ const EditDepartment = () => {
   const [department, setDepartment] = useState({
     name: '',
     description: '',
-    departmentSize: '',
-    departmentStatus: false,
+    departamentSize: 0,
+    departamentStatus: false,
   });
 
   useEffect(() => {
@@ -73,25 +73,29 @@ const EditDepartment = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formDepartmentSize">
+        <Form.Group as={Row} className="mb-3" controlId="formdepartamentSize">
           <Form.Label column sm={2}>Size:</Form.Label>
           <Col sm={10}>
             <Form.Control
               type="number"
-              name="departmentSize"
-              value={department.departmentSize}
+              name="departamentSize"
+              value={department.departamentSize}
               onChange={handleChange}
               required
             />
           </Col>
+
+
+      
+
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formDepartmentStatus">
+        <Form.Group as={Row} className="mb-3" controlId="formdepartamentStatus">
           <Form.Label column sm={2}>Status:</Form.Label>
           <Col sm={10}>
             <Form.Check
               type="checkbox"
-              name="departmentStatus"
-              checked={department.departmentStatus}
+              name="departamentStatus"
+              checked={department.departamentStatus}
               onChange={handleChange}
             />
           </Col>

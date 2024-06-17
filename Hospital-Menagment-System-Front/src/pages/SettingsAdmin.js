@@ -47,7 +47,7 @@ const AdminSettings = () => {
           {/* <p><strong>Name:</strong> {user ? user.name : 'Not logged in'}</p> */}
           <p><strong>Email:</strong> {user ? user.email : 'Not logged in'}</p>
           <p><strong>Role:</strong> {user ? user.role : 'Not logged in'}</p>
-          <button onClick={() => setEditMode(true)}>Edit</button>
+          {/* <button onClick={() => setEditMode(true)}>Edit</button> */}
         </div>
       )}
     </div>

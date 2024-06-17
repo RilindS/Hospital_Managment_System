@@ -1,5 +1,4 @@
-// services/UserService.js
-// services/UserService.js
+
 import axiosInstance from './axiosInstance';
 
 export const getCurrentUser = async () => {

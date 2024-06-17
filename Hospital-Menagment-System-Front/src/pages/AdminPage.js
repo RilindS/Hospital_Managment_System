@@ -30,6 +30,7 @@ const AdminPage = () => {
           <div className="profile-details">
             <span>{user ? user.name : 'Not logged in'}</span>
             <span>{user ? user.email : ''}</span>
+            
           </div>
           {dropdownOpen && (
             <div className="dropdown">
@@ -41,9 +42,10 @@ const AdminPage = () => {
       </header>
       <main>
         <h1>Welcome to the Admin Home Page</h1>
+         <p>Name : {user ? user.name : 'Not logged in'}</p> 
         <p>Email: {user ? user.email : 'Not logged in'}</p>
         <p>Role: {user ? user.role : 'Not logged in'}</p>
-        {/* Add more patient-related content here */}
+        
       </main>
     </div>
   );

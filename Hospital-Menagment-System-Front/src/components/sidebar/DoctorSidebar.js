@@ -1,7 +1,7 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './Sidebar.css';
 
 const DoctorSidebar = () => {
@@ -26,7 +26,7 @@ const DoctorSidebar = () => {
       
       <Link to="/doctor/appointments" className="sidebar-link">
         <i className="fas fa-calendar-alt"></i>
-        <span className="link-text">Shiko Terminet</span>
+        <span className="link-text">Shiko Terminet E Tua</span>
       </Link>
       
       <button onClick={logout} className="sidebar-link">

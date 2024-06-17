@@ -129,8 +129,8 @@ const EditDoctor = () => {
           <Form.Label column sm={2}>Department:</Form.Label>
           <Col sm={10}>
             <Form.Select
-              name="DepartamentName"
-              value={doctor.DepartamentName}
+              name="departamentName"
+              value={doctor.departamentName}
               onChange={handleChange}
               required
             >
@@ -145,6 +145,29 @@ const EditDoctor = () => {
             </Form.Select>
           </Col>
         </Form.Group>
+
+        {/* <Form.Group as={Row} className="mb-3" controlId="formDepartment">
+          <Form.Label column sm={2}>Department:</Form.Label>
+          <Col sm={10}>
+            <Form.Select---
+              name="DepartamentName"
+              value={doctor.DepartamentName}
+              onChange={handleChange}
+              required
+            >
+              <option key="" value="">
+                Select Department
+              </option>
+              {departments.map((departament, index) => (
+                <option key={index} value={departament}>
+                  {departament}
+                </option>
+              ))}
+            </Form.Select>
+          </Col>
+        </Form.Group> */}
+
+
         <Form.Group as={Row} className="mb-3" controlId="formCity">
           <Form.Label column sm={2}>City:</Form.Label>
           <Col sm={10}>

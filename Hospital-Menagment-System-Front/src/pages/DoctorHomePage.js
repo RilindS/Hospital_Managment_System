@@ -31,7 +31,7 @@ const DoctorHomePage = () => {
           <i className="fa fa-user-circle fa-2x"></i>
           <div className="profile-details">
             <span>{user ? user.name : 'Not logged in'}</span>
-            <span>{user ? user.email : ''}</span>
+            {/* <span>{user ? user.email : ''}</span> */}
           </div>
           {dropdownOpen && (
             <div className="dropdown">

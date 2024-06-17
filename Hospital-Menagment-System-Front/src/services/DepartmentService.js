@@ -47,7 +47,7 @@ export const getDepartmentById = async (id) => {
 };
 
 export const updateDepartmentById = async (id, department) => {
-  try {
+  try {//https://localhost:44322/api/Departments/update-department-by-id/1
     const response = await axios.put(`${API_URL}/update-department-by-id/${id}`, department);
     return response.data;
   } catch (error) {

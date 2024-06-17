@@ -24,6 +24,9 @@ namespace Hospital_Menagment_System.Controllers
             _doctorServices = doctorService;
             _appointmentServices = appointmentServices;
         }
+        
+       
+        
         [HttpGet("get-appointments-by-doctor/{doctorName}")]
         public IActionResult GetAppointmentsByDoctorName(string doctorName)
         {

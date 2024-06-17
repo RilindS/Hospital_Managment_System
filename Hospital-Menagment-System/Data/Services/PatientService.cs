@@ -1,6 +1,7 @@
 ﻿using Hospital_Management_System.Data.Models;
 using Hospital_Menagment_System.Data.Models;
 using Hospital_Menagment_System.Data.ViewModels;
+using System.Linq;
 
 namespace Hospital_Menagment_System.Data.Services
 {
@@ -10,19 +11,18 @@ namespace Hospital_Menagment_System.Data.Services
         private readonly CityServices _cityServices;
         private readonly RoomServices _roomServices;
 
-
-        public PatientService(AppDbContext context, CityServices cityServices,RoomServices rommService )
+        public PatientService(AppDbContext context, CityServices cityServices, RoomServices roomServices)
         {
             _cityServices = cityServices;
-            _roomServices = rommService;
+            _roomServices = roomServices;
             _context = context;
         }
-        
+
         public int GetTotalPatients()
         {
             return _context.Patients.Count();
         }
-        
+
         public int GetPatientIdByName(string patientName)
         {
             var patient = _context.Patients.FirstOrDefault(c => c.Name == patientName);
@@ -33,7 +33,7 @@ namespace Hospital_Menagment_System.Data.Services
             }
             else
             {
-                throw new ArgumentException("patient not found", nameof(patientName));
+                throw new ArgumentException("Patient not found", nameof(patientName));
             }
         }
 
@@ -61,6 +61,7 @@ namespace Hospital_Menagment_System.Data.Services
                 })
                 .ToList();
         }
+
         public List<PatientDTO> GetPatientsByName(string patientName)
         {
             return _context.Patients
@@ -79,6 +80,7 @@ namespace Hospital_Menagment_System.Data.Services
                 })
                 .ToList();
         }
+
         public List<PatientDTO> GetPatientsByRoom(string patientRoom)
         {
             return _context.Patients
@@ -105,10 +107,20 @@ namespace Hospital_Menagment_System.Data.Services
             {
                 throw new ArgumentException("City name not found.");
             }
-           var RoomId = _roomServices.GetRoomIdByName(patient.Room);
-            if (cityId == null)
+
+            var roomId = _roomServices.GetRoomIdByName(patient.Room);
+            if (roomId == null)
             {
-                throw new ArgumentException("room name not found.");
+                throw new ArgumentException("Room name not found.");
+            }
+
+            // Kontrollo nëse ka vend të lirë në dhomë
+            var numberOfPatientsInRoom = _context.Patients.Count(p => p.RoomId == roomId);
+            var room = _context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
+
+            if (room == null || numberOfPatientsInRoom >= room.NrOfBeds)
+            {
+                throw new InvalidOperationException("No available beds in the selected room.");
             }
 
             var newPatient = new Patient
@@ -121,8 +133,7 @@ namespace Hospital_Menagment_System.Data.Services
                 Qyteti = patient.Qyteti,
                 CityId = cityId,
                 Rooma = patient.Room,
-                RoomId = RoomId,
-                    
+                RoomId = roomId,
                 Street = patient.Street,
                 DateRegistered = DateTime.Now
             };
@@ -147,6 +158,27 @@ namespace Hospital_Menagment_System.Data.Services
 
             if (_patient != null)
             {
+                // Kontrollo nëse ka vend të lirë në dhomë nëse ndryshon dhoma
+                if (_patient.Rooma != patient.Room)
+                {
+                    var roomId = _roomServices.GetRoomIdByName(patient.Room);
+                    if (roomId == null)
+                    {
+                        throw new ArgumentException("Room name not found.");
+                    }
+
+                    var numberOfPatientsInNewRoom = _context.Patients.Count(p => p.RoomId == roomId);
+                    var newRoom = _context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
+
+                    if (newRoom == null || numberOfPatientsInNewRoom >= newRoom.NrOfBeds)
+                    {
+                        throw new InvalidOperationException("No available beds in the selected room.");
+                    }
+
+                    _patient.Rooma = patient.Room;
+                    _patient.RoomId = roomId;
+                }
+
                 _patient.Name = patient.Name;
                 _patient.Surname = patient.Surname;
                 _patient.Email = patient.Email;
@@ -155,7 +187,6 @@ namespace Hospital_Menagment_System.Data.Services
                 _patient.Street = patient.Street;
                 _patient.DateRegistered = DateTime.Now;
                 _patient.Qyteti = patient.Qyteti;
-                _patient.Rooma = patient.Room;
 
                 if (_patient.Qyteti != patient.Qyteti)
                 {
@@ -165,15 +196,6 @@ namespace Hospital_Menagment_System.Data.Services
                         throw new ArgumentException("City name not found.");
                     }
                     _patient.CityId = cityId;
-                }
-                if (_patient.Rooma != patient.Room)
-                {
-                    var cityId = _roomServices.GetRoomIdByName(patient.Room);
-                    if (cityId == null)
-                    {
-                        throw new ArgumentException("Room name not found.");
-                    }
-                    _patient.RoomId = cityId;
                 }
 
                 _context.SaveChanges();
@@ -191,5 +213,4 @@ namespace Hospital_Menagment_System.Data.Services
             }
         }
     }
-    
 }

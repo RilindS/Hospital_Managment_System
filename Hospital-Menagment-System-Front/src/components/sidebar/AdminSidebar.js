@@ -9,6 +9,10 @@ const AdminSidebar = () => {
 
   return (
     <div className="sidebar">
+      <Link to="/admin/DashboardPage" className="sidebar-link">
+        <i className="fas fa-search"></i>
+        <span className="link-text">DashboardPage</span>
+      </Link>
       <Link to="/admin/patient" className="sidebar-link">
         <i className="fas fa-user-injured"></i>
         <span className="link-text">Patient</span>
@@ -57,10 +61,7 @@ const AdminSidebar = () => {
         <i className="fas fa-search"></i>
         <span className="link-text">Filter Patinet by Room</span>
       </Link>
-      <Link to="/admin/DashboardPage" className="sidebar-link">
-        <i className="fas fa-search"></i>
-        <span className="link-text">DashboardPage</span>
-      </Link>
+      
       <button onClick={logout} className="sidebar-link">
         <i className="fas fa-sign-out-alt"></i>
         <span className="link-text">Logout</span>

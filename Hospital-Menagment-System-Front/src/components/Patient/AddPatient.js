@@ -21,6 +21,7 @@ const AddPatient = () => {
 
   const [cities, setCities] = useState([]);
   const [rooms, setRooms] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -60,15 +61,21 @@ const AddPatient = () => {
     e.preventDefault();
     try {
       await addPatient(patient);
-      navigate('/admin/patient'); // Ridrejto tek faqja e pacientëve pas shtimit të suksesshëm
+      navigate('/admin/patient'); 
     } catch (error) {
-      console.error('Error adding patient:', error);
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        console.error('Error adding patient:', error);
+        setError('Failed to add patient. Ska vend ne dhome!!!.');
+      }
     }
   };
 
   return (
     <Container>
-      <h2>Add Patient</h2>
+      <h2>Add New Patient</h2>
+      {error && <div className="alert alert-danger" role="alert">{error}</div>}
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formPatientName">
           <Form.Label column sm={2}>Name:</Form.Label>

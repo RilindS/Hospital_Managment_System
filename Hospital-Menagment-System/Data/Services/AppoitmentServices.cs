@@ -21,7 +21,6 @@ namespace Hospital_Menagment_System.Data.Services
             _departmentServices = departmentServices;
             _patientService=patientService;
         }
-
         public bool CheckAppointmentAvailability(AppointmentVM appointment)
         {
             var doctorId = _doctorServices.GetDoctorIdByName(appointment.DoctorName);
@@ -75,16 +74,8 @@ namespace Hospital_Menagment_System.Data.Services
         //Duhet me check se nuk po i kthen mire !!!
         public List<AppointmentDTO> GetAppointmentsByPatientName(string patientName)
         {
-            var patientId = _patientService.GetPatientIdByName(patientName);
-            if (patientId == 0)
-            {
-                throw new ArgumentException("Patient name not found.");
-            }
-
-            Console.WriteLine($"Patient ID for {patientName}: {patientId}");
-
-            var appointments = _context.Appointments
-                .Where(a => a.AppointmentId == patientId)
+            return _context.Appointments
+                .Where(a => a.PatientName == patientName)
                 .Select(a => new AppointmentDTO
                 {
                     AppointmentId = a.AppointmentId,
@@ -98,10 +89,6 @@ namespace Hospital_Menagment_System.Data.Services
                     DoctorName = a.DoctorName
                 })
                 .ToList();
-
-            Console.WriteLine($"Found {appointments.Count} appointments for patient ID {patientId}");
-
-            return appointments;
         }
 
 

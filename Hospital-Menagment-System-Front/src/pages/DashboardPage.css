@@ -199,3 +199,22 @@ h1 {
 .color.dark {
   background-color: #5a5c69;
 }
+.progress-container {
+  margin-bottom: 1rem;
+}
+
+.progress-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.progress {
+  height: 20px;
+}
+
+.progress-bar {
+  text-align: right;
+  padding-right: 5px;
+  color: white;
+}

@@ -88,26 +88,26 @@ const EditRoom = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formDepartment">
-          <Form.Label column sm={2}>Department:</Form.Label>
-          <Col sm={10}>
-            <Form.Select
-              name="departamentName"
-              value={room.departamentName}
-              onChange={handleChange}
-              required
-            >
-              <option key="" value="">
-                Select Department
-              </option>
-              {departments.map((department, index) => (
-                <option key={index} value={department}>
-                  {department}
+          <Form.Group as={Row} className="mb-3" controlId="formDepartment">
+            <Form.Label column sm={2}>Department:</Form.Label>
+            <Col sm={10}>
+              <Form.Select
+                name="departamentName"
+                value={room.departamentName}
+                onChange={handleChange}
+                required
+              >
+                <option key="" value="">
+                  Select Department
                 </option>
-              ))}
-            </Form.Select>
-          </Col>
-        </Form.Group>
+                {departments.map((department, index) => (
+                  <option key={index} value={department}>
+                    {department}
+                  </option>
+                ))}
+              </Form.Select>
+            </Col>
+          </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formFloor">
           <Form.Label column sm={2}>Floor:</Form.Label>
           <Col sm={10}>

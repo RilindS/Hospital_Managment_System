@@ -50,10 +50,6 @@ const DoctorList = () => {
               <td>{doctor.departamentName}</td>
               <td>{doctor.specialization}</td>
 
-              <td>
-                {/* <Link to={`/admin/doctor/edit/${doctor.doctorId}`} className="btn btn-primary btn-sm me-2">Edit</Link>
-                <Button variant="danger" size="sm" onClick={() => handleDelete(doctor.doctorId)}>Delete</Button> */}
-              </td>
             </tr>
           ))}
         </tbody>

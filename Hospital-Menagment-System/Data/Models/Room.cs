@@ -12,8 +12,10 @@
 
         public int NrOfBeds { get; set; }
         //Lidhja me departmamentin 
+        
         public int DepartamentId { get; set; }
 
+        
         public Departament Departament { get; set; }
 
         //Lidhja me OperatingRooms

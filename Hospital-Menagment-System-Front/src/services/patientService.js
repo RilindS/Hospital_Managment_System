@@ -17,7 +17,11 @@ export const addPatient = async (patient) => {
     const response = await axios.post(`${API_URL}/add-Patient`, patient);
     return response.data;
   } catch (error) {
-    throw error.response.data;
+    if (error.response) {
+      throw new Error(error.response.data.message || 'Error adding patient');
+    } else {
+      throw new Error('Error adding patient');
+    }
   }
 };
 

@@ -86,19 +86,19 @@ const DashboardPage = () => {
         <div className="card" onClick={() => handleCardClick('/admin/nurse')}>
           <p>Nurse (Total)</p>
           <h2>{totalNurses}</h2>
-          <div className="progress-bar">
+          {/* <div className="progress-bar">
             <div className="progress"></div>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="colors">
+      {/* <div className="colors">
         <div className="color primary">Primary<br />#4e73df</div>
         <div className="color success">Success<br />#1cc88a</div>
         <div className="color info">Info<br />#36b9cc</div>
         <div className="color warning">Warning<br />#f6c23e</div>
         <div className="color danger">Danger<br />#e74a3b</div>
         <div className="color secondary">Secondary<br />#858796</div>
-      </div>
+      </div> */}
     </div>
   );
 };

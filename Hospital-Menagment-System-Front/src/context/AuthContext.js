@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [authError, setAuthError] = useState(null);
   const navigate = useNavigate();
 
   const refreshToken = useCallback(async () => {
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         setUser({
           email: decoded.email,
           role: decoded.role,
-          name: decoded.name // Ensure this line is included
+          name: decoded.name
         });
       } catch (error) {
         console.error('Token refresh failed', error);
@@ -52,7 +53,7 @@ export const AuthProvider = ({ children }) => {
         setUser({
           email: decoded.email,
           role: decoded.role,
-          name: decoded.name // Ensure this line is included
+          name: decoded.name
         });
       }
     }
@@ -79,7 +80,7 @@ export const AuthProvider = ({ children }) => {
       setUser({
         email: decoded.email,
         role: decoded.role,
-        name: decoded.name // Ensure this line is included
+        name: decoded.name
       });
 
       // Redirect based on user role
@@ -92,14 +93,17 @@ export const AuthProvider = ({ children }) => {
       } else {
         navigate('/');
       }
+      setAuthError(null); // Clear any previous error
     } catch (error) {
+      setAuthError('Invalid email or password');
       console.error('Login failed', error);
+      throw new Error('Invalid email or password'); // Throw an error
     }
   };
 
-  const register = async (email, password, name,role) => {
-    try {                                //https://localhost:44322/api/Account/register
-      const response = await axios.post('https://localhost:44322/api/Account/register', { email, password, name,role  });
+  const register = async (email, password, name, role) => {
+    try {
+      const response = await axios.post('https://localhost:44322/api/Account/register', { email, password, name, role });
       const { isPatient, isDoctor } = response.data;
       if (isPatient) {
         navigate('admin/add-patient');
@@ -108,8 +112,11 @@ export const AuthProvider = ({ children }) => {
       } else {
         navigate('/login');
       }
+      setAuthError(null); // Clear any previous error
     } catch (error) {
+      setAuthError('Registration failed');
       console.error('Registration failed', error);
+      throw new Error('Registration failed'); // Throw an error
     }
   };
 
@@ -121,7 +128,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, checkTokenValidity }}>
+    <AuthContext.Provider value={{ user, login, register, logout, checkTokenValidity, authError }}>
       {children}
     </AuthContext.Provider>
   );
