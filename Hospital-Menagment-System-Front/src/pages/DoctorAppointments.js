@@ -65,7 +65,7 @@ const DoctorAppointments = () => {
                     <td>{appointment.time}</td>
                   </tr>
                   <tr>
-                    <td>Reason</td>
+                    <td>Pershkrimi dhe Medikamentet</td>
                     <td>{appointment.reason}</td>
                   </tr>
                 </tbody>

@@ -169,7 +169,7 @@ import { getPatientById, updatePatientById } from '../../services/patientService
             <Col sm={10}>
               <Form.Select
                 name="room"
-                value={patient.room}
+                value={patient.rooma}
                 onChange={handleChange}
                 required
               >

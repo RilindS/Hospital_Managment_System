@@ -4,6 +4,7 @@ using Hospital_Menagment_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital_Menagment_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240621221127_Inventory_model")]
+    partial class Inventory_model
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,33 +304,6 @@ namespace Hospital_Menagment_System.Migrations
                     b.HasIndex("DepartamentId");
 
                     b.ToTable("Doctors");
-                });
-
-            modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Inventory", b =>
-                {
-                    b.Property<int>("InventoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InventoryId"));
-
-                    b.Property<string>("Artikulli")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Pagesa")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Pershkrimi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Sasia")
-                        .HasColumnType("float");
-
-                    b.HasKey("InventoryId");
-
-                    b.ToTable("Inventorys");
                 });
 
             modelBuilder.Entity("Hospital_Menagment_System.Data.Models.Nurse", b =>
