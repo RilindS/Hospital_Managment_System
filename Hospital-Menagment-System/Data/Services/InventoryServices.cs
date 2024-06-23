@@ -25,7 +25,7 @@ namespace Hospital_Menagment_System.Data.Services;
                 Artikulli = inventory.Artikulli,
                 Pershkrimi = inventory.Pershkrimi,
                 Sasia = inventory.Sasia,
-                Pagesa = inventory.Pagesa
+                Pagesa = false
             };
 
             _context.Inventorys.Add(newInventory);
@@ -42,7 +42,7 @@ namespace Hospital_Menagment_System.Data.Services;
             return _context.Inventorys.FirstOrDefault(n => n.InventoryId == inventoryId);
         }
 
-        public Inventory UpdateInventoryById(int inventoryId, InventoryVM inventory)
+        public Inventory UpdateInventoryById(int inventoryId, InventoryUpdateVM inventory)
         {
             var _appoitment = _context.Inventorys.FirstOrDefault(n => n.InventoryId == inventoryId);
 

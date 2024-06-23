@@ -31,9 +31,13 @@ import RoomFilter from './Filter/RoomFilter';
 
 import AppointmentsByDate from './Filter/AppointmentsByDate';
 import AddDoctorDetails from './pages/AddDoctorDetails';
+import AddInventoryPage from './pages/AddInventoryPage';
+
+import AddInventoryPageA from './pages/AddInventoryPageA';
 import DashboardPage from './pages/DashboardPage';
 import DoctorAppointments from './pages/DoctorAppointments';
 import PatientMyAppoitments from './pages/PatientMyAppoitments';
+
 
 
 
@@ -44,6 +48,10 @@ import AdminAppointments from './components/AdminAppointments';
 import EditDepartment from './components/Department/EditDepartment';
 import EditDoctor from './components/Doctor/EditDoctor';
 import EditNurse from './components/Nurse/EditNurse';
+
+
+import EditInventory from './components/Inventory/EditInventory';
+
 import AddPatient from './components/Patient/AddPatient';
 import EditPatient from './components/Patient/EditPatient';
 import EditRoom from './components/Room/EditRoom';
@@ -55,12 +63,16 @@ import AddCityPage from './pages/AddCityPage';
 import AddDepartmentPage from './pages/AddDepartmentPage';
 import AddDoctorPage from './pages/AddDoctorPage';
 import AddNursePage from './pages/AddNursePage';
+import InventoryPageA from './pages/InventoryPageA';
+
+
 import AddPatientPage from './pages/AddPatientPage';
 import AddRoomPage from './pages/AddRoomPage';
 import CityPage from './pages/CityPage';
 
 import DepartmentPage from './pages/DepartmentPage';
 import DoctorHomePage from './pages/DoctorHomePage';
+
 import NursePage from './pages/NursePage';
 import PatientHomePage from './pages/PatientHomePage';
 import RoomPage from './pages/RoomPage';
@@ -73,7 +85,7 @@ const App = () => {
         <Route path="/" element={<LoginPage />} />
 
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/register" element={<LoginPage />} />
           {/* <Route path="/" element={<HomePage />} /> */}
           <Route path="/admin/*" element={<PrivateRoute roles={['Admin']} component={AdminLayout} />} />
           <Route path="/doctor/*" element={<PrivateRoute roles={['Doctor']} component={DoctorLayout} />} />
@@ -101,9 +113,16 @@ const AdminLayout = () => (
         <Route path="/department" element={<DepartmentPage />} />
         <Route path="/department/add" element={<AddDepartmentPage />} />
         <Route path="/department/edit/:id" element={<EditDepartment />} />
+        
         <Route path="/nurse" element={<NursePage />} />
         <Route path="/nurse/add" element={<AddNursePage />} />
         <Route path="/nurse/edit/:id" element={<EditNurse />} />
+
+        <Route path="/inventory" element={<InventoryPageA />} />
+        <Route path="/inventory/add" element={<AddInventoryPageA />} />
+        <Route path="/inventory/edit/:id" element={<EditInventory />} />
+
+
         <Route path="/room" element={<RoomPage />} />
         <Route path="/room/add" element={<AddRoomPage />} />
         <Route path="/room/edit/:id" element={<EditRoom />} />
@@ -122,6 +141,8 @@ const AdminLayout = () => (
         <Route path="/add-patient" element={<AddPatient />} />
 
         <Route path="/DashboardPage" element={<DashboardPage />} />
+
+        
 
 
 
@@ -150,6 +171,10 @@ const DoctorLayout = () => (
         <Route path="/city-filter" element={<CityFilter />} />
         <Route path="/appointmentsByDate" element={<AppointmentsByDate />} />
         <Route path="/appointments" element={<DoctorAppointments />} />
+
+        <Route path="/inventory" element={<AddInventoryPage />} />
+
+       
 
       </Routes>
     </div>

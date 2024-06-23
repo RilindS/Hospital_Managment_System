@@ -10,6 +10,11 @@ const PatientSidebar = () => {
 
   return (
     <div className="sidebar">
+
+<Link to="/patient" className="sidebar-link">
+        <i className="fas fa-notes-medical"></i>
+        <span className="link-text">Faqja kryesore</span>
+      </Link>
       <Link to="/patient/appointments" className="sidebar-link">
         <i className="fas fa-calendar-check"></i>
         <span className="link-text">Appointments</span>

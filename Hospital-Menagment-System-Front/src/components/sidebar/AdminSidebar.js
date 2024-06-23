@@ -61,6 +61,11 @@ const AdminSidebar = () => {
         <i className="fas fa-search"></i>
         <span className="link-text">Filter Patinet by Room</span>
       </Link>
+
+      <Link to="/admin/inventory" className="sidebar-link">
+        <i className="fas fa-search"></i>
+        <span className="link-text">Inventory</span>
+      </Link>
       
       <button onClick={logout} className="sidebar-link">
         <i className="fas fa-sign-out-alt"></i>

@@ -9,6 +9,10 @@ const DoctorSidebar = () => {
 
   return (
     <div className="sidebar">
+      <Link to="/doctor" className="sidebar-link">
+        <i className="fas fa-calendar-alt"></i>
+        <span className="link-text">faqja Kryesore</span>
+      </Link>
       <Link to="/doctor/patient" className="sidebar-link">
         <i className="fas fa-user-injured"></i>
         <span className="link-text">Shiko pacinetet e gjith spitalit</span>
@@ -27,6 +31,11 @@ const DoctorSidebar = () => {
       <Link to="/doctor/appointments" className="sidebar-link">
         <i className="fas fa-calendar-alt"></i>
         <span className="link-text">Shiko Terminet E Tua</span>
+      </Link>
+
+      <Link to="/doctor/inventory" className="sidebar-link">
+        <i className="fas fa-calendar-alt"></i>
+        <span className="link-text">Kerkes per Inventory</span>
       </Link>
       
       <button onClick={logout} className="sidebar-link">

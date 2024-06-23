@@ -50,7 +50,7 @@ namespace Hospital_Menagment_System.Controllers
         }
 
         [HttpPut("update-inventory-by-id/{id}")]
-        public IActionResult UpdateInventoryById(int id, [FromBody] InventoryVM inventory)
+        public IActionResult UpdateInventoryById(int id, [FromBody] InventoryUpdateVM inventory)
         {
             var updatedAppointment = _inventoryServices.UpdateInventoryById(id, inventory);
             return Ok(updatedAppointment);
