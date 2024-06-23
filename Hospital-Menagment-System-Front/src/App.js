@@ -49,6 +49,9 @@ import EditDepartment from './components/Department/EditDepartment';
 import EditDoctor from './components/Doctor/EditDoctor';
 import EditNurse from './components/Nurse/EditNurse';
 
+import AddVacation2 from './components/Vacation/AddVacation2';
+
+
 
 import EditInventory from './components/Inventory/EditInventory';
 
@@ -73,9 +76,12 @@ import CityPage from './pages/CityPage';
 import DepartmentPage from './pages/DepartmentPage';
 import DoctorHomePage from './pages/DoctorHomePage';
 
+import AddVacation from './components/Vacation/AddVacation';
+import EditVacation from './components/Vacation/EditVacation';
 import NursePage from './pages/NursePage';
 import PatientHomePage from './pages/PatientHomePage';
 import RoomPage from './pages/RoomPage';
+import VacationPage from './pages/VacationPage';
 
 const App = () => {
   return (
@@ -122,6 +128,12 @@ const AdminLayout = () => (
         <Route path="/inventory/add" element={<AddInventoryPageA />} />
         <Route path="/inventory/edit/:id" element={<EditInventory />} />
 
+        
+        <Route path="/vacation" element={<VacationPage />} />
+        <Route path="/vacation/add" element={<AddVacation />} />
+        <Route path="/vacation/edit/:id" element={<EditVacation />} />
+
+
 
         <Route path="/room" element={<RoomPage />} />
         <Route path="/room/add" element={<AddRoomPage />} />
@@ -162,6 +174,8 @@ const DoctorLayout = () => (
         <Route path="/appointments" element={<DoctorAppointments />} />
 
         <Route path="/inventory" element={<AddInventoryPage />} />
+        <Route path="/vacation" element={<AddVacation2 />} />
+
 
        
 

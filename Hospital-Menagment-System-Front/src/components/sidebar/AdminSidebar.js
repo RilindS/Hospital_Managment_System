@@ -49,6 +49,10 @@ const AdminSidebar = () => {
         <i className="fas fa-calendar-check"></i>
         <span className="link-text">City</span>
       </Link>
+      <Link to="/admin/vacation" className="sidebar-link">
+        <i className="fas fa-user-injured"></i>
+        <span className="link-text">Pushimet</span>
+      </Link>
       <Link to="/admin/appointmentsByDate" className="sidebar-link">
         <i className="fas fa-search"></i>
         <span className="link-text">Filter Patinet by Date</span>

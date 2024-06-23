@@ -21,6 +21,10 @@ const DoctorSidebar = () => {
         <i className="fas fa-user-injured"></i>
         <span className="link-text">Shiko Pacientet E Tu</span>
       </Link>
+      <Link to="/doctor/vacation" className="sidebar-link">
+        <i className="fas fa-user-injured"></i>
+        <span className="link-text">Bej kerkes per pushim</span>
+      </Link>
       <Link to="/doctor/appointmentsByDate" className="sidebar-link">
         <i className="fas fa-search"></i>
         <span className="link-text">Filtro terminet baz dates</span>
