@@ -4,7 +4,7 @@ import AddInventory from '../components/Inventory/AddInventory';
 const AddInventoryPage = () => {
   return (
     <div>
-      <h1>Add New Inventory</h1>
+      {/* <h1>Add New Inventory</h1> */}
       <AddInventory />
     </div>
   );

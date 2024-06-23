@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { deleteInventoryById, getAllInventorys } from '../../services/InventoryServices';
+import { deleteInventoryById, getAllInventorys, getPaidInventories, getUnpaidInventories } from '../../services/InventoryServices';
 
 const InventoryListA = () => {
   const [inventory, setInventory] = useState([]);
@@ -17,6 +17,24 @@ const InventoryListA = () => {
       setInventory(data);
     } catch (error) {
       console.error('Error fetching inventory:', error);
+    }
+  };
+
+  const fetchPaidInventories = async () => {
+    try {
+      const data = await getPaidInventories();
+      setInventory(data);
+    } catch (error) {
+      console.error('Error fetching paid inventories:', error);
+    }
+  };
+
+  const fetchUnpaidInventories = async () => {
+    try {
+      const data = await getUnpaidInventories();
+      setInventory(data);
+    } catch (error) {
+      console.error('Error fetching unpaid inventories:', error);
     }
   };
 
@@ -48,7 +66,7 @@ const InventoryListA = () => {
               <td>{item.artikulli}</td>
               <td>{item.pershkrimi}</td>
               <td>{item.sasia}</td>
-              <td>{item.pagesa ? 'Yes' : 'No'}</td>
+              <td>{item.pagesa ? 'paguar' : 'Pa paguar'}</td>
               <td>
                 <Link to={`/admin/inventory/edit/${item.inventoryId}`} className="btn btn-primary btn-sm me-2">
                   Edit
@@ -61,6 +79,17 @@ const InventoryListA = () => {
           ))}
         </tbody>
       </Table>
+      <div className="d-flex justify-content-between mt-3">
+        <Button variant="success" onClick={fetchPaidInventories}>
+          Show Paid Inventories
+        </Button>
+        <Button variant="warning" onClick={fetchUnpaidInventories}>
+          Show Unpaid Inventories
+        </Button>
+        <Button variant="primary" onClick={fetchInventorys}>
+          Show All Inventories
+        </Button>
+      </div>
     </div>
   );
 };

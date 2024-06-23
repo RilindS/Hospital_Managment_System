@@ -11,8 +11,8 @@ const InventoryPageA = () => {
 
   return (
     <div>
-      <h1>Inventory Management</h1>
-      <button onClick={handleAddNurseClick}>Add Inventory</button>
+      {/* <h1>Inventory Management</h1> */}
+      <button onClick={handleAddNurseClick}>Shton kerkes per inventory</button>
       <InventoryListA />
     </div>
   );

@@ -142,17 +142,6 @@ const AdminLayout = () => (
 
         <Route path="/DashboardPage" element={<DashboardPage />} />
 
-        
-
-
-
-
-
-
-        
-
-
-
       </Routes>
     </div>
   </div>

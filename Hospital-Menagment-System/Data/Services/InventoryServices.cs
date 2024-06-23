@@ -15,6 +15,11 @@ namespace Hospital_Menagment_System.Data.Services;
             _context = context;
            
         }
+        //kthen inventoryt ne baz te pageses treu ose false qe e merr parameter
+        public List<Inventory> GetInventoriesByPagesaStatus(bool status)
+        {
+            return _context.Inventorys.Where(n => n.Pagesa == status).ToList();
+        }
      
 
         public void AddInventory(InventoryVM inventory)

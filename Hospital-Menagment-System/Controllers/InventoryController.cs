@@ -20,6 +20,19 @@ namespace Hospital_Menagment_System.Controllers
             _context = context;
             _inventoryServices = inventoryServices;
         }
+        [HttpGet("get-inventories-paid")]
+        public IActionResult GetInventoriesPaid()
+        {
+            var paidInventories = _inventoryServices.GetInventoriesByPagesaStatus(true);
+            return Ok(paidInventories);
+        }
+
+        [HttpGet("get-inventories-unpaid")]
+        public IActionResult GetInventoriesUnpaid()
+        {
+            var unpaidInventories = _inventoryServices.GetInventoriesByPagesaStatus(false);
+            return Ok(unpaidInventories);
+        }
 
         [HttpPost("add-inventory")]
         public IActionResult AddInventory([FromBody] InventoryVM inventory)

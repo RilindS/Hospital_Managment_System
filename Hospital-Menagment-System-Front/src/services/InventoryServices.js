@@ -4,6 +4,24 @@ const API_URL = 'https://localhost:44322/api/Inventory';
 
 //https://localhost:44322/api/Inventory/get-all-inventorys
 
+export const getPaidInventories = async () => {
+  try{
+  const response = await axios.get(`${API_URL}/get-inventories-paid`);
+  return response.data;
+  }catch(error){
+    throw error.response.data;
+  }
+};
+
+export const getUnpaidInventories = async () => {
+  try{
+  const response = await axios.get(`${API_URL}/get-inventories-unpaid`);
+  return response.data;
+  }catch(error){
+    throw error.response.data;
+  }
+};
+
 export const addInventory = async (nurse) => {
   try {
     const response = await axios.post(`${API_URL}/add-inventory`, nurse);

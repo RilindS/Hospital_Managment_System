@@ -5,15 +5,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getInventoryById, updateInventoryById } from '../../services/InventoryServices';
 
 const EditInventory = () => {
-    const { id } = useParams();
-
-    const navigate = useNavigate();
-    const [inventory, setInventory] = useState({
-      artikulli: '',
-      pershkrimi: '',
-      sasia: 0,
-      pagesa: '',
-    });
+  const { id } = useParams();
+  const navigate = useNavigate();
+  
+  const [inventory, setInventory] = useState({
+    artikulli: '',
+    pershkrimi: '',
+    sasia: 0,
+    pagesa: false,
+  });
 
   useEffect(() => {
     const fetchInventory = async () => {
@@ -29,10 +29,10 @@ const EditInventory = () => {
   }, [id]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setInventory((prevInventory) => ({
       ...prevInventory,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -40,7 +40,7 @@ const EditInventory = () => {
     e.preventDefault();
     try {
       await updateInventoryById(id, inventory);
-      navigate('/admin/inventory'); // Redirect to nurse list after updating
+      navigate('/admin/inventory'); // Redirect to inventory list after updating
     } catch (error) {
       console.error('Error updating inventory:', error);
     }
@@ -50,7 +50,7 @@ const EditInventory = () => {
     <Container>
       <h2>Edit Inventory</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group as={Row} className="mb-3" controlId="formNurseName">
+        <Form.Group as={Row} className="mb-3" controlId="formInventoryName">
           <Form.Label column sm={2}>Inventory:</Form.Label>
           <Col sm={10}>
             <Form.Control
@@ -74,11 +74,11 @@ const EditInventory = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formCategory">
+        <Form.Group as={Row} className="mb-3" controlId="formQuantity">
           <Form.Label column sm={2}>Sasia:</Form.Label>
           <Col sm={10}>
             <Form.Control
-              type="text"
+              type="number"
               name="sasia"
               value={inventory.sasia}
               onChange={handleChange}
@@ -86,15 +86,15 @@ const EditInventory = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formCategory">
+        <Form.Group as={Row} className="mb-3" controlId="formPayment">
           <Form.Label column sm={2}>Pagesa:</Form.Label>
           <Col sm={10}>
-            <Form.Control
-              type="text"
+            <Form.Check
+              type="checkbox"
               name="pagesa"
-              value={inventory.pagesa}
+              checked={inventory.pagesa}
               onChange={handleChange}
-              required
+              label="Pagesa"
             />
           </Col>
         </Form.Group>

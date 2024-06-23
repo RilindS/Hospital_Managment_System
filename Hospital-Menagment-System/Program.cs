@@ -89,6 +89,8 @@ namespace Hospital_Menagment_System
             services.AddTransient<RoomServices>();
             services.AddTransient<AppoitmentServices>();
             services.AddTransient<InventoryServices>();
+            services.AddTransient<VacationServices>();
+
 
 
             CreateRoles(services.BuildServiceProvider());

@@ -82,7 +82,7 @@ const AddInventory = () => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formPagesa">
+        {/* <Form.Group as={Row} className="mb-3" controlId="formPagesa">
           <Form.Label column sm={2}>Pagesa:</Form.Label>
           <Col sm={10}>
             <Form.Check
@@ -92,7 +92,7 @@ const AddInventory = () => {
               onChange={handleChange}
             />
           </Col>
-        </Form.Group>
+        </Form.Group> */}
         <Button type="submit" variant="primary">Shto Inventory  </Button>
       </Form>
     </Container>

@@ -46,7 +46,7 @@ const CityFilterPage = () => {
                             <tr>
                                 <th>Patient ID</th>
                                 <th>Name</th>
-                                <th>Surname</th>
+                                <th>Surname</th>    
                                 <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Date of Birth</th>
