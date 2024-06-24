@@ -69,6 +69,7 @@ const EditVacation = () => {
               name="vertetimi"
               checked={vacation.vertetimi}
               onChange={handleChange}
+              label="Vertetimi"
             />
           </Col>
         </Form.Group>

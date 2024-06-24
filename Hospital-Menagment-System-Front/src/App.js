@@ -19,6 +19,9 @@ import SettingDoctor from './pages/SettingDoctor';
 import ProfilePatient from './pages/ProfilePatient';
 import SetingsPatient from './pages/SetingsPatient';
 
+import VacationListByDoctorName from './pages/VacationListByDoctorName';
+
+
 import DoctorForPatient from './pages/DoctorForPatient';
 import PatinetForDoctor from './pages/PatientForDoctor';
 
@@ -130,6 +133,7 @@ const AdminLayout = () => (
 
         
         <Route path="/vacation" element={<VacationPage />} />
+
         <Route path="/vacation/add" element={<AddVacation />} />
         <Route path="/vacation/edit/:id" element={<EditVacation />} />
 
@@ -175,6 +179,9 @@ const DoctorLayout = () => (
 
         <Route path="/inventory" element={<AddInventoryPage />} />
         <Route path="/vacation" element={<AddVacation2 />} />
+
+        <Route path="/vacationList" element={<VacationListByDoctorName />} />
+
 
 
        

@@ -14,13 +14,34 @@ namespace Hospital_Menagment_System.Controllers
 
         private readonly VacationServices _vacationServices;
         private readonly AppDbContext _context;
-
+        
         public VacationController(AppDbContext context, VacationServices vacationServices)                          
         {
             _context = context;
             _vacationServices=vacationServices;
 
         }
+        [HttpGet("get-vacation-by-doctorname-vertetimi-true/{doctorName}")]
+        public IActionResult GetVacationByDoctorNameAndVertetimi(string doctorName)
+        {
+            var vacations = _vacationServices.GetVacationByDoctorNameAndVertetimi(doctorName, true);
+            return Ok(vacations);
+        }
+
+        
+        [HttpGet("get-vacation-aprovimi-true")]
+        public IActionResult GetVacationByaprovimiStatusTrue()
+        {
+            var paidInventories = _vacationServices.GetVacationByaprovimiStatus(true);
+            return Ok(paidInventories);
+        }
+        [HttpGet("get-vacation-aprovimi-false")]
+        public IActionResult GetVacationByaprovimiStatusFalse()
+        {
+            var paidInventories = _vacationServices.GetVacationByaprovimiStatus(false);
+            return Ok(paidInventories);
+        }
+
         
 
         [HttpPost("add-vacation")]

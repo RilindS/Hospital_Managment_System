@@ -2,11 +2,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { addVacation } from '../../services/VacationService';
 
 const AddVacation = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+
   const [vacation, setVacation] = useState({
+    DoctorName: user ? user.name : '',
     arsyja: '',
     vertetimi: false,
     prej: '',
@@ -26,16 +30,33 @@ const AddVacation = () => {
     try {
       const response = await addVacation(vacation);
       console.log('Vacation added:', response);
-      navigate('/doctor');
+      navigate('/doctor'); // Refresh the list after adding
     } catch (error) {
       console.error('Error adding vacation:', error);
     }
+  };
+
+  const handleViewVacations = () => {
+    navigate('/doctor/vacationList');
   };
 
   return (
     <Container>
       <h2>Add Vacation</h2>
       <Form onSubmit={handleSubmit}>
+        <Form.Group as={Row} className="mb-3" controlId="formDoctorName">
+          <Form.Label column sm={2}>Doctor Name:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              name="DoctorName"
+              value={vacation.DoctorName}
+              onChange={handleChange}
+              required
+              readOnly
+            />
+          </Col>
+        </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formArsyja">
           <Form.Label column sm={2}>Arsyja:</Form.Label>
           <Col sm={10}>
@@ -48,17 +69,6 @@ const AddVacation = () => {
             />
           </Col>
         </Form.Group>
-        {/* <Form.Group as={Row} className="mb-3" controlId="formVertetimi">
-          <Form.Label column sm={2}>Vertetimi:</Form.Label>
-          <Col sm={10}>
-            <Form.Check
-              type="checkbox"
-              name="vertetimi"
-              checked={vacation.vertetimi}
-              onChange={handleChange}
-            />
-          </Col>
-        </Form.Group> */}
         <Form.Group as={Row} className="mb-3" controlId="formPrej">
           <Form.Label column sm={2}>Prej:</Form.Label>
           <Col sm={10}>
@@ -85,6 +95,10 @@ const AddVacation = () => {
         </Form.Group>
         <Button type="submit" variant="primary">Add Vacation</Button>
       </Form>
+
+      <Button className="mt-4" variant="secondary" onClick={handleViewVacations}>
+        View Your Vacations
+      </Button>
     </Container>
   );
 };

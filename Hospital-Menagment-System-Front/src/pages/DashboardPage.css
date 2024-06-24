@@ -1,220 +1,113 @@
-body {
+.admin-page {
   font-family: Arial, sans-serif;
-  background-color: #f8f9fc;
-  color: #5a5c69;
-  margin: 0;
-  padding: 20px;
 }
 
-.dashboard {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.search-bar {
+.header {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #007bff;
+  color: #fff;
 }
 
-.search-bar input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #d1d3e2;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.search-bar button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #4e73df;
-  color: white;
-  border: none;
-  border-radius: 5px;
+.header .icons i {
+  margin: 0 10px;
   cursor: pointer;
 }
 
-h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
+.header .profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header .profile-details {
+  margin-left: 10px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+.welcome-message {
+  padding: 20px;
+  text-align: center;
 }
 
 .cards {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
+  padding: 20px;
 }
 
 .card {
-  background-color: white;
-  border: 1px solid #e3e6f0;
-  border-radius: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 20px;
-  flex: 1;
-  margin: 0 10px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(58, 59, 69, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.card p {
-  margin: 0;
-  font-size: 14px;
-  color: #858796;
+.card:hover {
+  transform: scale(1.05);
 }
 
-.card h2 {
+.filters {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.filter-link {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.filter-link:hover {
+  transform: scale(1.05);
+}
+
+.filter-link i {
+  display: block;
+  margin-bottom: 10px;
   font-size: 24px;
-  margin: 10px 0;
-  color: #4e73df;
 }
 
-.progress-bar {
-  background-color: #e9ecef;
-  border-radius: 5px;
-  overflow: hidden;
-  height: 10px;
-  margin-top: 10px;
-}
-
-.progress {
-  height: 100%;
-}
-
-.progress.red {
-  background-color: #e74a3b;
-}
-
-.progress.yellow {
-  background-color: #f6c23e;
-}
-
-.progress.blue {
-  background-color: #4e73df;
-}
-
-.progress.teal {
-  background-color: #36b9cc;
-}
-
-.progress.green {
-  background-color: #1cc88a;
+.statistics {
+  padding: 20px;
 }
 
 .charts {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
 }
 
 .chart {
-  background-color: white;
-  border: 1px solid #e3e6f0;
-  border-radius: 10px;
-  padding: 20px;
-  flex: 1;
-  margin: 0 10px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(58, 59, 69, 0.15);
-}
-
-.chart h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.chart img {
-  max-width: 100%;
-  height: auto;
-}
-
-.projects {
-  margin-bottom: 20px;
-}
-
-.project {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.project p {
-  margin: 0;
-  flex: 1;
-}
-
-.percentage {
-  width: 50px;
-  text-align: right;
-}
-
-.colors {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.color {
-  width: 150px;
-  height: 100px;
-  border-radius: 10px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-  text-align: center;
-}
-
-.color.primary {
-  background-color: #4e73df;
-}
-
-.color.success {
-  background-color: #1cc88a;
-}
-
-.color.info {
-  background-color: #36b9cc;
-}
-
-.color.warning {
-  background-color: #f6c23e;
-}
-
-.color.danger {
-  background-color: #e74a3b;
-}
-
-.color.secondary {
-  background-color: #858796;
-}
-
-.color.light {
-  background-color: #f8f9fc;
-  color: #5a5c69;
-}
-
-.color.dark {
-  background-color: #5a5c69;
-}
-.progress-container {
-  margin-bottom: 1rem;
-}
-
-.progress-title {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.progress {
-  height: 20px;
-}
-
-.progress-bar {
-  text-align: right;
-  padding-right: 5px;
-  color: white;
+  width: 45%;
 }

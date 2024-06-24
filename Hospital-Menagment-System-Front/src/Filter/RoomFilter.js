@@ -50,6 +50,7 @@ const NameFilter = () => {
                         <thead>
                             <tr>
                                 <th>Patient ID</th>
+                                <th>Room</th>
                                 <th>Name</th>
                                 <th>Surname</th>
                                 <th>Email</th>
@@ -64,6 +65,8 @@ const NameFilter = () => {
                             {patients.map((patient, index) => (
                                 <tr key={index}>
                                     <td>{patient.patientId}</td>
+                                    <td>{patient.rooma}</td>
+
                                     <td>{patient.name}</td>
                                     <td>{patient.surname}</td>
                                     <td>{patient.email}</td>

@@ -4,6 +4,7 @@ public class Vacation
 {
     public int VacationId { get; set; }
 
+    public string DoctorName { get; set; }
     public string Arsyja { get; set; }
 
     public Boolean Vertetimi { get; set; }

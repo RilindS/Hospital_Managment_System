@@ -92,6 +92,7 @@ const AddAppointment = () => {
               name="patientName"
               value={appointment.patientName}
               onChange={handleChange}
+              readOnly
               required
             />
           </Col>

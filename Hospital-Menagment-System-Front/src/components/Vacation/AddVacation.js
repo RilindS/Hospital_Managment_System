@@ -2,11 +2,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { addVacation } from '../../services/VacationService';
+//import { useAuth } from '../Con/AuthContext';
+
 
 const AddVacation = () => {
+  const { user } = useAuth();
+
   const navigate = useNavigate();
   const [vacation, setVacation] = useState({
+    patientName: user ? user.name : '',
     arsyja: '',
     vertetimi: false,
     prej: '',
@@ -36,6 +42,18 @@ const AddVacation = () => {
     <Container>
       <h2>Add Vacation</h2>
       <Form onSubmit={handleSubmit}>
+      <Form.Group as={Row} className="mb-3" controlId="formPatientName">
+          <Form.Label column sm={2}>Doctor Name:</Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              name="patientName"
+              value={vacation.DoctorName}
+              onChange={handleChange}
+              required
+            />
+          </Col>
+        </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formArsyja">
           <Form.Label column sm={2}>Arsyja:</Form.Label>
           <Col sm={10}>

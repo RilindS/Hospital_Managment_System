@@ -27,6 +27,7 @@ namespace Hospital_Menagment_System.Data
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Inventory> Inventorys { get; set; }
         public DbSet<Vacation> Vacations { get; set; }
+        public DbSet<FeedBack> FeedBacks { get; set; }
 
 
         

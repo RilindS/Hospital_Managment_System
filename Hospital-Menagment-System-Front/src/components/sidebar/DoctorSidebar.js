@@ -10,36 +10,32 @@ const DoctorSidebar = () => {
   return (
     <div className="sidebar">
       <Link to="/doctor" className="sidebar-link">
-        <i className="fas fa-calendar-alt"></i>
-        <span className="link-text">faqja Kryesore</span>
+        <i className="fas fa-home"></i>
+        <span className="link-text">Faqja Kryesore</span>
       </Link>
       <Link to="/doctor/patient" className="sidebar-link">
-        <i className="fas fa-user-injured"></i>
-        <span className="link-text">Shiko pacinetet e gjith spitalit</span>
+        <i className="fas fa-procedures"></i>
+        <span className="link-text">Shiko Pacientet e Gjith Spitalit</span>
       </Link>
       <Link to="/doctor/appointments" className="sidebar-link">
-        <i className="fas fa-user-injured"></i>
-        <span className="link-text">Shiko Pacientet E Tu</span>
+        <i className="fas fa-calendar-check"></i>
+        <span className="link-text">Shiko Pacientet e Tu</span>
       </Link>
       <Link to="/doctor/vacation" className="sidebar-link">
-        <i className="fas fa-user-injured"></i>
-        <span className="link-text">Bej kerkes per pushim</span>
+        <i className="fas fa-umbrella-beach"></i>
+        <span className="link-text">Kërkesë për Pushim</span>
+      </Link>
+      <Link to="/doctor/inventory" className="sidebar-link">
+        <i className="fas fa-boxes"></i>
+        <span className="link-text">Kërkesë për Inventar</span>
       </Link>
       <Link to="/doctor/appointmentsByDate" className="sidebar-link">
-        <i className="fas fa-search"></i>
-        <span className="link-text">Filtro terminet baz dates</span>
+        <i className="fas fa-calendar-day"></i>
+        <span className="link-text">Filtro Terminet Baz Dates</span>
       </Link>
-      
       <Link to="/doctor/city-filter" className="sidebar-link">
-        <i className="fas fa-search"></i>
-        <span className="link-text">Filter by City</span>
-      </Link>
-      
-      
-
-      <Link to="/doctor/inventory" className="sidebar-link">
-        <i className="fas fa-calendar-alt"></i>
-        <span className="link-text">Kerkes per Inventory</span>
+        <i className="fas fa-city"></i>
+        <span className="link-text">Filtro sipas Qytetit</span>
       </Link>
       
       <button onClick={logout} className="sidebar-link">

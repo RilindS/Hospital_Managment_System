@@ -7,7 +7,6 @@ import { getInventoryById, updateInventoryById } from '../../services/InventoryS
 const EditInventory = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
   const [inventory, setInventory] = useState({
     artikulli: '',
     pershkrimi: '',

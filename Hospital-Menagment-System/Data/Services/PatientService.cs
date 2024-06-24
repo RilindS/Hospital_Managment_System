@@ -88,6 +88,7 @@ namespace Hospital_Menagment_System.Data.Services
                 .Select(p => new PatientDTO
                 {
                     PatientId = p.PatientId,
+                    Rooma = p.Rooma,
                     Name = p.Name,
                     Surname = p.Surname,
                     Email = p.Email,

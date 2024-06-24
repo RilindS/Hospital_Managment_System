@@ -15,6 +15,16 @@ namespace Hospital_Menagment_System.Data.Services;
             _context = context;
            
         }
+        public List<Vacation> GetVacationByDoctorNameAndVertetimi(string doctorName, bool vertetimi)
+        {
+            return _context.Vacations.Where(n => n.DoctorName == doctorName && n.Vertetimi == vertetimi).ToList();
+        }
+
+        public List<Vacation> GetVacationByaprovimiStatus(bool status)
+        {
+            return _context.Vacations.Where(n => n.Vertetimi == status).ToList();
+        }
+
      
 
         public void AddVacation(VacationVM vacation)
@@ -23,6 +33,7 @@ namespace Hospital_Menagment_System.Data.Services;
             var newVacation = new Vacation()
             {
                 Arsyja = vacation.Arsyja,   
+                DoctorName = vacation.DoctorName,
                 Vertetimi = vacation.Vertetimi,
                 Prej = vacation.Prej,
                 Deri = vacation.Deri
@@ -36,12 +47,13 @@ namespace Hospital_Menagment_System.Data.Services;
         {
             return _context.Vacations.ToList();
         }
+        
 
         public Vacation GetVacationById(int inventoryId)
         {
             return _context.Vacations.FirstOrDefault(n => n.VacationId == inventoryId);
         }
-
+    
         public Vacation UpdateVacationById(int inventoryId, VacationVM inventory)
         {
             var _appoitment = _context.Vacations.FirstOrDefault(n => n.VacationId == inventoryId);
@@ -49,9 +61,11 @@ namespace Hospital_Menagment_System.Data.Services;
             if (_appoitment != null)
             {
                 _appoitment.Arsyja = inventory.Arsyja;
+                _appoitment.DoctorName = inventory.DoctorName;
                 _appoitment.Vertetimi=inventory.Vertetimi;
                 _appoitment.Prej=inventory.Prej;
                 _appoitment.Deri=inventory.Deri;
+                
 
                 
 
