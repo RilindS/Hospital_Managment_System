@@ -68,7 +68,7 @@ const AdminSidebar = () => {
       </Link> 
       <Link to="/admin/feedback" className="sidebar-link">
         <i className="fas fa-boxes"></i>
-        <span className="link-text">Inventari</span>
+        <span className="link-text">Shiqo Feedback</span>
       </Link> 
          <Link to="/admin/register" className="sidebar-link">
         <i className="fas fa-user-plus"></i>

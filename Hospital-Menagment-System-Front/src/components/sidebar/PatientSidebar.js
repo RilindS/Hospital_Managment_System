@@ -25,6 +25,10 @@ const PatientSidebar = () => {
         <i className="fas fa-user-md"></i>
         <span className="link-text">Shiko Doktorët</span>
       </Link>
+      <Link to="/patient/feedback" className="sidebar-link">
+        <i className="fas fa-boxes"></i>
+        <span className="link-text">FeedBack</span>
+      </Link>
       <button onClick={logout} className="sidebar-link">
         <i className="fas fa-sign-out-alt"></i>
         <span className="link-text">Logout</span>

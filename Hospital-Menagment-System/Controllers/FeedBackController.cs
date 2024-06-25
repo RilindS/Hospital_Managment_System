@@ -58,5 +58,11 @@ namespace Hospital_Menagment_System.Controllers
             _feedBackServices.DeleteFeedBackById(id);
             return Ok();
         }
+        [HttpGet("get-feedback-stats")]
+        public IActionResult GetFeedBackStats()
+        {
+            var stats = _feedBackServices.GetFeedBackStats();
+            return Ok(stats);
+        }
     }
 }

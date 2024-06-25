@@ -34,7 +34,7 @@ const AddInventory = () => {
       setTimeout(() => {
         navigate('/admin/inventory');
         window.location.reload();
-      }, 3000); 
+      }, 1000); 
     } catch (error) {
       console.error('Error adding inventory:', error);
       toast.error('Failed to add inventory.');

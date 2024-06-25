@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeedBackList from '../components/FeedBack/FeedBackList';
+import FeedBackStats from './FeedBackStats';
 
 const FeedBackPage = () => {
   const navigate = useNavigate();
@@ -11,9 +12,11 @@ const FeedBackPage = () => {
 
   return (
     <div>
-      <h1>Feedback Management</h1>
-      <button onClick={handleAddFeedBackClick}>Add Feedback</button>
+      <h1>Feedback nga pacientet</h1>
+      {/* <button onClick={handleAddFeedBackClick}>Add Feedback</button> */}
+      <FeedBackStats />
       <FeedBackList />
+
     </div>
   );
 };

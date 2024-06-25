@@ -26,7 +26,7 @@ const AddFeedBack = () => {
     e.preventDefault();
     try {
       await addFeedBack(feedback);
-      navigate('/doctor/feedback'); 
+      navigate('/patient'); 
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message);
@@ -39,7 +39,7 @@ const AddFeedBack = () => {
 
   return (
     <Container>
-      <h2>Add New Feedback</h2>
+      <h2>Jep nje feedback </h2>
       {error && <div className="alert alert-danger" role="alert">{error}</div>}
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formFeedBackComment">
@@ -69,15 +69,19 @@ const AddFeedBack = () => {
         <Form.Group as={Row} className="mb-3" controlId="formRating">
           <Form.Label column sm={2}>Rating:</Form.Label>
           <Col sm={10}>
-            <Form.Control
-              type="number"
+            <Form.Select
               name="rating"
               value={feedback.rating}
               onChange={handleChange}
               required
-              min="1"
-              max="5"
-            />
+            >
+              <option value="">Select rating</option>
+              <option value="1">1 - Very Bad</option>
+              <option value="2">2 - Bad</option>
+              <option value="3">3 - Okay</option>
+              <option value="4">4 - Good</option>
+              <option value="5">5 - Excellent</option>
+            </Form.Select>
           </Col>
         </Form.Group>
         <Button type="submit" variant="primary">Add Feedback</Button>

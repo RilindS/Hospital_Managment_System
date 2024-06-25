@@ -99,6 +99,12 @@ const DoctorAppointments = () => {
                   <tr>
                     <td>Pershkrimi dhe Medikamentet</td>
                     <td>{appointment.reason}</td>
+
+                  </tr>
+                  <tr>
+                    <td>Doktori(me)</td>
+                    <td>{appointment.doctorName}</td>
+                    
                   </tr>
                 </tbody>
               </table>
@@ -124,6 +130,8 @@ const DoctorAppointments = () => {
                   name="patientName"
                   value={currentAppointment.patientName}
                   onChange={handleEditChange}
+                  readOnly
+                  
                 />
               </Form.Group>
               <Form.Group controlId="formPatientEmail">
@@ -133,6 +141,7 @@ const DoctorAppointments = () => {
                   name="patientEmail"
                   value={currentAppointment.patientEmail}
                   onChange={handleEditChange}
+                  readOnly
                 />
               </Form.Group>
               <Form.Group controlId="formDate">
@@ -163,6 +172,8 @@ const DoctorAppointments = () => {
                   onChange={handleEditChange}
                 />
               </Form.Group>
+
+              
               <Button variant="primary" type="submit">
                 Save Changes
               </Button>

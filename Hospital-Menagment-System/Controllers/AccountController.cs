@@ -120,7 +120,7 @@ namespace Hospital_Menagment_System.Controllers
                         new Claim(ClaimTypes.Role, roles.FirstOrDefault()),
                         new Claim("name", user.Name) // Ensure this line is present
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(15), // Short-lived access token
+                    Expires = DateTime.UtcNow.AddMinutes(25), // Short-lived access token
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -205,7 +205,7 @@ namespace Hospital_Menagment_System.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddMinutes(25),
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
             };
 

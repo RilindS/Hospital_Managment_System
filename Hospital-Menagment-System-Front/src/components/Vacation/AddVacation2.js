@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../../context/AuthContext';
 import { addVacation } from '../../services/VacationService';
 
@@ -30,9 +32,14 @@ const AddVacation = () => {
     try {
       const response = await addVacation(vacation);
       console.log('Vacation added:', response);
-      navigate('/doctor'); // Refresh the list after adding
+      toast.success('Vacation successfully added!');
+      setTimeout(() => {
+        navigate('/doctor');
+        window.location.reload();
+      },1000);
     } catch (error) {
       console.error('Error adding vacation:', error);
+      toast.error('Failed to add vacation.');
     }
   };
 
@@ -42,6 +49,7 @@ const AddVacation = () => {
 
   return (
     <Container>
+      <ToastContainer />
       <h2>Add Vacation</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formDoctorName">

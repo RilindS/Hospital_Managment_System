@@ -11,6 +11,20 @@ public class FeedBackServices
     {
         _context = context;
     }
+    
+    public FeedBackStatsVM GetFeedBackStats()
+    {
+        var totalFeedBacks = _context.FeedBacks.Count();
+        var sumOfRatings = _context.FeedBacks.Sum(f => f.Rating);
+        var averageRating = totalFeedBacks > 0 ? (double)sumOfRatings / totalFeedBacks : 0;
+
+        return new FeedBackStatsVM
+        {
+            TotalFeedBacks = totalFeedBacks,
+            SumOfRatings = sumOfRatings,
+            AverageRating = averageRating
+        };
+    }
 
     public List<FeedBack> GetAllFeedBacks()
     {

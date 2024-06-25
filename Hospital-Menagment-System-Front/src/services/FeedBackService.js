@@ -28,3 +28,8 @@ export const deleteFeedBackById = async (id) => {
   const response = await axios.delete(`${API_URL}delete-feedback-by-id/${id}`);
   return response.data;
 };
+
+export const getFeedBackStats = async () => {
+  const response = await axios.get(`${API_URL}get-feedback-stats`);
+  return response.data;
+};
