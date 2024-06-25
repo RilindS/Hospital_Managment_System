@@ -79,8 +79,13 @@ import CityPage from './pages/CityPage';
 import DepartmentPage from './pages/DepartmentPage';
 import DoctorHomePage from './pages/DoctorHomePage';
 
+import AddFeedBack from './components/FeedBack/AddFeedBack';
+import AddFeedBackA from './components/FeedBack/AddFeedBackA';
+
+import EditFeedBack from './components/FeedBack/EditFeedBack';
 import AddVacation from './components/Vacation/AddVacation';
 import EditVacation from './components/Vacation/EditVacation';
+import FeedBackPage from './pages/FeedBackPage';
 import NursePage from './pages/NursePage';
 import PatientHomePage from './pages/PatientHomePage';
 import RoomPage from './pages/RoomPage';
@@ -136,6 +141,11 @@ const AdminLayout = () => (
 
         <Route path="/vacation/add" element={<AddVacation />} />
         <Route path="/vacation/edit/:id" element={<EditVacation />} />
+
+        <Route path="/feedback" element={<FeedBackPage />} />
+
+<Route path="/feedback/add" element={<AddFeedBackA />} />
+<Route path="/feedback/edit/:id" element={<EditFeedBack />} />
 
 
 
@@ -204,6 +214,7 @@ const PatientLayout = () => (
         <Route path="/doctor" element={<DoctorForPatient />} />
 
         <Route path="/medical-history" element={<PatientMyAppoitments />} />
+        <Route path="/feedback" element={<AddFeedBack />} />
 
 
       </Routes>

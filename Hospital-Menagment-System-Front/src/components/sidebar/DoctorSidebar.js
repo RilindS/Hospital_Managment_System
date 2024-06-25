@@ -29,6 +29,10 @@ const DoctorSidebar = () => {
         <i className="fas fa-boxes"></i>
         <span className="link-text">Kërkesë për Inventar</span>
       </Link>
+      <Link to="/doctor/feedback" className="sidebar-link">
+        <i className="fas fa-boxes"></i>
+        <span className="link-text">FeedBack</span>
+      </Link> 
       <Link to="/doctor/appointmentsByDate" className="sidebar-link">
         <i className="fas fa-calendar-day"></i>
         <span className="link-text">Filtro Terminet Baz Dates</span>
