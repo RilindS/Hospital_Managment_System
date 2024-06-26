@@ -62,14 +62,14 @@ const EditVacation = () => {
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formVertetimi">
-          <Form.Label column sm={2}>Vertetimi:</Form.Label>
+          <Form.Label column sm={2}>Aprovimi:</Form.Label>
           <Col sm={10}>
             <Form.Check
               type="checkbox"
               name="vertetimi"
               checked={vacation.vertetimi}
               onChange={handleChange}
-              label="Vertetimi"
+              label="Aprovimi"
             />
           </Col>
         </Form.Group>

@@ -7,7 +7,7 @@ const PatientFordoctor = () => {
 
   return (
     <div>
-      <h1>Pacientat e te gjith spitalit</h1>
+      <h1>Pacientet e spitalit</h1>
         {/* <button onClick={handleAddDoctorClick}>Add Doctor</button> */}
       <PatinetForDoctorr />
     </div>

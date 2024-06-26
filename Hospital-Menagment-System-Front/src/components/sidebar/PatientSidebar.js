@@ -15,7 +15,7 @@ const PatientSidebar = () => {
       </Link>
       <Link to="/patient/appointments" className="sidebar-link">
         <i className="fas fa-calendar-check"></i>
-        <span className="link-text">Rezervimet</span>
+        <span className="link-text">Bej Rezervim</span>
       </Link>
       <Link to="/patient/medical-history" className="sidebar-link">
         <i className="fas fa-file-medical-alt"></i>
@@ -27,7 +27,7 @@ const PatientSidebar = () => {
       </Link>
       <Link to="/patient/feedback" className="sidebar-link">
         <i className="fas fa-boxes"></i>
-        <span className="link-text">FeedBack</span>
+        <span className="link-text">Jep FeedBack</span>
       </Link>
       <button onClick={logout} className="sidebar-link">
         <i className="fas fa-sign-out-alt"></i>

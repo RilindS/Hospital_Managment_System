@@ -2,13 +2,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { addFeedBack } from '../../services/FeedBackService';
 
+
 const AddFeedBack = () => {
+  const { user } = useAuth();
+
   const navigate = useNavigate();
   const [feedback, setFeedback] = useState({
     comment: '',
-    doctorName: '',
+    doctorName: user ? user.name : '',
     rating: '',
   });
 
@@ -55,7 +59,7 @@ const AddFeedBack = () => {
           </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formDoctorName">
-          <Form.Label column sm={2}>Doctor Name:</Form.Label>
+          <Form.Label column sm={2}>Pacient Name:</Form.Label>
           <Col sm={10}>
             <Form.Control
               type="text"

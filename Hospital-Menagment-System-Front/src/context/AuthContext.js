@@ -62,10 +62,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     checkTokenValidity();
 
-    // Set interval to refresh token
+   
     const interval = setInterval(() => {
       refreshToken();
-    }, 14 * 60 * 1000); // 14 minutes
+    }, 14 * 60 * 1000); 
 
     return () => clearInterval(interval);
   }, [checkTokenValidity, refreshToken]);

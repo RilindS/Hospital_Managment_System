@@ -25,7 +25,7 @@ const FeedBackStats = () => {
     <Container className="my-4">
       {stats ? (
         <Row>
-          <Col md={4}>
+          <Col md={5}>
             <Card className="text-center">
               <Card.Body>
                 <Card.Title>Total Feedbacks</Card.Title>
@@ -33,15 +33,15 @@ const FeedBackStats = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}>
+          {/* <Col md={4}>
             <Card className="text-center">
               <Card.Body>
                 <Card.Title>Sum of Ratings</Card.Title>
                 <Card.Text>{stats.sumOfRatings}</Card.Text>
               </Card.Body>
             </Card>
-          </Col>
-          <Col md={4}>
+          </Col> */}
+          <Col md={5}>
             <Card className="text-center">
               <Card.Body>
                 <Card.Title>Average Rating</Card.Title>

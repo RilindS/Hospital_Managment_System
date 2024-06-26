@@ -13,14 +13,15 @@ const AdminSidebar = () => {
         <i className="fas fa-home"></i>
         <span className="link-text">Faqja Kryesore</span>
       </Link>
-      <Link to="/admin/patient" className="sidebar-link">
-        <i className="fas fa-user-injured"></i>
-        <span className="link-text">Pacientët</span>
-      </Link>
       <Link to="/admin/doctor" className="sidebar-link">
         <i className="fas fa-user-md"></i>
         <span className="link-text">Doktorët</span>
       </Link>
+      <Link to="/admin/patient" className="sidebar-link">
+        <i className="fas fa-user-injured"></i>
+        <span className="link-text">Pacientët</span>
+      </Link>
+      
       <Link to="/admin/department" className="sidebar-link">
         <i className="fas fa-building"></i>
         <span className="link-text">Departamentet</span>
