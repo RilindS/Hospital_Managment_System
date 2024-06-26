@@ -13,6 +13,22 @@ namespace Hospital_Menagment_System.Data.Services
         {
             _context = context;
         }
+        public void DeleteCityById(int patientId)
+        {
+            var _patient = _context.Cities.FirstOrDefault(n => n.CityId
+                                                                == patientId);
+            if (_patient != null)
+            {
+                _context.Cities.Remove(_patient);
+                _context.SaveChanges();
+            }
+        }
+
+        public List<City> GetAllCity()
+        {
+            return _context.Cities.ToList();
+        }
+
 
         /*
          *

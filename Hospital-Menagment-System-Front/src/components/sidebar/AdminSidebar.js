@@ -46,28 +46,12 @@ const AdminSidebar = () => {
         <i className="fas fa-umbrella-beach"></i>
         <span className="link-text">Pushimet</span>
       </Link>
-      {/* <Link to="/admin/appointmentsByDate" className="sidebar-link">
-        <i className="fas fa-calendar-day"></i>
-        <span className="link-text">Filtro Pacientët sipas Datës</span>
-      </Link>
-      <Link to="/admin/city-filter" className="sidebar-link">
-        <i className="fas fa-city"></i>
-        <span className="link-text">Filtro Pacientët sipas Qytetit</span>
-      </Link>
-      <Link to="/admin/name-filter" className="sidebar-link">
-        <i className="fas fa-user"></i>
-        <span className="link-text">Filtro Pacientët sipas Emrit</span>
-      </Link>
-      <Link to="/admin/room-filter" className="sidebar-link">
-        <i className="fas fa-procedures"></i>
-        <span className="link-text">Filtro Pacientët sipas Dhomës</span>
-      </Link> */}
       <Link to="/admin/inventory" className="sidebar-link">
         <i className="fas fa-boxes"></i>
         <span className="link-text">Inventari</span>
       </Link> 
       <Link to="/admin/feedback" className="sidebar-link">
-        <i className="fas fa-boxes"></i>
+        <i className="fas fa-comments"></i>
         <span className="link-text">Shiqo Feedback</span>
       </Link> 
          <Link to="/admin/register" className="sidebar-link">

@@ -5,14 +5,36 @@ import InventoryList from '../components/Inventory/InventoryList';
 const InventoryPage = () => {
   const navigate = useNavigate();
 
-  const handleAddNurseClick = () => {
+  const handleAddInventoryClick = () => {
     navigate('/doctor/inventory/add');
+  };
+
+  const buttonStyle = {
+    marginTop: '20px',
+    padding: '10px 20px',
+    backgroundColor: '#007BFF', // Blue
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+  };
+
+  const buttonHoverStyle = {
+    backgroundColor: '#0056b3',
   };
 
   return (
     <div>
       <h1>Inventory Management</h1>
-      <button onClick={handleAddNurseClick}>Add Inventory</button>
+      <button
+        style={buttonStyle}
+        onMouseEnter={(e) => (e.target.style.backgroundColor = buttonHoverStyle.backgroundColor)}
+        onMouseLeave={(e) => (e.target.style.backgroundColor = buttonStyle.backgroundColor)}
+        onClick={handleAddInventoryClick}
+      >
+        Add Inventory
+      </button>
       <InventoryList />
     </div>
   );

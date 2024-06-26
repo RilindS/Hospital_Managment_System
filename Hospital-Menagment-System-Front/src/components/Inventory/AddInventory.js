@@ -44,7 +44,7 @@ const AddInventory = () => {
   return (
     <Container>
       <ToastContainer />
-      <h2>Add Inventory</h2>
+      {/* <h2>Add Inventory</h2> */}
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formArtikulli">
           <Form.Label column sm={2}>Artikulli:</Form.Label>

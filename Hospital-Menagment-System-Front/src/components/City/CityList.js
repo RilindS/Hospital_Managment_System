@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { getAllCities, deleteCityById } from '../../services/CityServices'; // Ensure this path is correct
-import { Link } from 'react-router-dom';
-import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Table } from 'react-bootstrap';
+import { deleteCityById, getAllCities } from '../../services/CityServices'; // Ensure this path is correct
 
 const CityList = () => {
   const [cities, setCities] = useState([]);
@@ -21,9 +20,9 @@ const CityList = () => {
     }
   };
 
-  const handleDelete = async (cityName) => {
+  const handleDelete = async (id) => {
     try {
-      await deleteCityById(cityName); // Assuming deleteCityById uses cityName to delete
+      await deleteCityById(id); // Assuming deleteCityById uses cityName to delete
       fetchCities(); // Refresh the list after deletion
     } catch (error) {
       console.error('Error deleting city:', error);
@@ -46,7 +45,7 @@ const CityList = () => {
               <td>{cityName}</td>
               <td>
                 {/* <Link to={`/admin/city/edit/${cityName}`} className="btn btn-primary btn-sm me-2">Edit</Link> */}
-                <Button variant="danger" size="sm" onClick={() => handleDelete(cityName)}>Delete</Button>
+                <Button variant="danger" size="sm" onClick={() => handleDelete(cities.cityId)}>Delete</Button>
               </td>
             </tr>
           ))}

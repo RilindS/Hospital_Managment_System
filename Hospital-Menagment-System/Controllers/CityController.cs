@@ -31,5 +31,17 @@ namespace Hospital_Menagment_System.Controllers
             _cityService.AddCity(city);
             return Ok();
         }
+        [HttpDelete("delete-city-by-id/{id}")]
+        public IActionResult DeleteCityById(int id)
+        {
+            _cityService.DeleteCityById(id);
+            return Ok();
+        }
+        [HttpGet("get-all-city")]
+        public IActionResult GetAllPatient()
+        {
+            var allPatient = _cityService.GetAllCity();
+            return Ok(allPatient);
+        }
     }
 }

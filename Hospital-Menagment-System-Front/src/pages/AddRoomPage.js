@@ -3,7 +3,7 @@ import AddRoom from '../components/Room/AddRoom';
 
 const AddRoomPage = () => {
   return (
-    <div>
+    <div className="add-room-page">
       <h1>Add New Room</h1>
       <AddRoom />
     </div>

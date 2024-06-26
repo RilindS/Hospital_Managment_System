@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { addRoom } from '../../services/RoomService';
-import { getAllDepartments } from '../../services/DepartmentService';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { getAllDepartments } from '../../services/DepartmentService';
+import { addRoom } from '../../services/RoomService';
 
 const AddRoom = () => {
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ const AddRoom = () => {
     description: '',
     departmentId: '',
     DepartamentName: '',
-
     floor: '',
     nrOfBeds: ''
   });
@@ -52,8 +51,8 @@ const AddRoom = () => {
   };
 
   return (
-    <Container>
-      <h2></h2>
+    <Container className="mt-4">
+      <h2 className="mb-4">Add Room</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formRoomName">
           <Form.Label column sm={2}>Name:</Form.Label>
@@ -123,7 +122,9 @@ const AddRoom = () => {
             />
           </Col>
         </Form.Group>
-        <Button type="submit" variant="primary">Add Room</Button>
+        <div className="d-flex justify-content-end">
+          <Button type="submit" variant="primary">Add Room</Button>
+        </div>
       </Form>
     </Container>
   );

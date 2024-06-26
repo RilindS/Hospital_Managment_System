@@ -58,7 +58,7 @@ const RegisterPage = () => {
             <Form.Group controlId="formRole" className="mb-3">
               <Form.Label>Role</Form.Label>
               <Form.Select value={role} onChange={(e) => setRole(e.target.value)} required>
-                {/* <option value="Admin">Admin</option> */}
+                 {/* <option value="Admin">Admin</option>  */}
                 <option value="Doctor">Doctor</option>
                 <option value="Patient">Patient</option>
               </Form.Select>

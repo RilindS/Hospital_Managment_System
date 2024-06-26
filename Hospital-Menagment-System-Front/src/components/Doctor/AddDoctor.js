@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { addDoctor } from '../../services/DoctorService';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getAllCities } from '../../services/CityServices';
 import { getAllDepartments } from '../../services/DepartmentService';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { addDoctor } from '../../services/DoctorService';
 
 const AddDoctor = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { name } = location.state || {};
+
   const [doctor, setDoctor] = useState({
-    doctorName: '',
+    doctorName: name || '',
     surname: '',
     phoneNumber: '',
     specialization: '',

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -106,9 +106,9 @@ export const AuthProvider = ({ children }) => {
       const response = await axios.post('https://localhost:44322/api/Account/register', { email, password, name, role });
       const { isPatient, isDoctor } = response.data;
       if (isPatient) {
-        navigate('admin/add-patient');
+        navigate('admin/add-patient', { state: { email, name } });
       } else if (isDoctor) {
-        navigate('admin/add-doctor');
+        navigate('admin/add-doctor', { state: { email, name } });
       } else {
         navigate('/login');
       }
@@ -119,6 +119,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Registration failed'); // Throw an error
     }
   };
+  
 
   const logout = () => {
     localStorage.removeItem('token');

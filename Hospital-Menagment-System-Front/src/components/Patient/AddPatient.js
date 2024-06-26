@@ -1,17 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getAllCities } from '../../services/CityServices';
 import { getAllRoomsName } from '../../services/RoomService';
 import { addPatient } from '../../services/patientService';
 
 const AddPatient = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { email, name } = location.state || {};
+
   const [patient, setPatient] = useState({
-    name: '',
+    name: name || '',
     surname: '',
-    email: '',
+    email: email || '',
     phoneNumber: '',
     dateOfBirth: '',
     qyteti: '',
@@ -86,6 +89,7 @@ const AddPatient = () => {
               value={patient.name}
               onChange={handleChange}
               required
+              
             />
           </Col>
         </Form.Group>
@@ -110,6 +114,7 @@ const AddPatient = () => {
               value={patient.email}
               onChange={handleChange}
               required
+              
             />
           </Col>
         </Form.Group>

@@ -58,7 +58,7 @@ export const updateCityById = async (id, city) => {
     throw error.response.data;
   }
 };
-
+//https://localhost:44322/api/City/delete-city-by-id/6
 // Method to delete a city by ID (if needed)
 export const deleteCityById = async (id) => {
   try {
